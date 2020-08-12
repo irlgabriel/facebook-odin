@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html style='background-color: white;'>
   <head>
     <title>FacebookOdin</title>
     <%= csrf_meta_tags %>
@@ -17,7 +17,8 @@
     <% if flash[:notice] %>
       <h2 class="alert alert-warning text-center mb-0"><%= flash[:notice] %></h2>
     <% end %>
-    <div class='container'>
+
+    <div class='container-fluid clearfix'>
       <%= yield %>
     </div>
   </body>

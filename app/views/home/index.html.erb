@@ -1,0 +1,33 @@
+
+<div class='container float-left d-flex align-items-center' style='width:40%;'>
+  <p class='text-primary' style='font-size: 4rem; font-weight: bold;'>facebook</p>
+</div>
+
+<div class='form-group container p-3 border border-light float-right my-auto mr-3' style='background-color: white ; border-radius: 15px; width:40%;'>
+
+  <%= form_for @user, url: new_user_session_path, method: :get do |f| %>
+
+    <div class="form-group">
+      <%= f.text_field :email, placeholder: 'Enter your Email', class:'form-control py-4' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.password_field :password, placeholder: 'Password',  class:'form-control py-4'%>
+    </div>
+
+    <div class="form-group text-center">
+      <%= f.submit :log_in, value: "Log In", class:'btn btn-primary mb-3 py-3 w-100' %>
+      <br/>
+      <%= link_to 'Forgot account?', new_password_path(@user), html_options = {style:'font-size:12px;'} %>
+    </div>
+
+    <div class="form-group text-center">
+      <hr class='py-2' />
+      <%= link_to 'Create New Account', new_user_registration_path, class:' btn btn-success w-75 py-3' %>
+
+    </div>
+
+  <% end %>
+
+</div>
+
