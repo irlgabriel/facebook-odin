@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   get 'home', to: 'home#index', as: :home
   get 'feed', to: 'feed#index', as: :feed 
-  get 'profile', to: 'home#profile', as: :profile
+  get 'profile/:id', to: 'home#profile', as: :profile
+  get 'friends', to: 'friends#home'
 
   resources :posts
   devise_for :users

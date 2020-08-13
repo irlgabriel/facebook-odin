@@ -1,0 +1,8 @@
+
+<h1>Friends Suggestions</h1>
+
+<div class='line my-2'></div>
+
+<% @users.each do |possible_friend| %>
+  <%= link_to possible_friend.email, profile_path(possible_friend), class:'text-dark h4' %>
+<% end %>

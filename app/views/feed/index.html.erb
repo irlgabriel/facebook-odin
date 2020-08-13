@@ -9,7 +9,7 @@
 
 <div class="left-nav d-flex flex-column w-25">
 
-  <%= link_to profile_path do %>
+  <%= link_to profile_path(current_user) do %>
     <h5 class="my-3 text-dark">Profile</h5>
   <% end %>
 
@@ -17,7 +17,7 @@
     <h5 class='my-3 text-dark'>Covid-19 Information Center</h5>
   <% end %>
 
-  <%= link_to feed_path do %>
+  <%= link_to friends_path do %>
     <h5 class='my-3 text-dark'>Friends</h5>
   <% end %>
 
