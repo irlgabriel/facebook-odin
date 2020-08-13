@@ -1,6 +1,6 @@
 class FeedController < ApplicationController
   def index
     @post = Post.new
-    @posts = Post.all
+    @posts = Post.order('created_at DESC')
   end
 end
