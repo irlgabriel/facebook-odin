@@ -5,8 +5,8 @@
 
   <!-- Small form for post within feed --> 
 
-  <div class='form-group w-75 mx-auto'>
-    <%= form_for @post, url: new_post_path, method: :post do |f| %>
+  <div class='form-group w-100 mx-auto'>
+    <%= form_for @post do |f| %>
 
       <div class='form-group'>
 
@@ -27,10 +27,19 @@
 
  <% @posts.each do |post| %>
 
-  <div class="card w-100" style="background-color: white" >
+  <div class="card w-100 my-4" style="background-color: white" >
     <div class='card-body'>
       <h5 class='card-title'><%= post.title %></h5>
       <p class='card-body'><%= post.body %></p>
+
+      <% if post.user_id == current_user.id %>
+        <div class='post-buttons text-right'>
+          <%= link_to 'Edit', edit_post_path(post), class:'p btn btn-warning px-3' %>
+          <%= link_to 'Delete', post, method: :delete  %>
+            
+        </div>
+      <% end %>
+      
     </div>
   </div>
 

@@ -5,7 +5,7 @@ This is the final project of The Odin Project rails course(https://www.theodinpr
 Features: 
 
 # Authentication with Devise gem
-# Users can create/edit/delete Posts(not 100% yet)
+# Users can create/edit/delete Posts
 
 
 Upcoming features:
