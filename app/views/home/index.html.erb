@@ -6,7 +6,7 @@
 
 <div class='form-group container p-3 border border-light float-right' style='background-color: white ; border-radius: 8px; width:35%; margin-top: 10%; margin-right: 7%; box-shadow: 1px 2px 2px 1px rgba(201,201,201,0.76);'>
 
-  <%= form_with url: new_user_session_path, method: :get do |f| %>
+  <%= form_with url: new_user_session_path, method: :post do |f| %>
 
     <div class="form-group">
       <%= f.text_field :email, placeholder: 'Enter your Email', class:'form-control py-4' %>

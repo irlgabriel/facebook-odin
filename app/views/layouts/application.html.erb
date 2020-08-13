@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>FacebookOdin</title>
+    <title>Facebook</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@800&display=swap" rel="stylesheet">
@@ -18,15 +18,26 @@
       <h2 class="alert alert-warning text-center mb-0"><%= flash[:notice] %></h2>
     <% end %>
 
-    <% if !current_page?(home_index_path) %>
-      <div class='navbar'>
-        <%= link_to home_index_path, class:'mx-auto' do %>
-          <h1 class='text-primary'>facebook</h1>
+
+
+    <% unless current_page?(home_path) or current_page?(root_path) %>
+      <div class='navbar' style='background-color: #F5F5F5;'>
+
+        <%= link_to home_path do %>
+          <%= image_tag 'fb_logo.svg', size: '40'  %>
         <% end %>
+
+        <% if current_user %>
+          <%= link_to 'Sign Out', destroy_session_path(current_user), method: :delete %>
+        <% end %>
+        
       </div>
+      <div class='line'></div>
     <% end %>
 
-    <div class='container-fluid clearfix' style='height:90vh; background-color: #F5F5F5'>
+
+
+    <div class='container-fluid clearfix' style='height:90vh; background-color: #F5F5F5;'>
       <%= yield %>
     </div>
 
