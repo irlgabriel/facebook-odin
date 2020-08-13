@@ -21,8 +21,8 @@
 
 
     <% unless current_page?(home_path) or current_page?(root_path) %>
-      <div class='navbar' style='background-color: #F5F5F5;'>
-
+      <div class='navbar' style='background-color: white;'>
+        
         <%= link_to home_path do %>
           <%= image_tag 'fb_logo.svg', size: '40'  %>
         <% end %>
@@ -32,12 +32,12 @@
         <% end %>
         
       </div>
-      <div class='line'></div>
+      <div id='navbar-line' class='line'></div>
     <% end %>
 
 
 
-    <div class='container-fluid clearfix' style= 'height: 90vh; background-color: #F5F5F5;'>
+    <div id='main-div' class='container-fluid clearfix' style= 'height: 90vh; background-color: #F5F5F5;'>
       <%= yield %>
     </div>
 

@@ -1,0 +1,38 @@
+
+<script>
+  mainDiv = document.getElementById('main-div');
+  mainDiv.classList.add('d-flex');
+  mainDiv.classList.add('pt-3');
+
+ 
+</script>
+
+<div class="left-nav d-flex flex-column w-25">
+
+  <%= link_to profile_path do %>
+    <h4 class="my-3 text-dark">Profile</h4>
+  <% end %>
+
+  <%= link_to feed_path do %>
+    <h4 class='my-3 text-dark'>Covid-19 Information Center</h4>
+  <% end %>
+
+  <%= link_to feed_path do %>
+    <h4 class='my-3 text-dark'>Friends</h4>
+  <% end %>
+
+  <%= link_to feed_path do %>
+    <h4 class='my-3 text-dark'>Messenger</h4>
+  <% end %>
+
+  <%= link_to feed_path do %>
+    <h4 class='my-3 text-dark'>Fundraisers</h4>
+  <% end %>
+
+  <%= link_to feed_path do %>
+    <h4 class='my-3 text-dark'>Marketplace</h4>
+  <% end %>
+
+  <div class='line w-75'></div>
+
+</div>

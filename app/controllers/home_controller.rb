@@ -6,6 +6,11 @@ class HomeController < ApplicationController
     if current_user
       redirect_to '/feed'
     end
+
+  end
+
+  def profile
     
   end
+
 end
