@@ -1,5 +1,38 @@
 
+<div class="d-flex flex-column" style='width: 55%;'>
 
- <%= @posts.each do |post| %>
-    
+  <%= link_to 'Create a Post', new_post_path, class:'h4 text-primary mx-auto' %>
+
+  <!-- Small form for post within feed --> 
+
+  <div class='form-group w-75 mx-auto'>
+    <%= form_for @post, url: new_post_path, method: :post do |f| %>
+
+      <div class='form-group'>
+
+        <%= f.text_field :title, placeholder:'Title', class:'form-control' %>
+      </div>
+
+      <div class='form-group'>
+        <%= f.text_area :body, placeholder:'Body', rows: 4, class:'form-control'%>
+      </div>
+
+      <div class='form-group'>
+        <%= f.submit :create_post, value:'Create Post', class:'btn btn-info mx-auto' %>
+
+      </div>
+    <% end %>
+  </div>
+
+
+ <% @posts.each do |post| %>
+
+  <div class="card w-100" style="background-color: white" >
+    <div class='card-body'>
+      <h5 class='card-title'><%= post.title %></h5>
+      <p class='card-body'><%= post.body %></p>
+    </div>
+  </div>
+
  <% end %>
+</div>

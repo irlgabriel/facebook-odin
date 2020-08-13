@@ -3,36 +3,57 @@
   mainDiv = document.getElementById('main-div');
   mainDiv.classList.add('d-flex');
   mainDiv.classList.add('pt-3');
-
+  mainDiv.classList.add('justify-content-between');
  
 </script>
 
 <div class="left-nav d-flex flex-column w-25">
 
   <%= link_to profile_path do %>
-    <h4 class="my-3 text-dark">Profile</h4>
+    <h5 class="my-3 text-dark">Profile</h5>
   <% end %>
 
   <%= link_to feed_path do %>
-    <h4 class='my-3 text-dark'>Covid-19 Information Center</h4>
+    <h5 class='my-3 text-dark'>Covid-19 Information Center</h5>
   <% end %>
 
   <%= link_to feed_path do %>
-    <h4 class='my-3 text-dark'>Friends</h4>
+    <h5 class='my-3 text-dark'>Friends</h5>
   <% end %>
 
   <%= link_to feed_path do %>
-    <h4 class='my-3 text-dark'>Messenger</h4>
+    <h5 class='my-3 text-dark'>Messenger</h5>
   <% end %>
 
   <%= link_to feed_path do %>
-    <h4 class='my-3 text-dark'>Fundraisers</h4>
+    <h5 class='my-3 text-dark'>Fundraisers</h5>
   <% end %>
 
   <%= link_to feed_path do %>
-    <h4 class='my-3 text-dark'>Marketplace</h4>
+    <h5 class='my-3 text-dark'>Marketplace</h5>
   <% end %>
 
   <div class='line w-75'></div>
+
+</div>
+
+<%= render 'posts' %>
+
+
+<!-- Chat thing -->
+
+<div class='chat-div w-25 ml-5'>
+
+  <h5 class="text-muted my-3 font-weight-bold">Sponsored</h5>
+
+  <div class="line"></div>
+
+  <h5 class="text-muted my-3 font-weight-bold">Birthdays</h5>
+
+  <div class="line"></div>
+
+  <h5 class="text-muted my-3 font-weight-bold">Contacts</h5>
+
+
 
 </div>

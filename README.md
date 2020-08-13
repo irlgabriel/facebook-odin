@@ -1,24 +1,21 @@
-# README
+This is the final project of The Odin Project rails course(https://www.theodinproject.com/courses/ruby-on-rails/lessons/final-project)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
 
-* Ruby version
+Features: 
 
-* System dependencies
+# Authentication with Devise gem
+# Users can create/edit/delete Posts(not 100% yet)
 
-* Configuration
 
-* Database creation
+Upcoming features:
 
-* Database initialization
+# Add comments
+# Like photos/comments
+# Friend requests
+# Oauth with facebook
+# Photo profiles
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
 
-* ...
