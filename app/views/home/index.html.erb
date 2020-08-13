@@ -1,11 +1,12 @@
 
-<div class='container float-left d-flex align-items-center' style='width:40%;'>
-  <p class='text-primary' style='font-size: 4rem; font-weight: bold;'>facebook</p>
+<div class='container float-left' style='width:45%; margin-top: 17%; margin-left: 5%; '>
+  <p class='text-primary m-auto' style="font-size: 3.5rem; font-family: 'Raleway', sans-serif;">facebook</p>
+  <h3 class='text-dark'>Connect with friends and the world around you on Facebook.</h3>
 </div>
 
-<div class='form-group container p-3 border border-light float-right my-auto mr-3' style='background-color: white ; border-radius: 15px; width:40%;'>
+<div class='form-group container p-3 border border-light float-right' style='background-color: white ; border-radius: 8px; width:35%; margin-top: 10%; margin-right: 7%; box-shadow: 1px 2px 2px 1px rgba(201,201,201,0.76);'>
 
-  <%= form_for @user, url: new_user_session_path, method: :get do |f| %>
+  <%= form_with url: new_user_session_path, method: :get do |f| %>
 
     <div class="form-group">
       <%= f.text_field :email, placeholder: 'Enter your Email', class:'form-control py-4' %>
@@ -16,18 +17,20 @@
     </div>
 
     <div class="form-group text-center">
-      <%= f.submit :log_in, value: "Log In", class:'btn btn-primary mb-3 py-3 w-100' %>
+      <%= f.submit :log_in, value: "Log In", class:'font-weight-bold btn btn-primary mb-2 py-3 w-100' %>
       <br/>
-      <%= link_to 'Forgot account?', new_password_path(@user), html_options = {style:'font-size:12px;'} %>
+      <%= link_to 'Forgot account?', new_password_path(User.new), html_options = {style:'font-size:14px;'} %>
     </div>
 
     <div class="form-group text-center">
-      <hr class='py-2' />
-      <%= link_to 'Create New Account', new_user_registration_path, class:' btn btn-success w-75 py-3' %>
+      <hr class='py-1' />
+
+      <%= link_to new_user_registration_path do %>
+        <p class="btn py-3 text-light" style='border-radius: 5px; width: 58%; background-color:#00b300'%><strong>Create New Account</strong></p>
+      <% end %>
 
     </div>
 
   <% end %>
 
-</div>
-
+  </div>

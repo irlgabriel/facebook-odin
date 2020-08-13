@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html style='background-color: white;'>
+<html>
   <head>
     <title>FacebookOdin</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@800&display=swap" rel="stylesheet">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -18,8 +18,19 @@
       <h2 class="alert alert-warning text-center mb-0"><%= flash[:notice] %></h2>
     <% end %>
 
-    <div class='container-fluid clearfix'>
+    <% if !current_page?(home_index_path) %>
+      <div class='navbar'>
+        <%= link_to home_index_path, class:'mx-auto' do %>
+          <h1 class='text-primary'>facebook</h1>
+        <% end %>
+      </div>
+    <% end %>
+
+    <div class='container-fluid clearfix' style='height:90vh; background-color: #F5F5F5'>
       <%= yield %>
     </div>
+
+   <%= render 'home/footer' %>
+
   </body>
 </html>
