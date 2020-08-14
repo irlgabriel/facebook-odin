@@ -1,0 +1,13 @@
+
+<div class='form-group w-50 mx-auto'>
+  <%= form_with @comment do |f| %>
+    <div class='form-group mt-4'>
+      <%= f.text_area :body, placeholder: "Text of your comment", class:'form-control' %>
+      
+    </div>
+
+    <div class='form-group'>
+      <%= f.submit :save, value: 'Save Comment'%>
+    </div>
+  <% end %>
+</div>
