@@ -8,6 +8,7 @@ class CommentsController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
     @comment = @post.comments.create(comment_params)
+    @comment.user_id = @post.user_id
     if @comment.save
       flash[:notice] = "Comment created!"
       redirect_to 'feed/posts'
@@ -16,9 +17,17 @@ class CommentsController < ApplicationController
     end
   end
 
+  def show
+
+  end
+
+  def index
+
+  end
+
   private
 
   def comment_params
-
+    params.require(:comment).permit(:body)
   end
 end

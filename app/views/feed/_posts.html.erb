@@ -33,14 +33,20 @@
       <p class='card-body'><%= post.body %></p>
 
       <% if post.user_id == current_user.id %>
+
         <div class='post-buttons text-right'>
           <%= link_to 'Edit', edit_post_path(post), class:'p btn btn-warning px-3' %>
-          <%= link_to 'Delete', post, method: :delete  %>
-            
+          <%= link_to 'Delete', post, method: :delete, class:"btn btn-danger px-3"  %>    
         </div>
+
       <% end %>
-      <div class='comments'>
-        <%= link_to 'Comment', new_post_comment_path(post) %>
+      <div class='comments d-flex justify-content-between align-items-center'>
+        <%= link_to 'Comment', new_post_comment_path(post), class:'btn btn-info' %>
+
+        <% unless post.comments.count == 0 %>
+          <%= link_to "#{post.comments.count} Comments", post_path, class:'text-dark' %>
+        <% end %>
+
       </div>
       
     </div>

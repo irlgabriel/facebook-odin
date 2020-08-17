@@ -1,0 +1,19 @@
+
+<div class='pt-4 container'>
+
+  <h2><%= @post.title %></h2>
+  <p class="ml-4 mt-5"><%= @post.body %></p>
+
+
+  <ul class='list-unstyled comments'>
+    <% @comments.each do |comment| %>
+
+    <li>
+      <h3><%= comment.body %></h3>
+      <h5 class='ml-3'><%= comment.author.username %></h5>
+    </li>
+    <% end %>
+  </ul>
+
+
+</div>
