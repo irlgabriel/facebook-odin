@@ -2,12 +2,12 @@
 <script>
   mainDiv = document.getElementById('main-div');
   mainDiv.classList.add('d-flex');
-  mainDiv.classList.add('pt-3');
+  mainDiv.classList.add('pt-5')
   mainDiv.classList.add('justify-content-between');
  
 </script>
 
-<div class="left-nav d-flex flex-column w-25">
+<div class="left-nav d-flex flex-column w-25" style='background-color: #F5F5F5;'>
 
   <%= link_to profile_path(current_user) do %>
     <h5 class="my-3 text-dark">Profile</h5>
@@ -42,7 +42,7 @@
 
 <!-- Chat thing -->
 
-<div class='chat-div w-25 ml-5'>
+<div class='chat-div w-25 pl-5' style='background-color: #F5F5F5;'>
 
   <h5 class="text-muted my-3 font-weight-bold">Sponsored</h5>
 
