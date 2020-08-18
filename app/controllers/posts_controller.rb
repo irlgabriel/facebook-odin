@@ -12,7 +12,7 @@ class PostsController < ApplicationController
       redirect_to feed_path
       flash[:notice] = 'Post created successfully'
     else
-      render new_post_path
+      render 'feed/index'
       flash[:notice] = "Couldn't create Post"
     end
   end
@@ -44,11 +44,6 @@ class PostsController < ApplicationController
 
   end
 
-  def show
-    @post = Post.find(params[:id])
-    @comments = @post.comments
-
-  end
 
   private
 

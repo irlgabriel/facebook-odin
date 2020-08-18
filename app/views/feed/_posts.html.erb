@@ -2,7 +2,7 @@
 <div class="d-flex flex-column w-50" style='background-color: #F5F5F5;'>
 
   <div class='container-fluid bg-white rounded-20'>
-    <%= form_for @post do |f| %>
+    <%= form_for Post.new do |f| %>
       <%= f.text_field :body, placeholder: 'What is on your mind?', class:'mt-3 form-control form-border bg-light', data: {toggle: 'collapse', target:'#submit-toggler'} %>
       <hr class='my-4'>
 
@@ -35,21 +35,23 @@
 
       <% end %>
 
-        <div class='container-fluid mt-4'>
+        <div class='container-fluid my-3'>
+
           <%= form_for post.comments.new, url: post_comments_path(post) do |f| %>
             <%= f.text_field :body, placeholder: 'Write a comment...', class:'bg-light form-control form-border' %>
+            
           <% end %>
 
-          <a data-toggle='collapse' data-target='comments-collapsable'>View Comments</a>
-          <div id='comments-collapsable' class='container-fluid'>
-            <%= post.comments.each do |comment| %>
+          <button class='my-3 btn btn-outline-white' data-toggle='collapse' data-target='#comments-collapsable'>View Comments</button>
+
+          <div id='comments-collapsable' class='collapse container-fluid my-2'>
+            <% post.comments.each do |comment| %>
+              <p><%= comment.body %></p>
             <% end %>
           </div>
         </div>
         
-      <% unless post.comments.count == 0 %>
-        <%= link_to "#{post.comments.count} Comments", post_path, class:'text-dark' %>
-      <% end %>
+      
     
     </div>
   </div>

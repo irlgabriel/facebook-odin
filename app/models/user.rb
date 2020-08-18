@@ -7,6 +7,9 @@ class User < ApplicationRecord
   has_many :posts
   has_many :comments
   
+  def self.fullname
+    self.first_name + ' ' + self.last_name
+  end
   
 
 end
