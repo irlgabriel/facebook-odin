@@ -1,28 +1,18 @@
 
 <div class="d-flex flex-column" style='width: 55%; background-color: #F5F5F5;'>
 
-  <%= link_to 'Create a Post', new_post_path, class:'h4 text-primary mx-auto' %>
+  <button class='create-post-toggler btn btn-info w-25 mx-auto' data-toggle='collapse' data-target='#post-form'>Create a Post</button>
+  <div id='post-form' class='container-fluid collapse panel-collapse mt-3'> 
+    <%= form_for @post do |f| %>
+      <%= f.text_field :title, placeholder: 'Title of the post', class:'form-control'%>
+      <%= f.text_area :body, placeholder: 'Content of the post', cols: 10, rows: 10, class:'mt-3 form-control' %>
+      <%= f.submit :save, value:"Create", class:'form-control btn btn-outline-light text-dark' %>
+    <% end %>
+  </div>
 
   <!-- Small form for post within feed --> 
 
-  <div class='form-group w-100 mx-auto'>
-    <%= form_for @post do |f| %>
 
-      <div class='form-group'>
-
-        <%= f.text_field :title, placeholder:'Title', class:'form-control' %>
-      </div>
-
-      <div class='form-group'>
-        <%= f.text_area :body, placeholder:'Body', rows: 4, class:'form-control'%>
-      </div>
-
-      <div class='form-group'>
-        <%= f.submit :create_post, value:'Create Post', class:'btn btn-info mx-auto' %>
-
-      </div>
-    <% end %>
-  </div>
 
 
  <% @posts.each do |post| %>
@@ -30,25 +20,34 @@
   <div class="card w-100 my-4" style="background-color: white" >
     <div class='card-body'>
       <h5 class='card-title'><%= post.title %></h5>
-      <p class='card-body'><%= post.body %></p>
+      <p class='card-text'><%= post.body %></p>
 
       <% if post.user_id == current_user.id %>
 
         <div class='post-buttons text-right'>
-          <%= link_to 'Edit', edit_post_path(post), class:'p btn btn-warning px-3' %>
-          <%= link_to 'Delete', post, method: :delete, class:"btn btn-danger px-3"  %>    
+          <%= link_to 'Edit', edit_post_path(post), class:'lead text-dark' %>
+          <%= link_to 'Delete', post, method: :delete, class:'lead text-dark' %>    
         </div>
 
       <% end %>
-      <div class='comments d-flex justify-content-between align-items-center'>
-        <%= link_to 'Comment', new_post_comment_path(post), class:'btn btn-info' %>
 
-        <% unless post.comments.count == 0 %>
-          <%= link_to "#{post.comments.count} Comments", post_path, class:'text-dark' %>
-        <% end %>
+      <button class='comments-toggler btn button-outline-light' data-toggle='collapse' data-target='#post-comment-form'>Comment</button>
+      <div id='post-comment-form' class='panel-collapse collapse'>
+
+        <div class='container-fluid mt-4'>
+          <%= form_for post.comments.new, url: post_comments_path(post) do |f| %>
+            <%= f.text_field :body, rows: 10, cols: 10, class:'form-control'%>
+            
+            <%= f.submit :save, value: "Comment", class:'btn form-control'%>
+          <% end %>
+        </div>
 
       </div>
-      
+        
+      <% unless post.comments.count == 0 %>
+        <%= link_to "#{post.comments.count} Comments", post_path, class:'text-dark' %>
+      <% end %>
+    
     </div>
   </div>
 
