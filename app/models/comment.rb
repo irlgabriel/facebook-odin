@@ -7,4 +7,5 @@ class Comment < ApplicationRecord
     User.find(self.user_id)
   end
 
+
 end

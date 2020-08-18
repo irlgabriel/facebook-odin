@@ -1,12 +1,7 @@
 
 <div class="form-group w-50 mx-auto" >
   <%= form_for @post do |f| %>
-
-    <div class='form-group'>
-      <%= f.label :title, 'Title' %>
-      <%= f.text_field :title, placeholder: "Title of the Post", class:'form-control' %>
-    </div>
-
+  
     <div class='form-group'>
       <%= f.label :body, 'Body' %>
       <%= f.text_area :body, placeholder: "Content of the Post", rows: '7', class:'form-control' %>
