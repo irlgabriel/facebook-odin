@@ -6,7 +6,7 @@
 
 - Authentication with Devise gem
 - Users can create/edit/delete Posts
-- Comments (not yet working)
+- Comments
 
 
 # Upcoming features:
