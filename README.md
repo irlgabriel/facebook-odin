@@ -1,20 +1,20 @@
-This is the final project of The Odin Project rails course(https://www.theodinproject.com/courses/ruby-on-rails/lessons/final-project)
+# This is the final project of The Odin Project rails course(https://www.theodinproject.com/courses/ruby-on-rails/lessons/final-project)
 
 
 
-Features: 
+# Features: 
 
-# Authentication with Devise gem
-# Users can create/edit/delete Posts
+- Authentication with Devise gem
+- Users can create/edit/delete Posts
+- Comments (not yet working)
 
 
-Upcoming features:
+# Upcoming features:
 
-# Add comments
-# Like photos/comments
-# Friend requests
-# Oauth with facebook
-# Photo profiles
+ - Like photos/comments
+ - Friend requests
+ - Oauth with facebook
+ - Photo profiles
 
 
 
