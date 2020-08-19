@@ -15,30 +15,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # GET /resource/edit
-   def edit
-     super do |resource|
-      
-      resource.profile_picture.attach(params[:profile_picture])
-      if resource.attached?
-        flash[:notice] = "Profile picture updated successfully!"
-        render '/profile/:id'
-      else
-        flash[:notice] = "Could not update profile picture!"
-      end
-     end
-   end
+  # def edit
+  #   super 
+  # end
 
   # PUT /resource
   def update
-    super do |resource|
-      resource.profile_picture.attach(params[:profile_picture])
-      if resource.attached?
-        flash[:notice] = "Profile picture updated successfully!"
-        render '/profile/:id'
-      else
-        flash[:notice] = "Could not update profile picture!"
-      end
+
+    resource.profile_picture.attach(params[:profile_picture])
+    if resource.profile_picture.attached?
+      flash[:notice] = "Profile picture updated successfully!"
+      render edit_registration_path(resource)
+    else
+      flash[:notice] = "Could not update profile picture!"
+      redirect_to edit_registration_path(resource)
     end
+
   end
 
   # DELETE /resource
