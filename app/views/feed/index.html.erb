@@ -1,16 +1,9 @@
 
-<script>
-  mainDiv = document.getElementById('main-div');
-  mainDiv.classList.add('d-flex');
-  mainDiv.classList.add('pt-5')
-  mainDiv.classList.add('justify-content-between');
- 
-</script>
-
-<%= render 'leftnav' %>
-
-<%= render 'posts' %>
-
-
-<%= render 'rightchat' %>
+<div class='container-fluid' style='background-color: #F5F5F5; min-height: 650px;'>
+  <div class='row'>
+    <%= render 'leftnav' %>
+    <%= render 'posts' %>
+    <%= render 'rightchat' %>
+  </div>
+</div>
 

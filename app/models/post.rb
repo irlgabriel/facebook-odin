@@ -4,8 +4,5 @@ class Post < ApplicationRecord
 
   validates :body, presence: true
 
-  def self.author
-    @user = User.find(self.user_id)
-  end
 
 end

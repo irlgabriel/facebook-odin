@@ -13,38 +13,23 @@
   </head>
 
   <body>
+
+    <!-- notifications -->
     <% if flash[:alert] %>
       <h2 class="alert alert-danger text-center text-dark mb-0"><%= flash[:alert]%></h2>
     <% end %>
-
     <% if flash[:notice] %>
       <h2 class="alert alert-warning text-center mb-0"><%= flash[:notice] %></h2>
     <% end %>
 
-
-
+    <!-- top-navbar just for logged-in users! -->
     <% unless current_page?(home_path) or current_page?(root_path) %>
-      <div class='navbar' style='background-color: white;'>
-        
-        <%= link_to home_path do %>
-          <%= image_tag 'fb_logo.svg', size: '40'  %>
-        <% end %>
-
-        <% if current_user %>
-          <%= link_to 'Sign Out', destroy_session_path(current_user), method: :delete, class:'text-danger h5 font-weight-bold' %>
-        <% end %>
-        
-      </div>
-      <div id='navbar-line' class='line'></div>
+      <%= render 'home/top-nav' %>
     <% end %>
 
-
-
-    <div id='main-div' class='container-fluid' style='background-color: #F5F5F5;'>
-      <%= yield %>
-    </div>
-
-   <%= render 'home/footer' %>
-
+    <%= yield %>
+    
+    <!-- footer-->
+    <%= render 'home/footer' %>
   </body>
 </html>
