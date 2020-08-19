@@ -23,7 +23,7 @@
     <% end %>
 
     <!-- top-navbar just for logged-in users! -->
-    <% unless current_page?(home_path) or current_page?(root_path) %>
+    <% unless controller_name = 'devise' or current_page?(home_path) or current_page?(root_path)%>
       <%= render 'home/top-nav' %>
     <% end %>
 

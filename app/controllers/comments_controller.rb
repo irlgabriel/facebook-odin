@@ -8,11 +8,12 @@ class CommentsController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
     @comment = @post.comments.create(comment_params)
+    @comment.user_id = current_user.id
     if @comment.save
       flash[:notice] = "Comment created!"
-      redirect_to 'feed/posts'
+      redirect_to root_path
     else
-      render 'feed/posts'
+      render 'feed/index'
       flash[:notice] = "Could not create comment!"
     end
   end

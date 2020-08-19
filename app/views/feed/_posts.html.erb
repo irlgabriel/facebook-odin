@@ -42,15 +42,18 @@
           <!-- comment form -->
 
 
-          <%= form_for @comment, url: post_comment_path(post, @comment) do |f| %>
-            <%= f.text_area :body, placeholder: 'Write a commment...', class:'form-control'%>
+          <%= form_for Comment.new, url: post_comments_path(post) do |f| %>
+            <%= f.text_field :body, placeholder: 'Write a commment...', class:'mt-3 border-radius-20 form-control'%>
+            <%= f.submit :save, value: 'Save', class:'btn w-25 mx-auto btn-outline-white' %>
           <% end %>
 
           <!-- comments list -->
 
           <% post.comments.each do |comment| %>
-            <h4><%= post.author.fullname %></h4>
-            <p><%= post.body %></p>
+          <div class='p-2 bg-light border-radius-20 d-inline-block'>
+            <h5><%= post.author.fullname %></h5>
+            <p class='mb-0'><%= comment.body %></p>
+          </div>
           <% end %>
         </div>
 

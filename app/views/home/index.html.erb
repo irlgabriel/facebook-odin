@@ -7,7 +7,7 @@
 
   <div class='login-form col-4 p-3 border border-light' style='background-color: white; border-radius: 8px; box-shadow: 1px 2px 2px 1px rgba(201,201,201,0.76);'>
 
-    <%= form_for @user, url: new_user_session_path do |f| %>
+    <%= form_for User.new, url: new_user_session_path do |f| %>
 
       <div class="form-group">
         <%= f.text_field :email, placeholder: 'Enter your Email', class:'form-control py-4' %>
