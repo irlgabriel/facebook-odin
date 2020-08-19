@@ -6,6 +6,7 @@ class User < ApplicationRecord
          
   has_many :posts
   has_many :comments
+  has_one_attached :profile_picture
   
   def fullname
     self.first_name + ' ' + self.last_name
