@@ -42,7 +42,7 @@
         <div class='row border-top border-bottom py-1 mx-auto' style='width: 99%'>
           <%= link_to 'Like', '#', class:'font-weight-bold p-1 border-rounded-10 gray-hover btn btn-outline-white col-6' %>
           <%= link_to 'Comment', '#', class:'font-weight-bold p-1 border-rounded-10 gray-hover btn btn-outline-white col-6',
-          data: {toggle: 'collapse', target: '#comments-collapsable'} %>
+          data: {toggle: 'collapse', target: "#comments-collapsable#{post.id}"} %>
         </div>
 
         <!-- comments count - dont show if 0 comments -->
