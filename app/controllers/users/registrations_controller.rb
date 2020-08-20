@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  # before_action :configure_sign_up_params, only: [:create]
-  # before_action :configure_account_update_params, only: [:update]
+  before_action :configure_sign_up_params, only: [:create]
+  before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
   # def new
@@ -21,9 +21,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update
-
     resource.profile_picture.attach(params[:profile_picture])
-    
+    resource.save
     if resource.profile_picture.attached?
       flash[:notice] = "Profile picture updated successfully!"
       render edit_registration_path(resource)
@@ -31,7 +30,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
       flash[:notice] = "Could not update profile picture!"
       redirect_to edit_registration_path(resource)
     end
-
   end
 
   # DELETE /resource
@@ -56,9 +54,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # If you have extra params to permit, append them to the sanitizer.
-  #def configure_account_update_params
-  #  devise_parameter_sanitizer.permit(:account_update, keys: [:profile_picture])
-  #end
+  def configure_account_update_params
+    devise_parameter_sanitizer.permit(:account_update, keys: [:profile_picture])
+  end
 
   # The path used after sign up.
   # def after_sign_up_path_for(resource)
