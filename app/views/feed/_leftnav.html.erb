@@ -35,16 +35,78 @@
     </div>
   <% end %>
 
-  <%= link_to '' do %>
-    <div class='p-2 gray-hover d-flex align-items-center mb-2' data-toggle='collapse' data-target='#collapsable-left-nav'>
+  <!-- left-nav dropdown button -->
+  <%= link_to '', data: {toggle: 'collapse', target: '#collapsable-left-nav'} do %>
+    <div class='p-2 gray-hover d-flex align-items-center mb-2'>
       <i class="fas fa-chevron-circle-down" style='font-size: 30px; color:lightgray;'>&nbsp;</i>
       <span class='h6 my-3 text-dark' style="font-size: 14px;">See More</span>
     </div>
   <% end %>
 
+
+  <!-- left nav dropdown div -->
   <div id='collapsable-left-nav' class='collapse'>
-    <p>asdsad</p>
+
+    <%= link_to '' do %>
+      <div class='p-2 gray-hover d-flex align-items-center'>
+      <i class="fas fa-bullhorn" style="color:rgb(184, 202, 20); font-size:30px;">&nbsp;</i>
+      <span class='h6 my-3 text-dark' style="font-size: 14px;">Marketplace</span>
+      </div>
+    <% end %>
+
+    <%= link_to '' do %>
+      <div class='p-2 gray-hover d-flex align-items-center'>
+      <i class="fas fa-video" style='font-size:30px; color: red'>&nbsp;</i>
+      <span class='h6 my-3 text-dark' style="font-size: 14px;">Videos</span>
+      </div>
+    <% end %>
+
+    <%= link_to '' do %>
+      <div class='p-2 gray-hover d-flex align-items-center'>
+      <i class="fas fa-users" style="color: rgb(95, 82, 206); font-size:30px;">&nbsp;</i>
+      <span class='h6 my-3 text-dark' style="font-size: 14px;">Groups</span>
+      </div>
+    <% end %>
+
+    <%= link_to '' do %>
+      <div class='p-2 gray-hover d-flex align-items-center'>
+      <i class="fas fa-flag" style="font-size:30px;">&nbsp;</i>
+      <span class='h6 my-3 text-dark' style="font-size: 14px;">Pages</span>
+      </div>
+    <% end %>
+
+    <%= link_to '' do %>
+      <div class='p-2 gray-hover d-flex align-items-center'>
+      <i class="fas fa-calendar-check" style='color: white; font-size: 30px'>&nbsp;</i>
+      <span class='h6 my-3 text-dark' style="font-size: 14px;">Events</span>
+      </div>
+    <% end %>
+
+    <%= link_to '' do %>
+      <div class='p-2 gray-hover d-flex align-items-center'>
+      <i class="fas fa-cloud" style="color: rgb(198, 246, 255); font-size:30px;">&nbsp;</i>
+      <span class='h6 my-3 text-dark' style="font-size: 14px;">Weather</span>
+      </div>
+    <% end %>
+
+    <%= link_to '' do %>
+      <div class='p-2 gray-hover d-flex align-items-center'>
+      <i class="fas fa-ticket-alt" style="font-size:30px;">&nbsp;</i>
+      <span class='h6 my-3 text-dark' style="font-size: 14px;">Ticket</span>
+      </div>
+    <% end %>
+
+    <%= link_to '' do %>
+      <div class='p-2 gray-hover d-flex align-items-center'>
+      <i class="fas fa-gamepad" style="font-size:30px;">&nbsp;</i>
+      <span class='h6 my-3 text-dark' style="font-size: 14px;">Games</span>
+      </div>
+    <% end %>
   </div>
+
+
+
+
 
   <div class='line w-90'></div>
 </div>
