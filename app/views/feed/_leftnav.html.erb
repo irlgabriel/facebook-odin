@@ -38,7 +38,7 @@
   <!-- left-nav dropdown button -->
   <%= link_to '', data: {toggle: 'collapse', target: '#collapsable-left-nav'} do %>
     <div class='p-2 gray-hover d-flex align-items-center mb-2'>
-      <i class="fas fa-chevron-circle-down" style='font-size: 30px; color:lightgray;'>&nbsp;</i>
+      <i class="fas fa-caret-down" style='font-size: 30px; color:lightgray;'>&nbsp;</i>
       <span class='h6 my-3 text-dark' style="font-size: 14px;">See More</span>
     </div>
   <% end %>
@@ -102,6 +102,15 @@
       <span class='h6 my-3 text-dark' style="font-size: 14px;">Games</span>
       </div>
     <% end %>
+
+    <!-- Uncollapse button -->
+    <%= link_to '', data: {toggle: 'collapse', target: '#collapsable-left-nav'} do %>
+      <div class='p-2 gray-hover d-flex align-items-center mb-2'>
+        <i class="fas fa-caret-up" style='font-size: 30px;'>&nbsp;</i>
+        <span class='my-3 text-dark' style='font-size: 14px'>See less</span>
+      </div>
+    <% end %>
+
   </div>
 
 

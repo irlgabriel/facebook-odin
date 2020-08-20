@@ -32,18 +32,22 @@
     </div>
   </div>
 
-  <!-- right (profile things) Adding d-flex and jc-end just for now--> 
-  <div class='col-3 d-flex justify-content-end'>
-    <%= link_to '' do %>
-      <div data-toggle='collapse' data-target='#top-nav-dropdown'><i class="fas fa-chevron-circle-down" style='font-size: 30px; color:lightgray;'></i></div>
+  <!-- right (profile things) --> 
+  <div class='col-3'> <!-- d-flex just for now -->
+    <%= link_to '', data: {toggle: 'collapse', target:'#top-nav-dropdown'} do %>
+      <i class="fas fa-caret-down px-2 py-1 rounded-circle bg-light" style='font-size: 30px; color: black;'></i>
     <% end %>
-    <div class='collapse' id='top-nav-dropdown'>
-      <%= link_to destroy_user_session_path, method: :delete do %>
-      <% end %>
-    </div>
-  </div>
 
-</div>
+    <div class='collapse position-absolute bg-white border-radius-10 p-3' id='top-nav-dropdown'>
+      <div class='gray-hover p-2'>
+        <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
+      </div>
+
+    </div>
+
+  </div> <!-- ends right top-nav col -->
+
+</div> <!-- ends top-nav div -->
 
 <script>
 
