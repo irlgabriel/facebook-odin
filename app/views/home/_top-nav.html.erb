@@ -1,10 +1,48 @@
-<div class='navbar border-bottom border-light position-sticky sticky-top' style='background-color: white;'>  
-  <%= link_to home_path do %>
-    <%= image_tag 'fb_logo.svg', size: '40'  %>
-  <% end %>
+<!-- on-click border for menu items -->
 
-  <% if current_user %>
-    <%= link_to 'Sign Out', destroy_session_path(current_user), method: :delete, class:'text-danger h5 font-weight-bold' %>
-  <% end %>    
+<script>
+  fadivs = document.getElementsByClassName('fa-div')
+  for(let element of fadivs){
+    element.addEventListener('click', function(){
+      element.classList.add('border-bottom')
+      element.classList.add('border-primary')
+    })
+  }
+</script>
+
+
+
+<div class='m-0 py-1 px-0 navbar border-bottom border-light position-sticky sticky-top row' style='background-color: white;'>  
+
+  <div class='col-3'>
+    <%= link_to home_path do %>
+      <i class="fab fa-facebook" style='font-size: 36px' ></i>
+    <% end %>
+  </div>
+
+  <div class='fas-div col-6 d-flex justify-content-between'>
+    <div class='fa-div w-100 text-center'>
+      <i class="fas fa-house-user"></i>
+    </div>
+    <div class='fa-div w-100 text-center'>
+      <i class="far fa-user"></i>
+    </div>
+    <div class='fa-div text-center w-100'>
+      <i class="fas fa-tv"></i>
+    </div>
+    <div class='fa-div text-center w-100'>
+      <i class="fas fa-bullhorn"></i>
+    </div>
+    <div class='fa-div text-center w-100'>
+      <i class="fas fa-bars"></i>
+    </div>
+  </div>
+
+
+  <div class='col-3'>
+     
+  </div>
+
+
   
 </div>

@@ -15,6 +15,7 @@
   <% @posts.each do |post| %>
     <div class='card my-4 border-radius-10'>
       <div class='card-body'>
+        
         <h4 class='card-title'><%= link_to post.author.fullname, profile_path(post.author) %></h4>
         <p class='text-muted'><%= distance_of_time_in_words(post.created_at, Time.now) %></p>
         <p class='card-text'><%= post.body %></p>
@@ -35,16 +36,18 @@
         </div>
 
         <!-- buttons for likes and comments -->
-        <div class='row border-top border-bottom mx-2'>
-          <%= link_to 'Like', '#', class:'btn btn-outline-white col-6' %>
-          <%= link_to 'Comment', '#', class:'btn btn-outline-white col-6',
+        <div class='row border-top border-bottom py-1 mx-auto' style='width: 99%'>
+          <%= link_to 'Like', '#', class:'font-weight-bold p-1 border-rounded-10 gray-hover btn btn-outline-white col-6' %>
+          <%= link_to 'Comment', '#', class:'font-weight-bold p-1 border-rounded-10 gray-hover btn btn-outline-white col-6',
           data: {toggle: 'collapse', target: '#comments-collapsable'} %>
         </div>
 
         <!-- comments count - dont show if 0 comments -->
-        <% unless post.comments.count == 0 %>     
-        <button data-toggle='collapse' data-target='#comments-collapsable' class='btn btn-outline-white'>View comments</button>
-        <% end %>
+        <div class='my-2'>
+          <% unless post.comments.count == 0 %>     
+          <%= link_to 'View comments', '#', data:{ toggle:'collapse', target:'#comments-collapsable'}, class: 'font-weight-bold text-muted' %>
+          <% end %>
+        </div>
         
         <!-- collapsable commments div with form (facebook layout) -->
 
