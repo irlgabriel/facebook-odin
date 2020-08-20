@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2020_08_20_054122) do
     t.string "body"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "likes"
+    t.integer "likes", default: 1;
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 

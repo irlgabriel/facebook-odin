@@ -19,7 +19,7 @@
 }
 
 .fas-div {
-  font-size: 26px;
+  font-size: 22px;
   color: gray;
   font-weight: 400;
 }
@@ -27,4 +27,14 @@
 .fa-div:hover {
   background-color: lightgray;
   border-radius: 10px;
+}
+.gray-hover:hover{
+  background-color: lightgray;
+  border-radius: 10px;
+}
+.blue-border {
+  border-bottom: 1px solid #0000ff;
+}
+.border-3 {
+  border-width: 3px;
 }

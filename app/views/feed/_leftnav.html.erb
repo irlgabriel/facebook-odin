@@ -1,22 +1,39 @@
 
 <div class='col-3'>
   <%= link_to profile_path(current_user) do %>
-    <h5 class="my-3 text-dark">Profile</h5>
+    <div class='d-flex gray-hover '>
+      <h5 class="my-3 text-dark left-navbar-link">Profile</h5>
+    </div>
   <% end %>
+
   <%= link_to 'https://www.facebook.com/coronavirus_info/?page_source=bookmark' do %>
-    <h5 class='my-3 text-dark'>Covid-19 Information Center</h5>
+    <div class='d-flex gray-hover'>
+      <h5 class='my-3 text-dark left-navbar-link'>Covid-19 Information Center</h5>
+    </div>
   <% end %>
+
   <%= link_to friends_path do %>
-    <h5 class='my-3 text-dark'>Friends</h5>
+    <div class='d-flex gray-hover'>
+      <h5 class='my-3 text-dark' style='text-decoration:none' >Friends</h5>
+    </div>
   <% end %>
+
   <%= link_to feed_path do %>
-    <h5 class='my-3 text-dark'>Messenger</h5>
+    <div class='d-flex gray-hover'>
+      <h5 class='my-3 text-dark'>Messenger</h5>
+    </div>
   <% end %>
+
   <%= link_to feed_path do %>
-    <h5 class='my-3 text-dark'>Fundraisers</h5>
+    <div class='d-flex gray-hover'>
+      <h5 class='my-3 text-dark'>Fundraisers</h5>
+    </div>
   <% end %>
+
   <%= link_to feed_path do %>
-    <h5 class='my-3 text-dark'>Marketplace</h5>
+    <div class='d-flex gray-hover'>
+      <h5 class='my-3 text-dark'>Marketplace</h5>
+    </div>
   <% end %>
   <div class='line w-75'></div>
 </div>

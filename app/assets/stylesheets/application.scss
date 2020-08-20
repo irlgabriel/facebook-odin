@@ -33,6 +33,13 @@ html {
 .border-radius-10 {
   border-radius: 10px;
 }
+.border-radius-50-percent {
+  border-radius: 50%;
+}
 .w-90 {
   width: 90%;
+}
+a:-webkit-any-link {
+  text-decoration: none;
+  
 }
