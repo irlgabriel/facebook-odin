@@ -35,9 +35,13 @@
 
 
   <div class='col-3'>
-     <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+    <%= link_to '' do %>
+      <div data-toggle='collapse' data-target='#top-nav-dropdown'><i class="fas fa-chevron-circle-down" style='font-size: 30px; color:lightgray;'></i></div>
+    <% end %>
+    <div class='collapse' id='top-nav-dropdown'>
+      <%= link_to destroy_user_session_path, method: :delete do %>
+      <% end %>
+    </div>
   </div>
 
-
-  
 </div>

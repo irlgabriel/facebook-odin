@@ -1,10 +1,11 @@
 
-<h1>Friends Suggestions</h1>
+<h1 class='my-3'>Friends Suggestions</h1>
 
 <div class='line my-2'></div>
-
-<% @users.each do |possible_friend| %>
-  <%= link_to possible_friend.first_name + ' ' + possible_friend.last_name, profile_path(possible_friend), class:'text-dark h2' %>
-  <%= link_to 'Send Friend Request!', '#', class:'btn btn-outline-dark btn-primary text-light'%>
-  <br>
-<% end %>
+<div class='container-fluid' style='min-height: 60vh'>
+  <% @users.each do |possible_friend| %>
+    <%= link_to possible_friend.first_name + ' ' + possible_friend.last_name, profile_path(possible_friend), class:'text-dark h2' %>
+    <%= link_to 'Send Friend Request!', '#', class:'btn btn-outline-dark btn-primary text-light'%>
+    <br>
+  <% end %>
+</div>

@@ -1,39 +1,50 @@
 
-<div class='col-3'>
+<div class='col-3 mt-2'>
   <%= link_to profile_path(current_user) do %>
-    <div class='d-flex gray-hover '>
-      <h5 class="my-3 text-dark left-navbar-link">Profile</h5>
+    <div class='gray-hover p-2'>
+      <i class="far fa-user" style='font-size: 30px;'>&nbsp;</i>
+      <span class="my-3 text-dark left-navbar-link" style="font-size: 14px;">Profile</span>
     </div>
   <% end %>
 
   <%= link_to 'https://www.facebook.com/coronavirus_info/?page_source=bookmark' do %>
-    <div class='d-flex gray-hover'>
-      <h5 class='my-3 text-dark left-navbar-link'>Covid-19 Information Center</h5>
+    <div class='gray-hover p-2 d-flex align-items-center'>
+      <i class="fas fa-heart" style='font-size:30px; color: red;'>&nbsp;</i>
+      <span class='my-3 h6 text-dark left-navbar-link' style="font-size: 14px;">Covid-19 Information Center</span>
     </div>
   <% end %>
 
   <%= link_to friends_path do %>
-    <div class='d-flex gray-hover'>
-      <h5 class='my-3 text-dark' style='text-decoration:none' >Friends</h5>
+    <div class='p-2 gray-hover d-flex align-items-center'>
+      <i class="fas fa-user-friends" style='font-size: 30px;'>&nbsp;</i>
+      <span class='my-3 h6 text-dark' style="font-size: 14px;">Friends</span>
     </div>
   <% end %>
 
   <%= link_to feed_path do %>
-    <div class='d-flex gray-hover'>
-      <h5 class='my-3 text-dark'>Messenger</h5>
+    <div class='p-2 gray-hover d-flex align-items-center'>
+      <i class="fab fa-facebook-messenger" style='font-size: 30px;'>&nbsp;</i>
+      <span class='h6 my-3 text-dark' style="font-size: 14px;">Messenger</span>
     </div>
   <% end %>
 
   <%= link_to feed_path do %>
-    <div class='d-flex gray-hover'>
-      <h5 class='my-3 text-dark'>Fundraisers</h5>
+    <div class='p-2 gray-hover d-flex align-items-center'>
+      <i class="fas fa-hand-holding-heart" style='font-size: 30px; color: pink;'>&nbsp;</i>
+      <span class='h6 my-3 text-dark' style="font-size: 14px;">Fundraisers</span>
     </div>
   <% end %>
 
-  <%= link_to feed_path do %>
-    <div class='d-flex gray-hover'>
-      <h5 class='my-3 text-dark'>Marketplace</h5>
+  <%= link_to '' do %>
+    <div class='p-2 gray-hover d-flex align-items-center mb-2' data-toggle='collapse' data-target='#collapsable-left-nav'>
+      <i class="fas fa-chevron-circle-down" style='font-size: 30px; color:lightgray;'>&nbsp;</i>
+      <span class='h6 my-3 text-dark' style="font-size: 14px;">See More</span>
     </div>
   <% end %>
-  <div class='line w-75'></div>
+
+  <div id='collapsable-left-nav' class='collapse'>
+    <p>asdsad</p>
+  </div>
+
+  <div class='line w-90'></div>
 </div>

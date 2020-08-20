@@ -23,6 +23,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def update
 
     resource.profile_picture.attach(params[:profile_picture])
+    
     if resource.profile_picture.attached?
       flash[:notice] = "Profile picture updated successfully!"
       render edit_registration_path(resource)

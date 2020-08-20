@@ -31,7 +31,10 @@
 
         <!-- number of likes and comments -->
         <div class='d-flex justify-content-between'>
-          <p class='card-text'><%= post.likes_count %> likes</p>
+          <div class='card-text my-2'>
+            <i class="fas fa-thumbs-up" style='color: blue; font-size: 18px;'>&nbsp;</i>
+            <span><%= post.likes_count %></span>
+          </div>
           <p class='card-text text-muted'><%= post.comments.count %> Comments</p>
         </div>
 
@@ -45,13 +48,13 @@
         <!-- comments count - dont show if 0 comments -->
         <div class='my-2'>
           <% unless post.comments.count == 0 %>     
-          <%= link_to 'View comments', '#', data:{ toggle:'collapse', target:'#comments-collapsable'}, class: 'font-weight-bold text-muted' %>
+          <%= link_to 'View comments', '#', data:{ toggle:'collapse', target:"#comments-collapsable#{post.id}"}, class: 'font-weight-bold text-muted' %>
           <% end %>
         </div>
         
         <!-- collapsable commments div with form (facebook layout) -->
 
-        <div id='comments-collapsable' class='collapse'>
+        <div id=<%="comments-collapsable#{post.id}"%> class='collapse'>
 
           <!-- comments list -->
 
