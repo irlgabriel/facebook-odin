@@ -14,12 +14,15 @@
   <% @posts.each do |post| %>
     <div class='card my-4 border-radius-10'>
       <div class='card-body'>
-        <!-- post author's profile picture -->
-        <% if post.author.profile_picture.attachment %>
-          <%= image_tag(post.author.profile_picture, class:'img-fluid') %>
-        <% end %>
-        <!-- -->
-        <h4 class='card-title'><%= link_to post.author.fullname, profile_path(post.author), class:'text-dark' %></h4>
+        <div class='row'>
+        <!-- post author's profile and name div -->
+          <% if post.author.profile_picture.attachment %>
+            <%= image_tag(post.author.profile_picture, size:'32x32', class:'ml-2 rounded-circle') %>
+          <% else %>
+            
+          <% end %>
+          <h6 class='card-title'><%= link_to post.author.fullname, profile_path(post.author), class:'text-dark ml-1 font-weight-bold' %></h6>
+        </div>
         <p class='text-muted'><%= distance_of_time_in_words(post.created_at, Time.now) %></p>
         <p class='card-text'><%= post.body %></p>
 

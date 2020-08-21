@@ -21,7 +21,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update
-    if resource.update
+    resource.profile_picture.attach(params[:profile_picture])
+    if resource.profile_picture.attached?
       flash[:notice] = "Profile picture updated successfully!"
       render root_path
     else
