@@ -15,14 +15,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # GET /resource/edit
-  # def edit
-  #   super 
-  # end
+  def edit
+    super 
+  end
 
   # PUT /resource
   def update
-    resource.update(resource.params)
-    if resource.save
+    if resource.update
       flash[:notice] = "Profile picture updated successfully!"
       render root_path
     else
@@ -45,7 +44,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
   end
 
-  # protected
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
@@ -66,4 +65,5 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def after_inactive_sign_up_path_for(resource)
     super(resource)
   end
+
 end
