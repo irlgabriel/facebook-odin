@@ -25,7 +25,7 @@
     <% end %>
 
     <!-- top-navbar just for logged-in users! -->
-    <% unless current_page?(home_path) or current_page?(root_path)%>
+    <% unless current_page?(home_path) or current_page?(root_path) or controller_name = 'devise' %>
       <%= render 'home/top-nav' %>
     <% end %>
 
