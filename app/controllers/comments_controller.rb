@@ -26,6 +26,15 @@ class CommentsController < ApplicationController
 
   end
 
+  def destroy
+    @comment = Comment.find(params[:id])
+    if @comment.destroy
+      flash[:notice] = 'Comment destryoed!'
+      render 'feed/index'
+    end
+
+  end
+
   private
 
   def comment_params
