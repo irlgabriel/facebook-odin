@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link href='favicon.png' rel='icon' type='image/png'>
+
     <title>Facebook</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -25,7 +27,7 @@
     <% end %>
 
     <!-- top-navbar just for logged-in users! -->
-    <% unless current_page?(home_path) or current_page?(root_path) or controller_name = 'devise' %>
+    <% unless current_page?(home_path) or current_page?(root_path) or !user_signed_in? %>
       <%= render 'home/top-nav' %>
     <% end %>
 
