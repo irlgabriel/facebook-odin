@@ -25,7 +25,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     resource.save
     if resource.profile_picture.attached?
       flash[:notice] = "Profile picture updated successfully!"
-      render edit_registration_path(resource)
+      render root_path
     else
       flash[:notice] = "Could not update profile picture!"
       redirect_to edit_registration_path(resource)

@@ -1,7 +1,7 @@
 
 <div class='container-fluid py-3' style='min-height: 70vh;'>
   <h4>Upload a profile picture!</h4>
-  <%= form_for resource, as: resource_name, url: user_registration_path(resource_name), method: :put do |f|  %>
+  <%= form_with url: user_registration_path(resource), method: :put do |f|  %>
     <%= f.file_field :profile_picture, class:'form-control-file w-25' %>
     <%= f.submit :upload, value: 'Upload', class:'form-control w-25 my-3 btn btn-primary' %>
   <% end %>

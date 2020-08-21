@@ -35,6 +35,7 @@ gem 'bootstrap', '~> 4.5', '>= 4.5.2'
 
 gem 'letter_opener', '~> 1.7'
 
+gem 'mini_magick'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
