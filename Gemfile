@@ -41,6 +41,8 @@ gem 'mini_magick'
 
 gem 'sendgrid_ruby'
 
+gem 'aws-sdk-s3'
+
 
 
 group :development, :test do
