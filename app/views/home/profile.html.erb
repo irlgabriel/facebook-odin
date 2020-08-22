@@ -1,5 +1,23 @@
 <div class='container-fluid py-3' style='background-color: #F5F5F5; min-height: 75vh'>
-  <%= link_to 'Upload profile picture', '/users/edit', class:'h4' %>
-  <h2 class='pt-2'><%= @user.fullname %></h2>
+  <div class='w-75 mx-auto'>
+    <% if @user.profile_picture.attachment %>
+      <%= image_tag @user.profile_picture, size: '120x120' %>
+    <% else %>
+      <img class='img-fluid d-inline' src='/app/assets/images/no_profile_pic.jpg' style='width: 200px; height: 200px;'>
+    <% end %>
+    <%= @user.fullname %>
+
+
+
+  <div class='container-fluid py-3 collapse' id='collapsable-upload-form' style='margin-bottom: -400px; background-color: #F5F5F5; min-height: 70vh;'>
+    <h4>Upload a profile picture!</h4>
+    <%= form_with url: registration_path(@user), method: :put, locals: true do |f|  %>
+      <%= f.file_field :profile_picture, class:'form-control-file w-25' %>
+      <%= f.submit :upload, value: 'Upload', class:'form-control w-25 my-3 btn btn-primary' %>
+    <% end %>
+  </div>
+
+  <%= link_to 'Upload profile picture', '/users/edit', data: {toggle: 'collapse', target:'#collapsable-upload-form'}, class:'my-2 h4 d-block' %>
   <h4 class='pt-2'>Email: <%= @user.email %></h4>
+  </div>
 </div>

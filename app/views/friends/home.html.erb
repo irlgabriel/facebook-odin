@@ -1,11 +1,20 @@
 
-<h1 class='my-3'>Friends Suggestions</h1>
+<div class='container-fluid px-5'>
 
-<div class='line my-2'></div>
-<div class='container-fluid' style='min-height: 60vh'>
-  <% @users.each do |possible_friend| %>
-    <%= link_to possible_friend.first_name + ' ' + possible_friend.last_name, profile_path(possible_friend), class:'text-dark h2' %>
-    <%= link_to 'Send Friend Request!', '#', class:'btn btn-outline-dark btn-primary text-light'%>
-    <br>
-  <% end %>
+  <h1 class='my-3'>Friends Suggestions</h1>
+
+  <div class='line my-2'></div>
+  <div class='container-fluid' style='min-height: 64vh'>
+    <% @users.each do |possible_friend| %>
+      <% if possible_friend.profile_picture.attachment %>
+        <%= image_tag(possible_friend.profile_picture, size: '40x40') %>
+      <% else %>
+        <%= %>
+        <img src='/app/assets/images/no_profile_pic.jpg' style='width: 40px; height: 40px;'>
+      <% end %>
+      <%= link_to possible_friend.first_name + ' ' + possible_friend.last_name, profile_path(possible_friend), class:'text-dark h2' %>
+      <%= link_to 'Send Friend Request!', '#', class:'btn btn-outline-dark btn-primary text-light'%>
+      <br>
+    <% end %>
+  </div>
 </div>
