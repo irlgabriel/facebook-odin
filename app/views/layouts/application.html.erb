@@ -34,6 +34,8 @@
     <%= yield %>
     
     <!-- footer-->
-    <%= render 'home/footer' %>
+    <% unless current_page?(feed_path) %>
+      <%= render 'home/footer' %>
+    <% end %>
   </body>
 </html>

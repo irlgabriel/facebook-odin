@@ -1,9 +1,19 @@
+<!-- empty div to fill the empty space of fixed leftnav div -->
 
-<div class='col-3 mt-2'>
+<div class='col-3'>
+</div>
+
+<!-- offset for notifications -->
+  <div class='col-3 mt-2 position-fixed' style="overflow-y: min-height: 80vh; scroll; min-height: 90vh; max-height: 80%">
   <%= link_to profile_path(current_user) do %>
     <div class='gray-hover p-2'>
-      <i class="far fa-user" style='font-size: 30px;'>&nbsp;</i>
-      <span class="my-3 text-dark left-navbar-link" style="font-size: 14px;">Profile</span>
+      <% unless current_user.profile_picture.attachment %>
+        <i class="far fa-user" style='font-size: 30px;'>&nbsp;</i>
+      <% else %>
+        <%= image_tag(current_user.profile_picture, size: '40x40', class:'rounded-circle')%>
+      <% end %>
+        <span class="my-3 text-dark left-navbar-link" style="font-size: 14px;"><%= current_user.fullname %></span>
+      
     </div>
   <% end %>
 
@@ -36,7 +46,7 @@
   <% end %>
 
   <!-- left-nav dropdown button -->
-  <%= link_to '', data: {toggle: 'collapse', target: '#collapsable-left-nav'} do %>
+  <%= link_to '', data: {toggle: 'collapse', target: '#collapsable-left-nav'}, class:'collapse show' do %>
     <div class='p-2 gray-hover d-flex align-items-center mb-2'>
       <i class="fas fa-caret-down" style='font-size: 30px; color:lightgray;'>&nbsp;</i>
       <span class='h6 my-3 text-dark' style="font-size: 14px;">See More</span>
@@ -109,13 +119,28 @@
         <i class="fas fa-caret-up" style='font-size: 30px;'>&nbsp;</i>
         <span class='my-3 text-dark' style='font-size: 14px'>See less</span>
       </div>
-    <% end %>
+    <% end %> 
 
   </div>
 
 
-
-
-
   <div class='line w-90'></div>
+
+
+
+  <!-- footer -->
+  <div style='font-size: 13px;'>
+  <%= link_to '', class:'text-muted' do %>
+    <span>Privacy</span>&middot;
+    <span>Terms</span>&middot;
+    <span>Advertising</span>&middot;
+    <span>Ad choices</span>&middot;
+    <span>Cookies</span>&middot;
+    <span>More</span>&middot;
+    <span>Facebook</span>&middot;
+    <span>&copy; 2020</span>
+  <% end %>
+  
+  </div>
 </div>
+
