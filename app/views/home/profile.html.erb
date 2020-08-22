@@ -1,11 +1,11 @@
 <div class='container-fluid py-3' style='background-color: #F5F5F5; min-height: 75vh'>
-  <div class='w-75 mx-auto'>
+  <div class='w-75 mx-auto' style='background-color: #F5F5F5'>
     <% if @user.profile_picture.attachment %>
       <%= link_to @user.profile_picture  do %>
         <%= image_tag @user.profile_picture, size: '120x120', class:'rounded-circle' %>
       <% end %>
     <% else %>
-      <img class='img-fluid d-inline' src='/app/assets/images/no_profile_pic.jpg' style='width: 200px; height: 200px;'>
+      <%= image_tag 'no_profile_pic.jpg', size:'120x120', class:'rounded-circle' %>
     <% end %>
     <p class='h2'><%= @user.fullname %></h2>
 
