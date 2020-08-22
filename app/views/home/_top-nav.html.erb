@@ -1,7 +1,7 @@
 
 
 
-<div class='m-0 p-0 navbar border-bottom border-light position-sticky sticky-top row' style='background-color: white;'>  
+<div class='m-0 py-1 px-0 navbar border-bottom border-light position-sticky sticky-top row' style='background-color: white;'>  
 
   <!-- left (intro and searchbar) -->
   <div class='col-3 d-flex'>
@@ -40,10 +40,25 @@
   </div>
 
   <!-- right (profile things) --> 
-  <div class='col-3'> <!-- d-flex just for now -->
-    <%= link_to '', data: {toggle: 'collapse', target:'#top-nav-dropdown'} do %>
-      <i class="fas fa-caret-down px-2 py-1 rounded-circle bg-light" style='font-size: 30px; color: black;'></i>
+  <div class='col-3 d-flex justify-content-end'> <!-- d-flex just for now -->
+
+    <%= link_to '' do %>
+      <i class="fas fa-plus rounded-circle mx-1" style='background-color: #D8D8D8; padding: 10px; font-size: 20px; color: black;'></i>
     <% end %>
+
+    <%= link_to '' do %>
+      <i class="fab fa-facebook-messenger rounded-circle mx-1" style='background-color: #D8D8D8; padding: 10px; font-size: 20px; color: black;'></i>
+    <% end %>
+
+    <%= link_to '' do %>
+      <i class="fas fa-bell rounded-circle mx-1" style='background-color: #D8D8D8; padding: 10px; font-size: 20px; color: black;'></i>
+    <% end %>
+
+    <%= link_to '', data: {toggle: 'collapse', target:'#top-nav-dropdown'} do %>
+      <i class="fas fa-caret-down rounded-circle mx-1" style='background-color: #D8D8D8; padding: 10px 12px; font-size: 20px; color: black;'></i>
+    <% end %>
+
+    
 
     <div class='collapse position-absolute bg-white border-radius-10 p-3' id='top-nav-dropdown'>
       <div class='gray-hover p-2'>
