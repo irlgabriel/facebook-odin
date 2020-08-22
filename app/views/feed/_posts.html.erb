@@ -2,18 +2,50 @@
 
   <!-- Form for creating posts on the feed -->
 
-  <div class='px-3 bg-white py-3 mt-4 border-radius-10 w-100'>
-    <% if current_user.profile_picture.attachment %>
-      <%= image_tag current_user.profile_picture, size: '45x45', class:'rounded-circle d-inline' %> 
-    <% else %>
-      <%= image_tag 'no_profile_pic.jpg', size: '45x45', class: 'rounded-circle'%>
-    <% end %>
-    <%= form_for @post do |f| %>
-      <%= f.text_field :body, placeholder: "What is on your mind, #{current_user.last_name}?", class:'w-75 d-inline bg-light form-control border-radius-40 border-0'%>
-    <% end %>
+  <div class='px-3 bg-white pt-3 pb-1 mt-4 border-radius-10 w-100'>
+    <div class='row mx-auto w-100'>
 
+      <div class='col-1 pl-1'>
+      <% if current_user.profile_picture.attachment %>
+        <%= image_tag current_user.profile_picture, size: '45x45', class:'rounded-circle d-inline' %> 
+      <% else %>
+        <%= image_tag 'no_profile_pic.jpg', size: '45x45', class: 'rounded-circle'%>
+      <% end %>
+      </div>      
+
+      <div class='col-11 pr-1'>
+      <%= form_for @post do |f| %>
+        <%= f.text_field :body, placeholder: "What is on your mind, #{current_user.last_name}?", class:'d-inline bg-light form-control border-radius-40 border-0'%>
+      <% end %>
+      </div>
+
+    </div>
 
     <hr class='mb-1'>
+    
+    <div class='row w-100 mx-auto my-2 border-radius-10'>
+      <%= link_to '', class:'col-4 w-100 gray-hover p-1' do %>
+        <div class='d-flex justify-content-center align-items-center w-100 mx-auto'>
+          <i class="fas fa-video text-danger text-center" style='font-size: 26px;'>&nbsp;</i>
+          <span class='text-muted font-weight-bold' style='font-size: 14px;'>Live Video</span>
+        </div>
+      <% end %>
+
+      <%= link_to '', class:'col-4 w-100 gray-hover p-1' do %>
+        <div class='d-flex justify-content-center align-items-center'>
+          <i class="fas fa-images text-center" style='color: green; font-size: 26px;'>&nbsp;</i>
+          <span class='text-muted font-weight-bold' style='font-size: 14px;'>Photo/Video</span>
+        </div>
+      <% end %>
+
+      <%= link_to '', class:'col-4 w-100 gray-hover p-1' do %>
+        <div class='d-flex justify-content-center align-items-center'>
+          <i class="far fa-grin-alt text-center" style='color: orange; font-size: 26px;'>&nbsp;</i>
+          <span class='text-muted font-weight-bold' style='font-size: 14px;'>Feeling/Activity</span>
+        </div>
+      <% end %>
+    </div>
+
   </div>
 
   <!-- Actual feed posts -->
