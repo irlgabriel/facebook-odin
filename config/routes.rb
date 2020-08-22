@@ -12,6 +12,5 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  put 'upload', to: 'users/uploads#upload_image'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

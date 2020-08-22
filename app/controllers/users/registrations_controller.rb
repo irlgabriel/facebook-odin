@@ -21,13 +21,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update
-    resource.profile_picture.attach(params[:profile_picture])
-    if resource.profile_picture.attached?
+  
+    resource.profile_picture.attach(params[:profile_picture]) if params[:profile_picture] 
+    if resource.profile_picture.attachment
       flash[:notice] = "Profile picture updated successfully!"
-      render root_path
+      redirect_to profile_path(resource)
     else
       flash[:notice] = "Could not update profile picture!"
-      redirect_to edit_registration_path(resource)
+      redirect_to profile_path(resource)
     end
   end
 

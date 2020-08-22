@@ -10,6 +10,7 @@ https://whispering-bayou-85275.herokuapp.com/
 - Authentication with Devise gem
 - Users can create/edit/delete Posts
 - Comments
+- Photo profiles with amazon s3 storage!
 
 
 # Upcoming features:
@@ -17,7 +18,7 @@ https://whispering-bayou-85275.herokuapp.com/
  - Like photos/comments
  - Friend requests
  - Oauth with facebook
- - Photo profiles
+
 
 
 

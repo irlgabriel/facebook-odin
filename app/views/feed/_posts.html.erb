@@ -4,7 +4,7 @@
 
   <div class='px-3 bg-white py-3 mt-4 border-radius-10 w-100'>
 
-    <%=image_tag current_user.profile_picture, size: '45x45', class:'rounded-circle d-inline'%>
+    <%= image_tag current_user.profile_picture, size: '45x45', class:'rounded-circle d-inline' if current_user.profile_picture.attachment%> 
     <%= form_for @post do |f| %>
       <%= f.text_field :body, placeholder: "What is on your mind, #{current_user.last_name}?", class:'w-75 d-inline bg-light form-control border-radius-40 border-0'%>
     <% end %>
@@ -23,9 +23,10 @@
           <% if post.author.profile_picture.attachment %>
             <%= image_tag(post.author.profile_picture, size:'40x40', class:'ml-2 rounded-circle') %>
           <% else %>
-            
+            <img src='app/assets/images/no_profile_pic.jpg', style='width:40px; height:40px;'>
           <% end %>
           <h6 class='card-title'><%= link_to post.author.fullname, profile_path(post.author), class:'text-dark ml-1 font-weight-bold' %></h6>
+        <!-- -->
         </div>
         <p class='text-muted'><%= distance_of_time_in_words(post.created_at, Time.now) %></p>
         <p class='card-text'><%= post.body %></p>
