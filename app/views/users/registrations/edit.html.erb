@@ -1,5 +1,5 @@
 
-<div class='container-fluid py-3' style='min-height: 70vh;'>
+<div class='container-fluid py-3' style='background-color: #F5F5F5; min-height: 70vh;'>
   <h4>Upload a profile picture!</h4>
   <%= form_with url: registration_path(resource), method: :put, locals: true do |f|  %>
     <%= f.file_field :profile_picture, class:'form-control-file w-25' %>

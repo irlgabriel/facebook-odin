@@ -17,7 +17,7 @@
         <div class='row'>
         <!-- post author's profile and name div -->
           <% if post.author.profile_picture.attachment %>
-            <%= image_tag(post.author.profile_picture, size:'32x32', class:'ml-2 rounded-circle') %>
+            <%= image_tag(post.author.profile_picture, size:'40x40', class:'ml-2 rounded-circle') %>
           <% else %>
             
           <% end %>
@@ -108,6 +108,8 @@
     </div>
   <% end %>
 </div>
+
+
 
 <script>
   

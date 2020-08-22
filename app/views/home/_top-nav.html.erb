@@ -9,24 +9,31 @@
       <i class="fab fa-facebook" style='font-size: 40px' >&nbsp;</i>
     <% end %>
     
-      <i class="fas fa-search p-2 bg-light rounded-circle" style='font-size: 25px'></i>
+    <i class="fas fa-search p-2 bg-light rounded-circle" style='font-size: 25px'></i>
 
   </div>
 
   <!-- middle (fontawesome icons) -->
   <div class='fas-div col-6 d-flex'>
-    <div class='fa-div py-2 w-100 text-center text-primary blue-border border-3'>
+
+    <!-- home fa -->
+    <div class='fa-div py-2 w-100 text-center blue-border border-3' style='color:blue;'>
       <i class="fas fa-house-user"></i>
     </div>
+
+    <!-- friends fa-->
     <div class='fa-div py-2 w-100 text-center'>
-      <i class="far fa-user"></i>
+    <i class="far fa-user"></i>
     </div>
+
     <div class='fa-div py-2 text-center w-100'>
       <i class="fas fa-tv"></i>
     </div>
+
     <div class='fa-div py-2 text-center w-100'>
       <i class="fas fa-bullhorn"></i>
     </div>
+
     <div class='fa-div py-2 text-center w-100'>
       <i class="fas fa-bars"></i>
     </div>
@@ -54,6 +61,12 @@
 fadivs = document.querySelectorAll('.fa-div');
 fadivs.forEach(element => {
     element.addEventListener('click', function() {
+        fadivs.forEach(element => {
+          element.classList.remove('blue-border');
+          element.classList.remove('border-3');
+          element.style.color = 'black'
+        });
+        element.style.color = 'blue';
         element.classList.add('blue-border');
         element.classList.add('border-3');
     });
