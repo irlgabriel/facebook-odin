@@ -53,18 +53,20 @@
   <% @posts.each do |post| %>
     <div class='card my-4 border-radius-10'>
       <div class='card-body'>
-        <div class='row'>
+
         <!-- post author's profile and name div -->
-          <% if post.author.profile_picture.attachment %>
-            <%= image_tag(post.author.profile_picture, size:'40x40', class:'ml-2 rounded-circle') %>
-          <% else %>
-            <%= image_tag('no_profile_pic.jpg', size: '40x40', class:'ml-2 rounded-circle')%>
-          <% end %>
-          <h6 class='card-title'><%= link_to post.author.fullname, profile_path(post.author), class:'text-dark ml-1 font-weight-bold' %></h6>
+
+        <% if post.author.profile_picture.attachment %>
+          <%= image_tag(post.author.profile_picture, size:'40x40', class:'float-left ml-2 rounded-circle') %>
+        <% else %>
+          <%= image_tag('no_profile_pic.jpg', size: '40x40', class:'float-left ml-2 rounded-circle')%>
+        <% end %>
+        <h6><%= link_to post.author.fullname, profile_path(post.author), class:'text-dark ml-1 font-weight-bold' %></h6>
+        <p class='text-muted' style='font-size: 12px;'><%= distance_of_time_in_words(post.created_at, Time.now) %></p>
+
         <!-- -->
-        </div>
-        <p class='text-muted'><%= distance_of_time_in_words(post.created_at, Time.now) %></p>
-        <p class='card-text'><%= post.body %></p>
+
+        <p class='card-text' style='font-size: 23px;'><%= post.body %></p>
 
         <!-- buttons for the author of the post -->
 
@@ -74,6 +76,7 @@
             <%= link_to 'Edit', edit_post_path(post), data: {toggle: 'collapse', target: '#post_edit_form'}, class: 'btn btn-outline-white' %>
 
             <!-- post edit form collapsable -->
+
             <div class='collapse' id='post-edit-form'>
               <%= form_for post do |f| %>
                 <%= f.text_area :body, class:'form-control' %>
@@ -84,6 +87,7 @@
         <% end %>
 
         <!-- number of likes and comments -->
+
         <div class='d-flex justify-content-between'>
           <div class='card-text my-2'>
             <i class="fas fa-thumbs-up" style='color: blue; font-size: 18px;'>&nbsp;</i>
@@ -93,6 +97,7 @@
         </div>
 
         <!-- buttons for likes and comments -->
+
         <div class='row border-top border-bottom py-1 mx-auto' style='width: 99%'>
           <%= link_to 'Like', '#', class:'font-weight-bold p-1 border-rounded-10 gray-hover btn btn-outline-white col-6' %>
           <%= link_to 'Comment', '#', class:'font-weight-bold p-1 border-rounded-10 gray-hover btn btn-outline-white col-6',
@@ -100,6 +105,7 @@
         </div>
 
         <!-- comments count - dont show if 0 comments -->
+
         <div class='my-2'>
           <% unless post.comments.count == 0 %>     
           <%= link_to 'View comments', '#', data:{ toggle:'collapse', target:"#comments-collapsable#{post.id}"}, class: 'font-weight-bold text-muted' %>
@@ -118,6 +124,7 @@
             <p id='post-comment-editable' class='mb-0'><%= comment.body %></p>
 
             <!-- comment buttons for comment author -->
+
             <% if comment.author == current_user %>
               <div id='comment-buttons' class='row'>
                 <div class='col-8'></div>
@@ -135,6 +142,7 @@
           <% end %>
 
           <!-- comment form -->
+
           <%= form_for Comment.new, url: post_comments_path(post) do |f| %>
             <%= f.text_field :body, autofocus: true, placeholder: 'Write a commment...',
              class:'mt-3 border-radius-20 form-control bg-light'%>
