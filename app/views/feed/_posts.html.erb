@@ -2,15 +2,15 @@
 
   <!-- Form for creating posts on the feed -->
 
-  <div class='bg-white py-3 mt-4 border-radius-10 w-100'>
-    <div class='d-flex px-3 w-100'>
-      <%=image_tag current_user.profile_picture, size: '45x45', class:'rounded-circle'%>
-      <%= form_for @post do |f| %>
-        <%= f.text_field :body, placeholder: "What is on your mind, #{current_user.last_name}?", class:'bg-light form-control border-radius-40 border-0'%>
-      <% end %>
-    </div>
+  <div class='px-3 bg-white py-3 mt-4 border-radius-10 w-100'>
 
-    <hr class='w-90 mb-1'>
+    <%=image_tag current_user.profile_picture, size: '45x45', class:'rounded-circle d-inline'%>
+    <%= form_for @post do |f| %>
+      <%= f.text_field :body, placeholder: "What is on your mind, #{current_user.last_name}?", class:'w-75 d-inline bg-light form-control border-radius-40 border-0'%>
+    <% end %>
+
+
+    <hr class='mb-1'>
   </div>
 
   <!-- Actual feed posts -->
