@@ -2,10 +2,14 @@
 
   <!-- Form for creating posts on the feed -->
 
-  <div class='bg-white py-3 mt-4 border-radius-10'>
-    <%= form_for @post do |f| %>
-      <%= f.text_field :body, placeholder: "What is on your mind, #{current_user.last_name}?", class:'w-90 mx-auto bg-light form-control border-radius-40 border-0'%>
-    <% end %>
+  <div class='bg-white py-3 mt-4 border-radius-10 w-100'>
+    <div class='d-flex px-3 w-100'>
+      <%=image_tag current_user.profile_picture, size: '45x45', class:'rounded-circle'%>
+      <%= form_for @post do |f| %>
+        <%= f.text_field :body, placeholder: "What is on your mind, #{current_user.last_name}?", class:'bg-light form-control border-radius-40 border-0'%>
+      <% end %>
+    </div>
+
     <hr class='w-90 mb-1'>
   </div>
 

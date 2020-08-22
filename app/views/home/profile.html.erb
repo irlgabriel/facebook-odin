@@ -16,8 +16,8 @@
       <%= f.submit :upload, value: 'Upload', class:'form-control w-25 my-3 btn btn-primary' %>
     <% end %>
   </div>
-
-  <%= link_to 'Upload profile picture', '/users/edit', data: {toggle: 'collapse', target:'#collapsable-upload-form'}, class:'my-2 h4 d-block' %>
+  
+  <%= link_to 'Upload profile picture', '/users/edit', data: {toggle: 'collapse', target:'#collapsable-upload-form'}, class:'my-2 h4 d-block' if @user == current_user %>
   <h4 class='pt-2'>Email: <%= @user.email %></h4>
   </div>
 </div>
