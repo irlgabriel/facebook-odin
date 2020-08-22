@@ -2,7 +2,7 @@
 
   <!-- Form for creating posts on the feed -->
 
-  <div class='px-3 bg-white pt-3 pb-1 mt-4 border-radius-10 w-100'>
+  <div class='px-3 bg-white pt-3 pb-1 mt-4 border-radius-10 w-100' style='box-shadow: 1px 2px 8px 0px rgba(194,194,194,1);'>
     <div class='row mx-auto w-100'>
 
       <div class='col-1 pl-1'>
@@ -52,17 +52,19 @@
 
   <% @posts.each do |post| %>
     <div class='card my-4 border-radius-10'>
-      <div class='card-body'>
+      <div class='card-body' style='box-shadow: 1px 2px 8px 0px rgba(194,194,194,1);'>
 
         <!-- post author's profile and name div -->
 
         <% if post.author.profile_picture.attachment %>
-          <%= image_tag(post.author.profile_picture, size:'40x40', class:'float-left ml-2 rounded-circle') %>
+          <%= image_tag(post.author.profile_picture, size:'40x40', class:'float-left rounded-circle') %>
         <% else %>
-          <%= image_tag('no_profile_pic.jpg', size: '40x40', class:'float-left ml-2 rounded-circle')%>
+          <%= image_tag('no_profile_pic.jpg', size: '40x40', class:'float-left rounded-circle')%>
         <% end %>
-        <h6><%= link_to post.author.fullname, profile_path(post.author), class:'text-dark ml-1 font-weight-bold' %></h6>
-        <p class='text-muted' style='font-size: 12px;'><%= distance_of_time_in_words(post.created_at, Time.now) %></p>
+        <%= link_to post.author.fullname, profile_path(post.author), class:'text-dark ml-1 font-weight-bold' %>
+        <br>
+        <span class='text-muted' style='font-size: 12px;'><%= distance_of_time_in_words(post.created_at, Time.now) %></span>
+        
 
         <!-- -->
 
