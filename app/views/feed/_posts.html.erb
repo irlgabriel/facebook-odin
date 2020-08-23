@@ -61,9 +61,10 @@
         <% else %>
           <%= image_tag('no_profile_pic.jpg', size: '40x40', class:'float-left rounded-circle')%>
         <% end %>
-        <%= link_to post.author.fullname, profile_path(post.author), class:'text-dark ml-1 font-weight-bold' %>
-        <br>
-        <span class='text-muted' style='font-size: 12px;'><%= distance_of_time_in_words(post.created_at, Time.now) %></span>
+        <span class='d-flex flex-column'>
+          <%= link_to post.author.fullname, profile_path(post.author), class:'text-dark ml-1 font-weight-bold' %>
+          <span class='text-muted' style='font-size: 12px;'><%= distance_of_time_in_words(post.created_at, Time.now) %></span>
+        </span>
         
 
         <!-- -->

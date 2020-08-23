@@ -45,6 +45,20 @@
     </div>
   <% end %>
 
+  <%= link_to '' do %>
+    <div class='p-2 gray-hover d-flex align-items-center'>
+      <i class="fas fa-calendar-check" style='color: orange; font-size: 30px'>&nbsp;</i>
+      <span class='h6 my-3 text-dark' style="font-size: 14px;">Events</span>
+    </div>
+  <% end %>
+
+  <%= link_to '' do %>
+    <div class='p-2 gray-hover d-flex align-items-center'>
+      <i class="fas fa-cloud" style="color: rgb(198, 246, 255); font-size:30px;">&nbsp;</i>
+     <span class='h6 my-3 text-dark' style="font-size: 14px;">Weather</span>
+    </div>
+  <% end %>
+
   <!-- left-nav dropdown button -->
   <%= link_to '', data: {toggle: 'collapse', target: '#collapsable-left-nav'}, class:'collapse show' do %>
     <div class='p-2 gray-hover d-flex align-items-center mb-2'>
@@ -82,20 +96,6 @@
       <div class='p-2 gray-hover d-flex align-items-center'>
       <i class="fas fa-flag" style="font-size:30px;">&nbsp;</i>
       <span class='h6 my-3 text-dark' style="font-size: 14px;">Pages</span>
-      </div>
-    <% end %>
-
-    <%= link_to '' do %>
-      <div class='p-2 gray-hover d-flex align-items-center'>
-      <i class="fas fa-calendar-check" style='color: white; font-size: 30px'>&nbsp;</i>
-      <span class='h6 my-3 text-dark' style="font-size: 14px;">Events</span>
-      </div>
-    <% end %>
-
-    <%= link_to '' do %>
-      <div class='p-2 gray-hover d-flex align-items-center'>
-      <i class="fas fa-cloud" style="color: rgb(198, 246, 255); font-size:30px;">&nbsp;</i>
-      <span class='h6 my-3 text-dark' style="font-size: 14px;">Weather</span>
       </div>
     <% end %>
 
