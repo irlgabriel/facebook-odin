@@ -92,7 +92,7 @@
         <!-- number of likes and comments -->
 
         <div class='d-flex justify-content-between'>
-          <%= link_to '', controller: 'friends', action: :like, class:'card-text my-2' do %>
+          <%= link_to feed_path(post: post), controller: 'posts', action: :like, class:'card-text my-2' do %>
             <i class="fas fa-thumbs-up" style='color: blue; font-size: 18px;'>&nbsp;</i>
           <% end %>
           <span><%= post.likes_count %></span>
@@ -102,7 +102,7 @@
         <!-- buttons for likes and comments -->
 
         <div class='row border-top border-bottom py-1 mx-auto' style='width: 99%'>
-          <%= link_to 'Like', '#', class:'font-weight-bold p-1 border-rounded-10 gray-hover btn btn-outline-white col-6' %>
+          <%= link_to 'Like', feed_path(post: post), controller: 'posts', action: :like, class:'font-weight-bold p-1 border-rounded-10 gray-hover btn btn-outline-white col-6' %>
           <%= link_to 'Comment', '#', class:'font-weight-bold p-1 border-rounded-10 gray-hover btn btn-outline-white col-6',
           data: {toggle: 'collapse', target: "#comments-collapsable#{post.id}"} %>
         </div>

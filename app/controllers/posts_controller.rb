@@ -46,7 +46,10 @@ class PostsController < ApplicationController
 
   end
 
-  
+  def like
+    @post = Post.find(params[:post])
+    byebug
+  end
 
   private
 
