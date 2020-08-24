@@ -11,6 +11,8 @@ https://whispering-bayou-85275.herokuapp.com/
 - Users can create/edit/delete Posts
 - Comments
 - Photo profiles with amazon s3 storage!
+- Responsive feed page!
+- You can edit posts/comments directly on the feed page!
 
 
 # Upcoming features:
