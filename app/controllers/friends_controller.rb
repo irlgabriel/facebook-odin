@@ -5,4 +5,5 @@ class FriendsController < ApplicationController
     @users = User.all.to_ary.select { |user| user != current_user }
   end
 
+
 end

@@ -2,6 +2,8 @@ class PostsController < ApplicationController
 
   before_action :authenticate_user!, only: [:new, :create, :edit]
 
+  
+
   def new
     @post = Post.new
   end
@@ -44,7 +46,10 @@ class PostsController < ApplicationController
 
   end
 
-  
+  def like
+    @post = Post.find(params[:post])
+    byebug
+  end
 
   private
 
