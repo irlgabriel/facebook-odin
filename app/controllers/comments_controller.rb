@@ -29,10 +29,23 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     if @comment.destroy
-      flash[:notice] = 'Comment destryoed!'
+      flash[:notice] = 'Comment destroyed!'
       render 'feed/index'
     end
 
+  end
+
+  def update
+    @comment = Comment.find(params[:id])
+    @comment.update(comment_params)
+    if @comment.save 
+      redirect_to feed_url
+      flash[:notice] = 'Comment edited successfully!'
+    else
+      render feed_url
+      flash[:alert] = 'Could not edit the comment!'
+    end
+    
   end
 
   private

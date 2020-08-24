@@ -6,10 +6,13 @@
     <title>Facebook</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <!-- google fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@800&display=swap" rel="stylesheet">
+    <!-- bootstrap and jquery -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- fontAwesome -->
     <script src="https://kit.fontawesome.com/59f6efb51c.js" crossorigin="anonymous"></script>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -18,21 +21,27 @@
 
   <body>
 
-    <!-- notifications -->
-    <% if flash[:alert] %>
-      <h2 class="alert alert-danger text-center text-dark mb-0"><%= flash[:alert]%></h2>
-    <% end %>
-    <!-- don't show log-in notification (it breaks the left-nav bar :D) -->
-    <% unless current_page?(feed_path) %>
-      <% if flash[:notice] %>
-        <h2 class="alert alert-warning text-center mb-0"><%= flash[:notice] %></h2>
-      <% end %>
-    <% end %>
-
     <!-- top-navbar just for logged-in users! -->
     <% unless current_page?(home_path) or current_page?(root_path) or !user_signed_in? %>
       <%= render 'home/top-nav' %>
+      
     <% end %>
+
+    <!-- notifications -->
+    <% if flash[:alert] or flash[:notice] %>
+      <div class='position-fixed mx-auto border-radius-20 text-info' style='margin: 0px 50px; width: 500px; z-index: 5; top: 61px; left: 290px;'>
+        <% if flash[:alert] %>
+          <h2 class="text-center text-dark mb-0 mx-auto"><%= flash[:alert]%></h2>
+        <% end %>
+
+        <% if flash[:notice] %>
+          <h2 class="text-center mb-0 mx-auto"><%= flash[:notice] %></h2>
+        <% end %>
+      </div>
+    <% end %>
+
+
+    
 
     <%= yield %>
     
