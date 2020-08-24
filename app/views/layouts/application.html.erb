@@ -29,19 +29,28 @@
 
     <!-- notifications -->
     <% if flash[:alert] or flash[:notice] %>
-      <div class='position-fixed mx-auto border-radius-20 text-info' style='margin: 0px 50px; width: 500px; z-index: 5; top: 61px; left: 290px;'>
+      <div id='notification' class='position-fixed mx-auto border-radius-20 ' style='margin: 0px 50px; width: 500px; z-index: 5; top: 61px;'>
         <% if flash[:alert] %>
-          <h2 class="text-center text-dark mb-0 mx-auto"><%= flash[:alert]%></h2>
+          <h2 class="w-100 mx-auto text-center text-warning text-dark mb-0"><%= flash[:alert]%></h2>
         <% end %>
 
         <% if flash[:notice] %>
-          <h2 class="text-center mb-0 mx-auto"><%= flash[:notice] %></h2>
+          <h2 class="text-center text-success mb-0"><%= flash[:notice] %></h2>
         <% end %>
       </div>
     <% end %>
 
-
-    
+    <!-- Animation end eventListener to hide notifications afterwards  -->
+    <script>
+      notif = document.querySelector('#notification');
+      
+      if (notif) {
+        notif.addEventListener('animationend', function() {
+          notif.style.display = 'none';
+        });
+      }
+    </script>
+    <!-- -->
 
     <%= yield %>
     

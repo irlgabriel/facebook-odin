@@ -46,5 +46,20 @@ a:-webkit-any-link {
 
 #leftnav::-webkit-scrollbar {
   display: none;
-  }
+}
+
+#notification {
+  animation-name: fade;
+  animation-duration: 1.2s;
+  animation-iteration-count: 1;
+}
+
+@keyframes fade {
+  0% {opacity: 100%;}
+  25% {opacity: 75%;}
+  50% {opacity: 50%;}
+  75% {opacity: 25%;}
+  100% {opacity: 0%;}
+  
+}
 
