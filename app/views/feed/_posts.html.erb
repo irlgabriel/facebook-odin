@@ -86,6 +86,7 @@
                 <%= f.submit :save %>
               <% end %>
             </div>
+
           </div>
         <% end %>
 
@@ -102,11 +103,7 @@
         <!-- buttons for like, comment and share -->
 
         <div class='row border-top border-bottom py-1 mx-auto' style='width: 99%'>
-          <%= link_to 'Like', feed_path(post: post), controller: 'posts', action: :like, class:'font-weight-bold p-1 border-rounded-10 gray-hover btn btn-outline-white col-6' %>
-          <%= link_to 'Comment', '#', class:'font-weight-bold p-1 border-rounded-10 gray-hover btn btn-outline-white col-6',
-          data: {toggle: 'collapse', target: "#comments-collapsable#{post.id}"} %>
-        </div>
-
+          <%= link_to 'Like', feed_path(post: post), controller: 'posts', action: :like, class:'font-weight-bold p-1 border-rounded-10 gray-hover btn btn-outline-white col-4' %>
           <%= link_to  '#', class:'font-weight-bold px-1 pt-1 border-rounded-10 gray-hover btn btn-outline-white col-4',
           data: {toggle: 'collapse', target: "#comments-collapsable#{post.id}"} do %>
             <i class="far fa-comment-alt">&nbsp;</i><span class='font-weight-bold'>Comment</span>
