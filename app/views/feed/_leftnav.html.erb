@@ -57,7 +57,7 @@
   <% end %>
 
   <!-- left-nav dropdown button -->
-  <%= link_to '', data: {toggle: 'collapse', target: '#collapsable-left-nav'}, class:'collapse show' do %>
+  <%= link_to '', data: {toggle: 'collapse', target: '#collapsable-left-nav'}, id: 'see-more' do %>
     <div class='p-2 gray-hover d-flex align-items-center mb-2'>
       <i class="fas fa-caret-down" style='font-size: 30px; color:lightgray;'>&nbsp;</i>
       <span class='h6 my-3 text-dark' style="font-size: 14px;">See More</span>
@@ -111,7 +111,7 @@
     <% end %>
 
     <!-- Uncollapse button -->
-    <%= link_to '', data: {toggle: 'collapse', target: '#collapsable-left-nav'} do %>
+    <%= link_to '', data: {toggle: 'collapse', target: '#collapsable-left-nav'}, id:'see-less' do %>
       <div class='p-2 gray-hover d-flex align-items-center mb-2'>
         <i class="fas fa-caret-up" style='font-size: 30px;'>&nbsp;</i>
         <span class='my-3 text-dark' style='font-size: 14px'>See less</span>
@@ -141,3 +141,16 @@
   </div>
 </div>
 
+
+<!-- script for showing/hiding See-More button on leftnav -->
+<script>
+  seeMore = document.querySelector('#see-more');
+  seeMore.addEventListener('click', function(){
+    seeMore.style.display = 'none';
+  });
+
+  seeLess = document.querySelector('#see-less');
+  seeLess.addEventListener('click', function(){
+    seeMore.style.display = 'block';
+  });
+</script>
