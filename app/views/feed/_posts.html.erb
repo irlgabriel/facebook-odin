@@ -57,13 +57,13 @@
         <!-- post author's profile and name div -->
 
         <% if post.author.profile_picture.attachment %>
-          <%= image_tag(post.author.profile_picture, size:'40x40', class:'float-left rounded-circle') %>
+          <%= image_tag(post.author.profile_picture, size:'40x40', class:'mr-2 float-left rounded-circle') %>
         <% else %>
-          <%= image_tag('no_profile_pic.jpg', size: '40x40', class:'float-left rounded-circle')%>
+          <%= image_tag('no_profile_pic.jpg', size: '40x40', class:'mr-2 float-left rounded-circle')%>
         <% end %>
         <span class='ml-2 d-flex flex-column'>
-          <%= link_to post.author.fullname, profile_path(post.author), class:'text-dark ml-1 font-weight-bold' %>
-          <span class='text-muted' style='font-size: 12px;'><%= distance_of_time_in_words(post.created_at, Time.now) %></span>
+          <%= link_to post.author.fullname, profile_path(post.author), class:'text-dark font-weight-bold' %>
+          <span class='text-muted font-weight-bold' style='font-size: 12px;'><%= distance_of_time_in_words(post.created_at, Time.now) %></span>
         </span>
         
 
