@@ -6,8 +6,10 @@
 
   <h6 class="text-muted my-3 font-weight-bold">Sponsored</h6>
   <div class="line"></div>
+
   <h6 class="text-muted my-3 font-weight-bold">Birthdays</h6>
   <div class="line"></div>
+
   <div class='row my-3'>
     <h6 class='col-6 text-muted font-weight-bold'>Contacts</h6>
     <div class='col-6 d-flex justify-content-between'>
@@ -15,6 +17,21 @@
     <i class="fas fa-search"></i>
     <i class="fas fa-ellipsis-h"></i>
     </div>
+  </div>
+
+  <div id='chat-contacts'>
+    <% @users.each do |user| %>
+      <div class='chat-contact my-4'>
+        <%= link_to profile_path(user), class:'text-dark' do %>
+          <% if user.profile_picture.attachment %>
+            <%= image_tag user.profile_picture, size: '32x32', class:'float-left rounded-circle mr-2' %>  
+          <% else %>
+            <%= image_tag 'no_profile_pic.jpg', size: '32x32', class:'float-left rounded-circle mr-2' %>
+          <% end %>
+          <p class='m-0 pt-1' style='font-size: 15px;'><%= user.fullname %></p>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 
 </div>
