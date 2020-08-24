@@ -9,3 +9,17 @@
 .left-navbar-link{
   text-decoration: none;
 }
+
+@media (max-width: 768px) {
+
+
+  #right-chat, #rightchat {
+    display: none;
+  }
+}
+
+@media (max-width: 992px) {
+  #left-nav, #leftnav {
+    display: none;
+  }
+}

@@ -1,10 +1,7 @@
-<!-- empty div to fill the empty space of fixed leftnav div -->
+<!-- invisible div to take place of absolutely positioned one -->
+<div id='left-nav' class='col-3'></div>
 
-<div class='col-3'>
-</div>
-
-<!-- offset for notifications -->
-  <div id='leftnav' class='col-3 mt-2 position-fixed' style="overflow-y:scroll; min-height: 90vh; min-height: 90vh; max-height: 80%">
+  <div id='leftnav' class='col-3 mt-2 position-fixed' style="overflow-y:scroll; min-height: 90vh; max-height: 80%">
   <%= link_to profile_path(current_user) do %>
     <div class='gray-hover p-2'>
       <% unless current_user.profile_picture.attachment %>
