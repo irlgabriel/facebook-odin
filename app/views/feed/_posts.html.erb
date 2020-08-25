@@ -154,7 +154,7 @@
         <div id=<%="comments-collapsable#{post.id}"%> class='collapse'>
 
         <!-- profile pic with comment form next to it-->
-        <div class='row w-100 align-items-center pt-2'>
+        <div class='row w-100 align-items-center pt-2 mb-2'>
           <div class='col-1'>
             <% if current_user.profile_picture.attachment %>
               <%= image_tag current_user.profile_picture, size: '36x36', class:'rounded-circle' %>
@@ -173,7 +173,7 @@
 
         <!-- comments list -->
           <% post.comments.each do |comment| %>
-          <div id='comment' class='my-2'>
+          <div id='comment' class='my-2 position-relative'>
             <% if comment.author.profile_picture.attachment %>
               <%= image_tag comment.author.profile_picture, size: '36x36', class:'rounded-circle float-left' %>
             <% else %>
@@ -183,16 +183,28 @@
               <p class='m-0'><%= link_to comment.author.fullname, profile_path(comment.author), class:'font-weight-bold text-muted'%></p>
       
               <p id='post-comment-editable' class='mb-0'><%= comment.body %></p>
-
-              
-
             </div>
-            <!-- comment buttons for comment author -->
+
+            <!-- Number of likes a comment has -->
+            <div class='position-absolute' style='bottom: 17px; right: 20px;'>
+              <i class="far fa-thumbs-up text-primary">&nbsp;<%= comment.likes.count %></i>
+            </div>
+
+
+            <!-- Like comment -->
+            <div>
+              <%= link_to like_path(comment_id: comment.id, user_id: current_user.id), method: :post do %>
+                <span style='margin-left: 55px; font-size: 13px; font-weight: bold; color: black;'>Like</span>
+              <% end %>
+            </div>
+
+          </div>
+          <!-- comment buttons for comment author -->
             <% if comment.author == current_user %>
-              <span class='d-flex justify-content-right w-100 d-inline' id='comment-buttons' >
-                <%= link_to 'Edit', '#', data: { toggle: 'collapse', target: '#comment-edit-form'}, class: 'btn btn-outline-white' %>
-                <%= link_to 'Delete', post_comment_path(post, comment), method: :delete, data: { confirm: 'Are you sure you want to delete this comment?'}, class: 'btn btn-outline-white col-2' %>
-              </span>
+              <div class='text-right' id='comment-buttons' >
+                <%= link_to 'Edit', '#', data: { toggle: 'collapse', target: '#comment-edit-form'}, class: '' %>
+                <%= link_to 'Delete', post_comment_path(post, comment), method: :delete, data: { confirm: 'Are you sure you want to delete this comment?'}, class: '' %>
+              </div>
 
               <!-- comment edit form -->
               <div id='comment-edit-form' class='collapse w-90 mx-auto'>
@@ -202,7 +214,6 @@
                 <% end %>
               </div>
             <% end %>
-          </div>
 
           
           <% end %>

@@ -19,12 +19,12 @@ class LikesController < ApplicationController
     
     unless already_liked
       @liked_thing.likes.create(user_id: @liked_by.id)
-      flash[:notice] = "Liked Post"
+      flash[:notice] = "Liked"
       redirect_to feed_path
     else
       to_delete = @liked_thing.likes.select {|like| like.user_id == @liked_by.id}
       to_delete.each {|like| like.destroy }
-      flash[:alert] = "Unliked Post"
+      flash[:alert] = "Unliked"
       redirect_to feed_path
     end
   end
