@@ -1,7 +1,11 @@
 <div id='feed' class='col'>
 
-  <!-- Form for creating posts on the feed -->
+  
 
+
+
+
+  <!-- Form for creating posts on the feed -->
   <div class='px-3 bg-white pt-3 pb-1 mt-4 border-radius-10 w-100' style='box-shadow: 1px 2px 8px 0px rgba(194,194,194,1);'>
     <div class='row mx-auto w-100'>
 
@@ -92,13 +96,35 @@
         <% end %>
 
         <!-- number of likes and comments -->
-
         <div class='d-flex justify-content-between'>
-          <%= link_to feed_path(post: post), controller: 'posts', action: :like, class:'card-text my-2' do %>
-            <i class="fas fa-thumbs-up" style='color: blue; font-size: 18px;'>&nbsp;</i>
-          <% end %>
-          <span><%= post.likes_count %></span>
+          <div class='py-2'>
+            <%= link_to like_path(user_id: current_user.id, post_id: post.id), method: :post, class:'card-text my-2' do %>
+              <i class="fas fa-thumbs-up" style='color: blue; font-size: 18px;'>&nbsp;</i>
+            <% end %>
 
+            <!-- link to collapse 'who-liked-your-post-div' -->
+            <%= link_to '', data: {toggle: 'collapse', target:'#likes'}, id: 'likes-toggler' do %>
+              <span><%= post.likes.count %></span>
+            <% end %>
+          </div>
+
+          <!-- who liked your post div -->
+          <div id='likes' class='position-fixed collapse'>
+            <div id='within-likes'>
+              <%= post.likes.each do |like| %>
+                <% liked_by = User.find(like.user_id) %>
+                <%= link_to profile_path(liked_by) do %>
+                  <% if liked_by.profile_picture.attachment %>
+                    <%= image_tag liked_by.profile_picture, size: '32x32', class:'float-left rounded-circle' %>
+                  <% else %>
+                    <%= image_tag 'no_profile_pic.jpg', size: '32x32', class:'float-left rounded-circle' %>
+                  <% end %>
+                  <span><%= liked_by.fullname %></span>
+                <% end %> <!-- anchor end -->
+              <% end %>
+            </div>
+          </div>
+          
           
           <%= link_to '#', data: {toggle: 'collapse', target: "#comments-collapsable#{post.id}"} do %>
             <p class='card-text text-muted'><%= post.comments.count %> Comments</p>
@@ -106,7 +132,6 @@
         </div>
 
         <!-- buttons for like, comment and share -->
-
         <div class='row border-bottom border-top py-1 mx-auto' style='width: 99%;'>
           <%= link_to feed_path(post: post), controller: 'posts', action: :like, class:'font-weight-bold p-1 border-rounded-10 gray-hover btn btn-outline-white col-4' do %>
             <i class="far fa-thumbs-up">&nbsp;</i>Like
@@ -179,6 +204,10 @@
 
       </div>
     </div>
+    <!-- Script for hiding current post's body when editing and replacing it 
+    with an edit form! -->
+
+
     <!-- This script will always target the first element with id #post-body
     It would have been useful if I could embbed ruby withing the <script> tag -->
     <!-- 
@@ -197,8 +226,33 @@
       
     </script>
     -->
+
+  <!-- makes background transparent when viewing likes div
+  and makes it back to normal once you press anywhere outside that div -->
+
+    
   <% end %>
 </div>
 
 
+ 
+  <script>
+    likeToggler = document.querySelector('#likes-toggler');
+    html = document.querySelector('html');
+    trans = document.querySelector('#likes');
+    actualLikeDiv = document.querySelector('#within-likes');
 
+    likeToggler.addEventListener('click',function(){
+      trans.style.opacity = 0.2;
+      actualLikeDiv.style.opacity = 1;
+
+    });
+
+    trans.addEventListener('click',function(){
+      html.style.opacity = 1;
+      trans.classList.remove('show');
+    });
+
+    
+  </script>
+  

@@ -23,3 +23,20 @@
     display: none;
   }
 }
+
+#likes {
+  left: 0px;
+  top: 61px;
+  z-index: 15;
+  width: 100%;
+  height: 100%;
+}
+
+#within-likes {
+
+  border-radius: 10px;
+  width: 50%;
+  height: 70%;
+  margin: 60px auto 0px auto;
+
+}
