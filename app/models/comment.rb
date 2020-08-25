@@ -13,5 +13,8 @@ class Comment < ApplicationRecord
     Post.find(self.post_id)
   end
 
+  def liked_by
+    self.likes.map {|like| like.user_id}
+  end
 
 end

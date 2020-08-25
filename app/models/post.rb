@@ -5,5 +5,8 @@ class Post < ApplicationRecord
 
   validates :body, presence: true
   
+  def liked_by
+    self.likes.map {|like| like.user_id }
+  end
 
 end
