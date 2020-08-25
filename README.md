@@ -13,10 +13,9 @@
 - Photo profiles with amazon s3 storage!
 - Responsive feed page!
 - You can edit posts/comments directly on the feed page!
-- You can now Like Posts(comments coming very soon)!!
+- You can now Like Posts and Comments!
 
 # Upcoming features:
-
 
  - Friend requests
  - Oauth with facebook
