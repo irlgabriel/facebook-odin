@@ -2,7 +2,7 @@
 
 # CURRENT HEROKU DEPLOYMENT:
 
-https://whispering-bayou-85275.herokuapp.com/
+# https://whispering-bayou-85275.herokuapp.com/
 
 
 # Features: 
@@ -13,11 +13,11 @@ https://whispering-bayou-85275.herokuapp.com/
 - Photo profiles with amazon s3 storage!
 - Responsive feed page!
 - You can edit posts/comments directly on the feed page!
-
+- You can now Like Posts(comments coming very soon)!!
 
 # Upcoming features:
 
- - Like photos/comments
+
  - Friend requests
  - Oauth with facebook
 
