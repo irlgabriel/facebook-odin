@@ -111,16 +111,18 @@
           <!-- who liked your post div -->
           <div id='likes' class='position-fixed collapse'>
             <div id='within-likes'>
-              <%= post.likes.each do |like| %>
+              <% post.likes.each do |like| %>
+                <div class='pt-3 ml-3'>
                 <% liked_by = User.find(like.user_id) %>
-                <%= link_to profile_path(liked_by) do %>
+                <%= link_to profile_path(liked_by.id), class:'text-muted' do %>
                   <% if liked_by.profile_picture.attachment %>
-                    <%= image_tag liked_by.profile_picture, size: '32x32', class:'float-left rounded-circle' %>
+                    <%= image_tag liked_by.profile_picture, size: '32x32', class:'mr-2float-left rounded-circle' %>
                   <% else %>
-                    <%= image_tag 'no_profile_pic.jpg', size: '32x32', class:'float-left rounded-circle' %>
+                    <%= image_tag 'no_profile_pic.jpg', size: '32x32', class:'mr-2 float-left rounded-circle' %>
                   <% end %>
                   <span><%= liked_by.fullname %></span>
                 <% end %> <!-- anchor end -->
+                </div>
               <% end %>
             </div>
           </div>
@@ -133,8 +135,9 @@
 
         <!-- buttons for like, comment and share -->
         <div class='row border-bottom border-top py-1 mx-auto' style='width: 99%;'>
-          <%= link_to feed_path(post: post), controller: 'posts', action: :like, class:'font-weight-bold p-1 border-rounded-10 gray-hover btn btn-outline-white col-4' do %>
-            <i class="far fa-thumbs-up">&nbsp;</i>Like
+          <%= link_to like_path(post_id: post.id, user_id: current_user.id), method: :post, class:'font-weight-bold p-1 border-rounded-10 gray-hover btn btn-outline-white col-4' do %>
+            <i class="far fa-thumbs-up">&nbsp;</i>
+            <span>Like</span>
           <% end %>
           <%= link_to  '#', class:'font-weight-bold px-1 pt-1 border-rounded-10 gray-hover btn btn-outline-white col-4',
           data: {toggle: 'collapse', target: "#comments-collapsable#{post.id}"} do %>
@@ -154,7 +157,11 @@
         <!-- profile pic with comment form next to it-->
         <div class='row w-100 align-items-center pt-2'>
           <div class='col-1'>
-            <%= image_tag current_user.profile_picture, size: '36x36', class:'rounded-circle' %>
+            <% if current_user.profile_picture.attachment %>
+              <%= image_tag current_user.profile_picture, size: '36x36', class:'rounded-circle' %>
+            <% else %>
+              <%= image_tag 'no_profile_pic.jpg', size: '36x36', class:'rounded-circle' %>
+            <% end %>
           </div>
           <div class='col-11'>
             <%= form_for Comment.new, url: post_comments_path(post) do |f| %>
@@ -168,7 +175,11 @@
         <!-- comments list -->
           <% post.comments.each do |comment| %>
           <div id='comment' class='my-2'>
-            <%= image_tag comment.author.profile_picture, size: '36x36', class:'rounded-circle float-left' %>
+            <% if comment.author.profile_picture.attachment %>
+              <%= image_tag comment.author.profile_picture, size: '36x36', class:'rounded-circle float-left' %>
+            <% else %>
+              <%= image_tag 'no_profile_pic.jpg', size: '36x36', class:'rounded-circle float-left' %>
+            <% end %>
             <div class='p-2 my-1 ml-5 bg-light border-radius-20' style='font-size: 15px;'>
               <p class='m-0'><%= link_to comment.author.fullname, profile_path(comment.author), class:'font-weight-bold text-muted'%></p>
       
@@ -242,14 +253,8 @@
     trans = document.querySelector('#likes');
     actualLikeDiv = document.querySelector('#within-likes');
 
-    likeToggler.addEventListener('click',function(){
-      trans.style.opacity = 0.2;
-      actualLikeDiv.style.opacity = 1;
-
-    });
-
     trans.addEventListener('click',function(){
-      html.style.opacity = 1;
+      //html.style.opacity = 1;
       trans.classList.remove('show');
     });
 
