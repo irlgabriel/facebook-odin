@@ -29,9 +29,9 @@
 
     <!-- notifications -->
     <% if flash[:alert] or flash[:notice] %>
-      <div id='notification' class='position-fixed mx-auto border-radius-20 ' style='margin: 0px 50px; width: 500px; z-index: 5; top: 61px;'>
+      <div id='notification' class='position-fixed mx-auto border-radius-20 ' style='margin: 0px 50px; width: 500px; z-index: 51; top: 61px;'>
         <% if flash[:alert] %>
-          <h2 class="w-100 mx-auto text-center text-warning text-dark mb-0"><%= flash[:alert]%></h2>
+          <h2 class="w-100 mx-auto text-center text-danger mb-0"><%= flash[:alert]%></h2>
         <% end %>
 
         <% if flash[:notice] %>
