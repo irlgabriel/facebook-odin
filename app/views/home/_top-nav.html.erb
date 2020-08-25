@@ -16,14 +16,21 @@
   <div class='fas-div col-6 d-flex text-dark'>
 
     <!-- home fa -->
-    <div class='fa-div py-2 w-100 text-center blue-border border-3' style='color:blue;'>
-      <i class="fas fa-house-user"></i>
-    </div>
+    <% if current_page?(feed_path) %>
+      <%= link_to feed_path, class:'fa-div py-2 w-100 text-center blue-border border-3 text-primary' do %>
+        <i class="fas fa-house-user"></i>
+      <% end %>
+      <% else %>
+      <%= link_to feed_path, class:'fa-div py-2 w-100 text-center border-3 text-dark' do %>
+        <i class="fas fa-house-user"></i>
+      <% end %>
+    <% end %>
+
 
     <!-- friends fa-->
-    <div class='fa-div py-2 w-100 text-center'>
-    <i class="far fa-user"></i>
-    </div>
+    <%= link_to '/friends', class:'fa-div py-2 w-100 text-center' do %>
+      <i class="far fa-user"></i>
+    <% end %>
 
     <div class='fa-div py-2 text-center w-100'>
       <i class="fas fa-tv"></i>
@@ -58,7 +65,6 @@
     <% end %>
 
     
-
     <div class='collapse position-absolute bg-white border-radius-10 p-3' id='top-nav-dropdown' style='top:56px;'>
       <div class='gray-hover p-2'>
         <%= link_to 'Log out', destroy_user_session_path, method: :delete, class:'text-dark' %>
