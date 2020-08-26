@@ -36,6 +36,29 @@
     <% end %>
     <div class='line my-2'></div>
 
+    <% @requests.each do |request| %>
+    
+    <!-- Profile listing -->
+    <div class='d-flex align-items-center'>
+      <%= link_to profile_path(request.from_id), class:'py-3' do %>
+        <% if User.find(request.from_id).profile_picture.attachment %>
+          <%= image_tag User.find(request.from_id).profile_picture, size:'32x32', class: 'rounded-circle mr-2'%>
+        <% else %>
+          <%= image_tag 'no_profile_pic.jpg', size:'32x32', class: 'rounded-circle mr-2'%>
+        <% end %>
+      <% end %>
+      <%= link_to profile_path(request.from_id), class:'py-3' do %>
+        <p class='text-primary h2'><%= User.find(request.from_id).fullname %></p>
+      <% end %>
+
+      <!-- Accept request -->
+      <%= link_to 'Accept Friend Request', accept_request_path(from_id: request.from_id), method: :post, class:'ml-4 btn btn-success' %>
+
+      <!-- Decline request -->
+      <%= link_to 'Decline Friend Request', decline_request_path(from_id: request.from_id), method: :post, class:'ml-4 btn btn-danger' %>
+    </div>
+    <% end %>
+
   </div>
 
 </div>

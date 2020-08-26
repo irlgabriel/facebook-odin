@@ -6,12 +6,18 @@ class User < ApplicationRecord
          
   has_many :posts
   has_many :comments
+
+  #friend requests
   has_many :received_friend_requests, class_name: 'FriendRequest', foreign_key: 'to_id'
-  
   has_many :sent_friend_requests, class_name: 'FriendRequest', foreign_key: 'from_id'
+
+  #friends associations
+  has_many :friends, class_name: "User", foreign_key: "user_id", through: :friendships
   
+  #activestorage
   has_one_attached :profile_picture
   
+  #activestorage validations
   validates :profile_picture, content_type: [:png, :jpg, :jpeg], size: {less_than: 10.megabytes, message: 'Size cannot exceed 10 MBs'}
 
   def fullname

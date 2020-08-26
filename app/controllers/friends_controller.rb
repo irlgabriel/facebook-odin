@@ -8,6 +8,7 @@ class FriendsController < ApplicationController
   #(3-> soon) I am not already friends with
   def suggestions
     @users = User.all.to_ary.select { |user| user != current_user && !current_user.to_fr_ids.include?(user.id)}
+    @requests = current_user.received_friend_requests
   end
 
 
