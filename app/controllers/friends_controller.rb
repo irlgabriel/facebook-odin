@@ -1,7 +1,8 @@
 class FriendsController < ApplicationController
   
   def index
-
+    @friends = current_user.friends
+    
   end
 
   #only show suggestions of friends who (1) Are not me and (2) I have not already sent friends requests to 
@@ -20,7 +21,16 @@ class FriendsController < ApplicationController
   def accept
     @from = params[:from_id]
     @to = current_user.id
-    #Friend.create(user1_id: @to, user2_id: @from)
+    @friend_request = FriendRequest.where(to_id: @to, from_id: @from)
+    @f = Friendship.new(user_id: @to, friend_id: @from)
+    if @f.save
+      @friend_request.destroy_all
+      flash[:notice] = "Friendship accepted"
+      redirect_to find_friends_path
+    else
+      flash[:alert] = "Couldnt accept friendship"
+      redirect_to find_friends_path
+    end
   end
 
   def decline

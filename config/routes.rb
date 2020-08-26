@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   post 'friends/accept/:from_id', to:'friends#accept', as: :accept_request
   post 'friends/decline/:from_id', to:'friends#decline', as: :decline_request
   post 'friends/send/:to_id', to:'friends#send_fr', as: :send_request
-  
+  get 'friends/index', to: 'friends#index'
   root to: 'home#index'
 
   resources :posts do
