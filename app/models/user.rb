@@ -7,8 +7,8 @@ class User < ApplicationRecord
   has_many :posts
   has_many :comments
   has_many :received_friend_requests, class_name: 'FriendRequest', foreign_key: 'to_id'
-  #  Don't think I will need this but I will still keep it
-  #  has_many :sent_friend_requests, class_name: 'FriendRequest', foreign_key: 'from_id'
+  
+  has_many :sent_friend_requests, class_name: 'FriendRequest', foreign_key: 'from_id'
   
   has_one_attached :profile_picture
   
@@ -18,6 +18,9 @@ class User < ApplicationRecord
     self.first_name + ' ' + self.last_name
   end
   
-  
+  #get ids of users that current user sent requests to
+  def to_fr_ids
+    self.sent_friend_requests.map {|fr| fr.to_id }
+  end
 
 end

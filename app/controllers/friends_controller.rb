@@ -4,8 +4,10 @@ class FriendsController < ApplicationController
 
   end
 
+  #only show suggestions of friends who (1) Are not me and (2) I have not already sent friends requests to 
+  #(3-> soon) I am not already friends with
   def suggestions
-    @users = User.all.to_ary.select { |user| user != current_user }
+    @users = User.all.to_ary.select { |user| user != current_user && current_user.to_fr_ids.include?(user.id)}
   end
 
   def new
@@ -30,10 +32,10 @@ class FriendsController < ApplicationController
     @fr = FriendRequest.new(to_id: @to, from_id: @from)
     if @fr.save
       flash[:notice] = "Friend Request Sent!"
-      redirect_to friends_path
+      redirect_to friends_find_path
     else
       flash[:alert] = "Could not send Friend Request!"
-      redirect_to friends_path
+      redirect_to friends_find_path
     end
   end
 

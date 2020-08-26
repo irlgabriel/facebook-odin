@@ -18,7 +18,7 @@
       <%= link_to 'Accept Friend Request', accept_request_path(from_id: request.from_id), method: :post, class:'ml-4 btn btn-success' %>
 
       <!-- Decline request -->
-
+      <%= link_to 'Decline Friend Request', decline_request_path(from_id: request.from_id), method: :post, class:'ml-4 btn btn-danger' %>
     </div>
     
 
