@@ -48,14 +48,14 @@
         <% end %>
       <% end %>
       <%= link_to profile_path(request.from_id), class:'py-3' do %>
-        <p class='text-primary h2'><%= User.find(request.from_id).fullname %></p>
+        <p class='text-primary h4'><%= User.find(request.from_id).fullname %></p>
       <% end %>
 
       <!-- Accept request -->
-      <%= link_to 'Accept Friend Request', accept_request_path(from_id: request.from_id), method: :post, class:'ml-4 btn btn-success' %>
+      <%= link_to 'Accept Friend Request', accept_request_path(from_id: request.from_id), method: :post, class:'ml-2 btn btn-success' %>
 
       <!-- Decline request -->
-      <%= link_to 'Decline Friend Request', decline_request_path(from_id: request.from_id), method: :post, class:'ml-4 btn btn-danger' %>
+      <%= link_to 'Decline Friend Request', decline_request_path(from_id: request.from_id), method: :post, class:'ml-2 btn btn-danger' %>
     </div>
     <% end %>
 

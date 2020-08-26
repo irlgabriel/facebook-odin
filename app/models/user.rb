@@ -12,7 +12,9 @@ class User < ApplicationRecord
   has_many :sent_friend_requests, class_name: 'FriendRequest', foreign_key: 'from_id'
 
   #friends associations
-  has_many :friends, class_name: "User", foreign_key: "user_id", through: :friendships
+  has_many :friends, class_name: "User", foreign_key: "user_id"
+  has_many :friendships, dependent: :destroy
+  has_many :friends, through: :friendships
   
   #activestorage
   has_one_attached :profile_picture
