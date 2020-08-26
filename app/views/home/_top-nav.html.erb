@@ -29,14 +29,16 @@
 
     <!-- friends fa-->
     <% if controller_name == 'friends' %>
-      <%= link_to friends_find_path, class:'fa-div text-primary blue-border border-3 py-2 w-100 text-center' do %>
+      <%= link_to '', data:{toggle:'collapse', target:'#collapse-friends'}, class:'fa-div text-primary blue-border border-3 py-2 w-100 text-center' do %>
        <i class="far fa-user"></i> 
       <% end %>
     <% else %>
-      <%= link_to friends_find_path, class:'fa-div text-muted border-3 py-2 w-100 text-center' do %>
+      <%= link_to '', data:{toggle:'collapse', target:'#collapse-friends'}, class:'fa-div text-muted border-3 py-2 w-100 text-center' do %>
         <i class="far fa-user"></i>
       <% end %>
     <% end %>
+
+    
 
     <div class='fa-div py-2 text-center w-100'>
       <i class="fas fa-tv"></i>
@@ -80,6 +82,18 @@
 
   </div> <!-- ends right top-nav col -->
 </div> <!-- ends top-nav div -->
+
+<div id='collapse-friends' class='collapse position-absolute w-25 bg-white border-radius-10 p-4 mt-2' style='z-index: 4343; left: 35%; top: 61px;'>
+  <%= link_to friends_find_path, class:'text-muted gray-hover' do %>
+    <p class='gray-hover py-2'>Find Friends</p>
+  <% end %>
+  <%= link_to friends_path, class:'text-muted gray-hover' do %>
+    <p class='gray-hover py-2'>Friend requests</p>
+  <% end %>
+  <%= link_to friends_index_path, class:'text-muted gray-hover' do %>
+    <p class='gray-hover py-2'>Your friends</p>
+  <% end %>
+</div>
 
 <script>
 
