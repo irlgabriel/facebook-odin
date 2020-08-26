@@ -17,7 +17,7 @@ class FriendsController < ApplicationController
   end
 
   def accept
-
+    @from = params[:from_id]
   end
 
   def decline
