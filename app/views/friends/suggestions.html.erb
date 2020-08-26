@@ -17,7 +17,7 @@
           <% end %>
           <%= link_to possible_friend.first_name + ' ' + possible_friend.last_name,
                       profile_path(possible_friend),
-                      class:'text-dark h2' %>
+                      class:'text-dark h5' %>
           <br>
           <%= link_to 'Send Friend Request!',
                       send_request_path(to_id: possible_friend.id), 
