@@ -28,8 +28,14 @@
 
 
     <!-- friends fa-->
-    <%= link_to '/friends', class:'fa-div py-2 w-100 text-center' do %>
-      <i class="far fa-user"></i>
+    <% if controller_name == 'friends' %>
+      <%= link_to friends_find_path, class:'fa-div text-primary blue-border border-3 py-2 w-100 text-center' do %>
+       <i class="far fa-user"></i> 
+      <% end %>
+    <% else %>
+      <%= link_to friends_find_path, class:'fa-div text-muted border-3 py-2 w-100 text-center' do %>
+        <i class="far fa-user"></i>
+      <% end %>
     <% end %>
 
     <div class='fa-div py-2 text-center w-100'>

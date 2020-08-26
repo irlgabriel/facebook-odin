@@ -1,0 +1,41 @@
+<div class='row container-fluid' style='margin-left: 0px;background-color: #F5F5F5;'>
+  <!-- Friend suggestions div -->
+  <div class='col-6 container-fluid px-5' >
+    <%= link_to friends_find_path do %>
+      <h1 class='py-3'>Friends Suggestions</h1>
+    <% end %>
+
+    <div class='line my-2'></div>
+    <div class='container-fluid' style='min-height: 64vh'>
+      <% @users.each do |possible_friend| %>
+        <div class='my-4'>
+          <% if possible_friend.profile_picture.attachment %>
+            <%= image_tag(possible_friend.profile_picture, size: '40x40', class:'rounded-circle') %>
+          <% else %>
+            <%= image_tag 'no_profile_pic.jpg', size: '40x40', class:'rounded-circle'%>
+            
+          <% end %>
+          <%= link_to possible_friend.first_name + ' ' + possible_friend.last_name,
+                      profile_path(possible_friend),
+                      class:'text-dark h2' %>
+          <br>
+          <%= link_to 'Send Friend Request!',
+                      send_request_path(to_id: possible_friend.id), 
+                      method: :post,
+                      class:'ml-5 btn btn-outline-dark btn-primary text-light' %>
+          <br>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- Friend requests div -->
+  <div class='col-6 container-fluid px-5'>
+    <%= link_to friends_path do %>
+      <h1 class='py-3'>Friends Requests</h1>
+    <% end %>
+    <div class='line my-2'></div>
+
+  </div>
+
+</div>
