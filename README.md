@@ -14,10 +14,11 @@
 - Responsive feed page!
 - You can edit posts/comments directly on the feed page!
 - You can now Like Posts and Comments!
+- Friend requests
 
 # Upcoming features:
 
- - Friend requests
+
  - Oauth with facebook
 
 
