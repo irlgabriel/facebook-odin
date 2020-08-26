@@ -83,15 +83,15 @@
   </div> <!-- ends right top-nav col -->
 </div> <!-- ends top-nav div -->
 
-<div id='collapse-friends' class='collapse position-absolute w-25 bg-white border-radius-10 p-4 mt-2' style='z-index: 4343; left: 35%; top: 61px;'>
-  <%= link_to friends_find_path, class:'text-muted gray-hover' do %>
-    <p class='gray-hover py-2'>Find Friends</p>
+<div id='collapse-friends' class='collapse position-absolute w-25 p-1 bg-white border-radius-10 mt-2' style='z-index: 4343; left: 35%; top: 61px;'>
+  <%= link_to friends_find_path, class:'text-muted' do %>
+    <p class='m-0 p-2 gray-hover'>Find Friends</p>
   <% end %>
-  <%= link_to friends_path, class:'text-muted gray-hover' do %>
-    <p class='gray-hover py-2'>Friend requests</p>
+  <%= link_to friends_path, class:'text-muted' do %>
+    <p class='m-0 p-2 gray-hover'>Friend requests</p>
   <% end %>
-  <%= link_to friends_index_path, class:'text-muted gray-hover' do %>
-    <p class='gray-hover py-2'>Your friends</p>
+  <%= link_to friends_index_path, class:'text-muted' do %>
+    <p class='m-0 p-2 gray-hover'>Your friends</p>
   <% end %>
 </div>
 
