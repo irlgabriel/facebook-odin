@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
     @comment = @post.comments.create(comment_params)
     @comment.user_id = current_user.id
     if @comment.save
-      Notification.new(user_id: @post.author.id, from_id: current_user.id).save
+      Notification.new(user_id: @post.author.id, from_id: current_user.id, path: 'Post', text: "#{current_user.fullname} commented on your Post!").save
       flash[:notice] = "Comment created!"
       redirect_to root_path
     else
@@ -31,7 +31,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     if @comment.destroy
       flash[:notice] = 'Comment destroyed!'
-      render 'feed/index'
+      redirect_to feed_path
     end
 
   end
