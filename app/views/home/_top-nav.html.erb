@@ -70,7 +70,7 @@
       <!-- dont show if there's no notifications -->
       <% unless current_user.notifications.count == 0 %>
       <div id='no-of-notifications' class='position-absolute' style='top: -7px; right: 65px;'>
-        <span class='rounded-circle bg-danger text-white' style='padding: 2px 5px;'><span>
+        <span class='rounded-circle bg-danger text-white' style='padding: 2px 5px;'><%= current_user.notifications.count%><span>
       </div>
       <% end %>
 
@@ -107,8 +107,16 @@
 
 <!-- Notifications div collapsable -->
 <div id='notification-div' class='position-absolute w-25 collapse bg-white mt-2 border-radius-5' style='box-shadow: 1px 2px 11px 0px rgba(211,211,211,1); min-height: 200px; z-index: 503; top:61px; right: 50px;'>
-  
   <h3 class='font-weight-bold mt-3 ml-2'>Notifications</h3>
+
+  <% current_user.notifications.each do |notif| %>
+    <% if User.find(notif.from_id).profile_picture.attachment %>
+      <%= image_tag User.find(notif.from_id).profile_picture, size: '40x40', class:'rounded-circle float-left' %>
+    <% else %>
+      <%= image_tag 'no_profile_pic.jpg', size: '40x40', class:'rounded-circle float-left' %>
+    <% end %>
+    <span class='my-2'><%= notif.text %></span>
+  <% end %>
   
 </div>
 

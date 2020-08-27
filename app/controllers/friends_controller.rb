@@ -40,10 +40,12 @@ class FriendsController < ApplicationController
   end
 
   def send_fr
-    @to = User.find(params[:to_id]).id
-    @from = current_user.id
-    @fr = FriendRequest.new(to_id: @to, from_id: @from)
+    @to = User.find(params[:to_id])
+    @from = current_user
+    @fr = FriendRequest.new(to_id: @to.id, from_id: @from.id)
     if @fr.save
+      #create a notification for @to user with a text
+      Notification.new(from_id: @from.id, user_id: @to.id, text: "#{@from.fullname} sent you a friend request!").save
       flash[:notice] = "Friend Request Sent!"
       redirect_to friends_find_path
     else
