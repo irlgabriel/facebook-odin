@@ -64,7 +64,7 @@
       <i class="fab fa-facebook-messenger rounded-circle mx-1" style='background-color: #D8D8D8; padding: 10px; font-size: 20px; color: black;'></i>
     <% end %>
 
-    <%= link_to '' do %>
+    <%= link_to '', data: {toggle: 'collapse', target: '#notification-div'} do %>
       <i class="fas fa-bell rounded-circle mx-1" style='background-color: #D8D8D8; padding: 10px; font-size: 20px; color: black;'></i>
     <% end %>
 
@@ -83,6 +83,7 @@
   </div> <!-- ends right top-nav col -->
 </div> <!-- ends top-nav div -->
 
+<!-- Friends div collapsable -->
 <div id='collapse-friends' class='collapse position-absolute w-25 p-1 bg-white border-radius-10 mt-2' style='z-index: 4343; left: 35%; top: 61px;'>
   <%= link_to friends_find_path, class:'text-muted' do %>
     <p class='m-0 p-2 gray-hover'>Find Friends</p>
@@ -93,6 +94,12 @@
   <%= link_to friends_index_path, class:'text-muted' do %>
     <p class='m-0 p-2 gray-hover'>Your friends</p>
   <% end %>
+</div>
+
+<!-- Notifications div collapsable -->
+<div id='notification-div' class='position-absolute w-25 collapse bg-white mt-2 border-radius-10' style='z-index: 503; top:61px; right: 50px;'>
+  <h2 class='font-weight-bold ml-2'>Notifications</h2>
+  
 </div>
 
 <script>
