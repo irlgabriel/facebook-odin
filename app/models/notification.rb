@@ -8,7 +8,7 @@ class Notification < ApplicationRecord
     when 'Comment'
       '#'
     when 'FriendRequest'
-      '/friends'
+      "/friends"
     end
   end
 

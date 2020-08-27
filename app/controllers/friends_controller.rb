@@ -8,7 +8,10 @@ class FriendsController < ApplicationController
   #only show suggestions of friends who (1) Are not me and (2) I have not already sent friends requests to 
   #(3-> soon) I am not already friends with
   def suggestions
-    @users = User.all.to_ary.select { |user| user != current_user && !current_user.to_fr_ids.include?(user.id)}
+    @users = User.all.to_ary.select { |user| user != current_user &&
+                                      !current_user.to_fr_ids.include?(user.id) &&
+                                      !current_user.friends.include?(user) &&
+                                      !current_user.from_fr_ids.include?(user.id) }
     @requests = current_user.received_friend_requests
   end
 
@@ -22,22 +25,24 @@ class FriendsController < ApplicationController
     @from = params[:from_id]
     @to = current_user.id
     @friend_request = FriendRequest.where(to_id: @to, from_id: @from)
+    Notification.where(user_id: @to, from_id: @from).destroy_all
     @f = Friendship.new(user_id: @to, friend_id: @from)
     if @f.save
       @friend_request.destroy_all
       flash[:notice] = "Friendship accepted"
-      redirect_to find_friends_path
+      redirect_to friends_find_path
     else
       flash[:alert] = "Couldnt accept friendship"
-      redirect_to find_friends_path
+      redirect_to friends_find_path
     end
   end
 
   def decline
-    @fr = FriendRequest.find(to_id: current_user.id, from_id: params[:from_id])
-    @notif = Notification.where(user_id: current_user.id, from_id: params[:from_id]).destroy
-    @fr.destroy
-    redirect_to find_friends_path
+    @fr = FriendRequest.where(to_id: current_user.id, from_id: params[:from_id])
+    @notif = Notification.where(user_id: current_user.id, from_id: params[:from_id])
+    @notif.destroy_all
+    @fr.destroy_all
+    redirect_to friends_find_path
   end
 
   def send_fr

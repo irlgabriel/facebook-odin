@@ -34,6 +34,10 @@ class User < ApplicationRecord
     self.sent_friend_requests.map {|fr| fr.to_id }
   end
 
+  def from_fr_ids
+    self.received_friend_requests.map {|fr| fr.from_id }
+  end
+
   #notifications(friend requests for now)
   #def notifications
   #  self.received_friend_requests
