@@ -1,14 +1,15 @@
 class Notification < ApplicationRecord
   belongs_to :user
+  include Rails.application.routes.url_helpers
 
   def notif_link
     case self.path
     #liked post notif
     when 'Post'
-      "feed/#{self.id}"
+      feed_path(self.id)
     #liked comm notif
     when 'Comment'
-      "feed/#{self.id}"
+      feed_path(self.id)
 
     when 'FriendRequest'
       "/friends"

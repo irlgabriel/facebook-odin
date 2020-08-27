@@ -4,7 +4,7 @@ class FeedController < ApplicationController
   def destroy_notification
     if params[:notification_id]
       @notif = Notification.find(params[:notification_id])
-      @notif.destroy_all
+      @notif.destroy
     end
   end
 
