@@ -66,7 +66,16 @@
 
     <%= link_to '', data: {toggle: 'collapse', target: '#notification-div'} do %>
       <i class="fas fa-bell rounded-circle mx-1" style='background-color: #D8D8D8; padding: 10px; font-size: 20px; color: black;'></i>
+
+      <!-- dont show if there's no notifications -->
+      <% unless current_user.notifications.count == 0 %>
+      <div id='no-of-notifications' class='position-absolute' style='top: -7px; right: 65px;'>
+        <span class='rounded-circle bg-danger text-white' style='padding: 2px 5px;'><span>
+      </div>
+      <% end %>
+
     <% end %>
+
 
     <%= link_to '', data: {toggle: 'collapse', target:'#top-nav-dropdown'} do %>
       <i class="fas fa-caret-down rounded-circle mx-1" style='background-color: #D8D8D8; padding: 10px 12px; font-size: 20px; color: black;'></i>
@@ -97,8 +106,9 @@
 </div>
 
 <!-- Notifications div collapsable -->
-<div id='notification-div' class='position-absolute w-25 collapse bg-white mt-2 border-radius-10' style='z-index: 503; top:61px; right: 50px;'>
-  <h2 class='font-weight-bold ml-2'>Notifications</h2>
+<div id='notification-div' class='position-absolute w-25 collapse bg-white mt-2 border-radius-5' style='box-shadow: 1px 2px 11px 0px rgba(211,211,211,1); min-height: 200px; z-index: 503; top:61px; right: 50px;'>
+  
+  <h3 class='font-weight-bold mt-3 ml-2'>Notifications</h3>
   
 </div>
 
