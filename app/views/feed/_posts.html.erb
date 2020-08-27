@@ -133,7 +133,7 @@
         </div>
 
         <!-- buttons for like, comment and share -->
-        <div class='row border-bottom border-top py-1 mx-auto' style='width: 99%;'> 
+        <div class='row border-top py-1 mx-auto' style='width: 99%;'> 
 
           <!-- check if post liked by me to color the like button blue -->
           <% unless post.liked_by.include?(current_user.id) %>
@@ -161,15 +161,15 @@
         
         
         <!-- collapsable commments div with form (facebook layout) -->
-        <div id=<%="comments-collapsable#{post.id}"%> class='collapse'>
+        <div id=<%="comments-collapsable#{post.id}"%> class='border-top collapse'>
 
         <!-- profile pic with comment form next to it-->
-        <div class='row w-100 align-items-center pt-2 mb-2'>
+        <div class='row w-100 align-items-center justify-content-between pt-2 mb-2'>
           <div class='col-1'>
             <% if current_user.profile_picture.attachment %>
-              <%= image_tag current_user.profile_picture, size: '36x36', class:'rounded-circle' %>
+              <%= image_tag current_user.profile_picture, size: '36x36', class:'rounded-circle mr-2' %>
             <% else %>
-              <%= image_tag 'no_profile_pic.jpg', size: '36x36', class:'rounded-circle' %>
+              <%= image_tag 'no_profile_pic.jpg', size: '36x36', class:'rounded-circle mr-2' %>
             <% end %>
           </div>
           <div class='col-11'>

@@ -10,6 +10,7 @@ class CommentsController < ApplicationController
     @comment = @post.comments.create(comment_params)
     @comment.user_id = current_user.id
     if @comment.save
+      Notification.new(user_id: @post.author.id, from_id: current_user.id).save
       flash[:notice] = "Comment created!"
       redirect_to root_path
     else
