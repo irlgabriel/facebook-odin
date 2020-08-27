@@ -7,14 +7,15 @@
 
 # Features: 
 
-- Authentication with Devise gem
-- Users can create/edit/delete Posts
-- Comments
+- Authentication with Devise gem!
+- Users can create/edit/delete Posts!
+- Comments!
 - Photo profiles with amazon s3 storage!
 - Responsive feed page!
 - You can edit posts/comments directly on the feed page!
 - You can now Like Posts and Comments!
-- Friend requests
+- Friend requests!
+- Notifications!
 
 # Upcoming features:
 
