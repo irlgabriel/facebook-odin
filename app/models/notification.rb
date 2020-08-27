@@ -3,10 +3,13 @@ class Notification < ApplicationRecord
 
   def notif_link
     case self.path
+    #liked post notif
     when 'Post'
-      '#'
+      "feed/#{self.id}"
+    #liked comm notif
     when 'Comment'
-      '#'
+      "feed/#{self.id}"
+
     when 'FriendRequest'
       "/friends"
     end

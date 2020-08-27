@@ -76,7 +76,7 @@
 
     <% end %>
 
-
+    
     <%= link_to '', data: {toggle: 'collapse', target:'#top-nav-dropdown'} do %>
       <i class="fas fa-caret-down rounded-circle mx-1" style='background-color: #D8D8D8; padding: 10px 12px; font-size: 20px; color: black;'></i>
     <% end %>
@@ -110,7 +110,7 @@
   <h3 class='font-weight-bold mt-3 ml-3'>Notifications</h3>
 
   <% current_user.notifications.each do |notif| %>
-    <div class='px-3'>
+    <div class='px-3 py-2'>
       <%= link_to notif.notif_link do %>
         <% if User.find(notif.from_id).profile_picture.attachment %>
           <%= image_tag User.find(notif.from_id).profile_picture, size: '40x40', class:'rounded-circle float-left mr-2' %>
@@ -119,7 +119,10 @@
         <% end %>
         <span class='my-2' style='font-size: 16px;'><%= notif.text %></span>
       <% end %>
-      <div class='line' style='padding-top:23px;  '></div>
+
+      <% unless notif == current_user.notifications.last %>
+        <div class='line' style='padding-top:23px;  '></div>
+       <% end %>
     
     </div>
   <% end %>
