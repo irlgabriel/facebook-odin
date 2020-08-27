@@ -106,18 +106,24 @@
 </div>
 
 <!-- Notifications div collapsable -->
-<div id='notification-div' class='position-absolute w-25 collapse bg-white mt-2 border-radius-5' style='box-shadow: 1px 2px 11px 0px rgba(211,211,211,1); min-height: 200px; z-index: 503; top:61px; right: 50px;'>
-  <h3 class='font-weight-bold mt-3 ml-2'>Notifications</h3>
+<div id='notification-div' class='position-fixed   w-35 collapse bg-white mt-2 border-radius-5' style='box-shadow: 1px 2px 11px 0px rgba(211,211,211,1); min-height: 200px; z-index: 503; top:61px; right: 50px;'>
+  <h3 class='font-weight-bold mt-3 ml-3'>Notifications</h3>
 
   <% current_user.notifications.each do |notif| %>
-    <% if User.find(notif.from_id).profile_picture.attachment %>
-      <%= image_tag User.find(notif.from_id).profile_picture, size: '40x40', class:'rounded-circle float-left' %>
-    <% else %>
-      <%= image_tag 'no_profile_pic.jpg', size: '40x40', class:'rounded-circle float-left' %>
-    <% end %>
-    <span class='my-2'><%= notif.text %></span>
+    <div class='px-3'>
+      <%= link_to notif.notif_link do %>
+        <% if User.find(notif.from_id).profile_picture.attachment %>
+          <%= image_tag User.find(notif.from_id).profile_picture, size: '40x40', class:'rounded-circle float-left mr-2' %>
+        <% else %>
+          <%= image_tag 'no_profile_pic.jpg', size: '40x40', class:'rounded-circle float-left pr-2' %>
+        <% end %>
+        <span class='my-2' style='font-size: 16px;'><%= notif.text %></span>
+      <% end %>
+      <div class='line' style='padding-top:23px;  '></div>
+    
+    </div>
   <% end %>
-  
+
 </div>
 
 <script>

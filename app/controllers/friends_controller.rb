@@ -35,7 +35,8 @@ class FriendsController < ApplicationController
 
   def decline
     @fr = FriendRequest.find(to_id: current_user.id, from_id: params[:from_id])
-    @fr.delete
+    @notif = Notification.where(user_id: current_user.id, from_id: params[:from_id]).destroy
+    @fr.destroy
     redirect_to find_friends_path
   end
 
@@ -45,7 +46,7 @@ class FriendsController < ApplicationController
     @fr = FriendRequest.new(to_id: @to.id, from_id: @from.id)
     if @fr.save
       #create a notification for @to user with a text
-      Notification.new(from_id: @from.id, user_id: @to.id, text: "#{@from.fullname} sent you a friend request!").save
+      Notification.new(from_id: @from.id, user_id: @to.id, text: "#{@from.fullname} sent you a friend request!", path:'FriendRequest').save
       flash[:notice] = "Friend Request Sent!"
       redirect_to friends_find_path
     else

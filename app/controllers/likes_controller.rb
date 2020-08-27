@@ -19,6 +19,11 @@ class LikesController < ApplicationController
     
     unless already_liked
       @liked_thing.likes.create(user_id: @liked_by.id)
+      if @liked_thing.class == Post
+        Notification.new(from_id: params[:user_id], user_id: @liked_thing.author.id, path: 'Post', text:"#{@liked_by.fullname} Liked Your post").save
+      else
+        Notification.new(from_id: params[:user_id], user_id: @liked_thing.author.id, path: 'Comment', text:"#{@liked_by.fullname} Liked Your comment").save
+      end 
       flash[:notice] = "Liked"
       redirect_to feed_path
     else
