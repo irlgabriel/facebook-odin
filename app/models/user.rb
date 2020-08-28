@@ -46,7 +46,7 @@ class User < ApplicationRecord
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       
-      user.profile_picture.attach(auth.info.image)
+      #user.profile_picture.attach(auth.info.image)
       user.first_name = auth.info.name.split(/ /).second
       user.last_name = auth.info.name.split(/ /).first
       #user.first_name = auth.info.first_name
