@@ -1,30 +1,36 @@
-<div class='login-form col-4 p-3 border border-light' style='background-color: white; border-radius: 8px; box-shadow: 1px 2px 2px 1px rgba(201,201,201,0.76);'>
-
-    <%= form_for User.new, url: new_user_session_path do |f| %>
-
-      <div class="form-group">
-        <%= f.text_field :email, placeholder: 'Enter your Email', class:'form-control py-4' %>
-      </div>
-
-      <div class="form-group">
-        <%= f.password_field :password, placeholder: 'Password',  class:'form-control py-4'%>
-      </div>
-
-      <div class="form-group text-center">
-        <%= f.submit :log_in, value: "Log In", name: nil, class:'font-weight-bold btn btn-primary mb-2 py-3 w-100' %>
-        <br/>
-        <%= link_to 'Forgot account?', new_password_path(User.new), html_options = {style:'font-size:14px;'} %>
-      </div>
-
-      <div class="form-group text-center" style='margin-bottom: 0px'>
-        <hr class='py-1' />
-
-        <%= link_to new_user_registration_path do %>
-          <p class="btn py-2 text-light" style='border-radius: 5px; width: 58%; background-color:#00b300'%><strong>Create New Account</strong></p>
-        <% end %>
-
-      </div>
-    
+<div class='login-form p-3 border border-light d-inline-block' style='width: 400px; vertical-align: top; background-color: white; border-radius: 8px; box-shadow: 1px 2px 2px 1px rgba(201,201,201,0.76);'>
+  <div class='p-2 w-75 mx-auto my-2 border-radius-10 text-center'>
+    <%= link_to user_facebook_omniauth_authorize_path, class:'text-center' do %>  
+      <i style='font-size: 24px;' class="fab fa-facebook-f">&nbsp;</i>
+      <span>Login with Facebook</span>
     <% end %>
+  </div>
+    
+  <%= form_for User.new, url: new_user_session_path do |f| %>
+
+    <div class="form-group">
+      <%= f.text_field :email, placeholder: 'Enter your Email', class:'form-control py-4' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.password_field :password, placeholder: 'Password',  class:'form-control py-4'%>
+    </div>
+
+    <div class="form-group text-center">
+      <%= f.submit :log_in, value: "Log In", name: nil, class:'font-weight-bold btn btn-primary mb-2 py-3 w-100' %>
+      <br/>
+      <%= link_to 'Forgot account?', new_password_path(User.new), html_options = {style:'font-size:14px;'} %>
+    </div>
+
+    <div class="form-group text-center" style='margin-bottom: 0px'>
+      <hr class='py-1' />
+
+      <%= link_to new_user_registration_path do %>
+        <p class="btn py-2 text-light" style='border-radius: 5px; width: 58%; background-color:#00b300'%><strong>Create New Account</strong></p>
+      <% end %>
+
+    </div>
+  
+  <% end %>
 
   </div>
