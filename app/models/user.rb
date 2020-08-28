@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable
+         :recoverable, :rememberable, :validatable, :confirmable, :omniauthable, omniauth_providers: [:facebook]
          
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -16,6 +16,9 @@ class User < ApplicationRecord
   has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships
   
+  #likes
+  has_many :likes, dependent: :destroy
+
   #notifications
   has_many :notifications
 
@@ -38,10 +41,18 @@ class User < ApplicationRecord
     self.received_friend_requests.map {|fr| fr.from_id }
   end
 
-  #notifications(friend requests for now)
-  #def notifications
-  #  self.received_friend_requests
-
-  #end
+  #oauth
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      
+      user.first_name = auth.info.name.split(/ /).second
+      user.last_name = auth.info.name.split(/ /).first
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.password = Devise.friendly_token[0,20]
+      user.skip_confirmation!
+    end
+  end
 
 end
