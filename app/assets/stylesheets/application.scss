@@ -47,7 +47,13 @@ html {
 }
 a:-webkit-any-link {
   text-decoration: none;
+}
 
+a:-webkit-any-link{
+  text-decoration: none;
+}
+a {
+  text-decoration: none;
 }
 
 #leftnav::-webkit-scrollbar {

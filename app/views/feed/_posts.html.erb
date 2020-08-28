@@ -28,21 +28,21 @@
     <hr class='mb-1'>
     
     <div class='row w-100 mx-auto my-2 border-radius-10'>
-      <%= link_to '', class:'col-4 w-100 gray-hover p-1 border-radius-10' do %>
+      <%= link_to '', class:'text-decoration-none col-4 w-100 gray-hover p-1 border-radius-10' do %>
         <div class='d-flex justify-content-center align-items-center w-100 mx-auto'>
           <i class="fas fa-video text-danger text-center" style='font-size: 26px;'>&nbsp;</i>
           <span class='text-muted font-weight-bold' style='font-size: 14px;'>Live Video</span>
         </div>
       <% end %>
 
-      <%= link_to '', class:'col-4 w-100 gray-hover p-1 border-radius-10' do %>
+      <%= link_to '', class:'text-decoration-none col-4 w-100 gray-hover p-1 border-radius-10' do %>
         <div class='d-flex justify-content-center align-items-center'>
           <i class="fas fa-images text-center" style='color: green; font-size: 26px;'>&nbsp;</i>
           <span class='text-muted font-weight-bold' style='font-size: 14px;'>Photo/Video</span>
         </div>
       <% end %>
 
-      <%= link_to '', class:'col-4 w-100 gray-hover p-1 border-radius-10' do %>
+      <%= link_to '', class:'text-decoration-none col-4 w-100 gray-hover p-1 border-radius-10' do %>
         <div class='d-flex justify-content-center align-items-center'>
           <i class="far fa-grin-alt text-center" style='color: orange; font-size: 26px;'>&nbsp;</i>
           <span class='text-muted font-weight-bold' style='font-size: 14px;'>Feeling/Activity</span>
@@ -66,7 +66,7 @@
           <%= image_tag('no_profile_pic.jpg', size: '40x40', class:'mr-2 float-left rounded-circle')%>
         <% end %>
         <span class='ml-2 d-flex flex-column'>
-          <%= link_to post.author.fullname, profile_path(post.author), class:'text-dark font-weight-bold' %>
+          <%= link_to post.author.fullname, profile_path(post.author), class:'text-decoration-none text-dark font-weight-bold' %>
           <span class='text-muted font-weight-bold' style='font-size: 12px;'><%= distance_of_time_in_words(post.created_at, Time.now) %></span>
         </span>
         
@@ -100,7 +100,7 @@
           <div class='py-2'>
 
             <!-- Links to 'who like your post' div -->
-            <%= link_to '', data: {toggle: 'collapse', target:"#likes#{post.id}"}, id: 'likes-toggler' do %>
+            <%= link_to '', class:'text-decoration-none', data: {toggle: 'collapse', target:"#likes#{post.id}"}, id: 'likes-toggler' do %>
               <i class="fas fa-thumbs-up" style='color: blue; font-size: 18px;'>&nbsp;</i>
               <span class='text-muted font-weight-bold'><%= post.likes.count %></span>
             <% end %>
