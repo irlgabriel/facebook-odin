@@ -16,11 +16,15 @@
 - You can now Like Posts and Comments!
 - Friend requests!
 - Notifications!
+- Oauth with facebook
 
-# Upcoming features:
+# To-do list:
+
+- Profile picture with posts and maybe a cover photo(???)
+- Feature to post a picture with caption - soon
 
 
- - Oauth with facebook
+ 
 
 
 

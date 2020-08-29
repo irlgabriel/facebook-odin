@@ -5,7 +5,7 @@
         <%= image_tag @user.profile_picture, size: '120x120', class:'rounded-circle' %>
       <% end %>
     <% else %>
-      <%= image_tag 'no_profile_pic.jpg', size:'120x120', class:'rounded-circle' %>
+      <%= image_tag 'no_profile_pic.jpg', size:'120x120', class:'img-fluid' %>
     <% end %>
     <p class='h2'><%= @user.fullname %></h2>
 
