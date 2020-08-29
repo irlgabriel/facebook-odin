@@ -5,11 +5,12 @@ Rails.application.routes.draw do
 
   #friends
   get 'friends/find', to: 'friends#suggestions'
-  get 'friends/(:notification_id)', to: 'friends#requests', as: :friends
   post 'friends/accept/:from_id', to:'friends#accept', as: :accept_request
   post 'friends/decline/:from_id', to:'friends#decline', as: :decline_request
   post 'friends/send/:to_id', to:'friends#send_fr', as: :send_request
-  get 'friends/index', to: 'friends#index'
+  get 'friends/index', to: 'friends#index', as: :friends_index
+  get 'friends/(:notification_id)', to: 'friends#requests', as: :friends
+
   root to: 'home#index'
 
 

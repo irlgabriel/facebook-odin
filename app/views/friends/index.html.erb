@@ -1,7 +1,8 @@
-<div class='text-center container-fluid' style='min-height: 70vh;background-color: #f5f5f5;'>
-  <h2 class=' my-2'>Your friends!</h2>
+<div class='pl-4 container-fluid' style='min-height: 70vh;background-color: #f5f5f5;'>
+  <h2 class=' my-2'>Your friends</h2>
   <div class='line my-2'></div>
   <% @friends.each do |friend| %>
+  <div class='my-2'>
     <% if friend.profile_picture.attachment %>
       <%= image_tag friend.profile_picture, size: '48x48', class:'rounded-circle'%>
     <% else %>
@@ -9,5 +10,6 @@
     <% end %>
 
     <%= link_to friend.fullname, profile_path(friend), class:'h3 pt-3 text-muted'%>
+  </div>
   <% end %>
 </div>
