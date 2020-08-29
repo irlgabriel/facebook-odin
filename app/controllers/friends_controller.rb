@@ -5,13 +5,14 @@ class FriendsController < ApplicationController
     
   end
 
-  #only show suggestions of friends who (1) Are not me and (2) I have not already sent friends requests to 
-  #(3-> soon) I am not already friends with
+  #only show suggestions of friends who (1) Are not me  (2) I have not already sent friends requests to 
+  #(3) I am not already friends with (4) Have not sent me friend requests to me
   def suggestions
     @users = User.all.to_ary.select { |user| user != current_user &&
                                       !current_user.to_fr_ids.include?(user.id) &&
                                       !current_user.friends.include?(user) &&
-                                      !current_user.from_fr_ids.include?(user.id) }
+                                      !current_user.from_fr_ids.include?(user.id)
+                                       }
     @requests = current_user.received_friend_requests
   end
 
@@ -28,6 +29,7 @@ class FriendsController < ApplicationController
     Notification.where(user_id: @to, from_id: @from).destroy_all
     @f = Friendship.new(user_id: @to, friend_id: @from)
     if @f.save
+      User.find(@from).friends.push(User.find(@to))
       @friend_request.destroy_all
       flash[:notice] = "Friendship accepted"
       redirect_to friends_find_path
