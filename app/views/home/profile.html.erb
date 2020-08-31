@@ -1,9 +1,11 @@
-<div style='background: linear-gradient(180deg, rgba(2,20,34,1) 0%, rgba(255,255,255,1) 47%);'>
-  <div class='container-fluid py-3 mx-auto position-relative' id='cover-photo' style='width: 68%; background-color: #F5F5F5; height: 350px;'>
+<div style='background: linear-gradient(180deg, rgba(2,20,34,1) 0%, rgba(255,255,255,1) 25%);'>
+  <div class='mx-auto position-relative' id='cover-photo' style='width:851px; background-color: #F5F5F5; height: 350px;'>
 
     <!-- cover photo 851x315-->
     <div id='cover-photo'>
-      <%= image_tag('') %>
+      <% if @user.cover_picture.attachment %>
+        <%= image_tag @user.cover_picture, id:'cover-picture' %>
+      <% end %>
     </div>
 
 
@@ -11,7 +13,7 @@
     <div id='profile-picture' class='position-absolute' style='left: 50%; margin-left: -90px; top: 60%;'%>
       <% if @user.profile_picture.attachment %>
         <%= link_to @user.profile_picture  do %>
-          <%= image_tag @user.profile_picture, size: '180x180', class:'white-border rounded-circle' %>
+          <%= image_tag @user.profile_picture, size: '180x180', class:'object-fit-cover white-border rounded-circle' %>
         <% end %>
       <% else %>
         <%= image_tag 'no_profile_pic.jpg', size:'180x180', class:'white-border rounded-circle' %>
@@ -20,7 +22,7 @@
 
     <!-- change profile pic btn -->
     <% if @user == current_user %>
-      <div class='position-absolute' style='top:85%;'>
+      <div class='position-absolute' style='top:85%; left: 10px;'>
         <%= link_to 'Change your profile picture', '#', data: {toggle: 'collapse', target:'#collapsable-profile-upload-form'}, class:'btn btn-secondary my-2 h4 d-block change-profile-picture' if @user.profile_picture.attachment %>
         <%= link_to 'Upload a profile picture', '#', data: {toggle: 'collapse', target:'#collapsable-profile-upload-form'}, class:'btn btn-secondary my-2 h4 d-block change-profile-picture' if !@user.profile_picture.attachment %>
       </div>
@@ -34,16 +36,32 @@
       </div>
     <% end %>
 
+    <!-- upload profile picture form -->
+    <div class='container-fluid position-absolute collapse' id='collapsable-profile-upload-form' style='top:100%; left: 3%;'>
+      <%= form_with url: upload_profile_picture_path, method: :put, locals: true do |f|  %>
+        <%= f.file_field :profile_picture, class:'form-control-file w-25' %>
+        <%= f.submit :upload, value: 'Upload', class:'form-control w-25 my-3 btn btn-primary' %>
+      <% end %>
+    </div>
+
+    <!-- upload cover photo form -->
+    <div class='container-fluid position-absolute collapse' id='collapsable-cover-upload-form' style='top:100%; left: 81%;'>
+      <%= form_with url: upload_cover_picture_path, method: :put, locals: true do |f|  %>
+        <%= f.file_field :cover_picture, class:'form-control-file w-25' %>
+        <%= f.submit :upload, value: 'Upload', class:'form-control w-25 my-3 btn btn-primary' %>
+      <% end %>
+    </div>
+
 
 
   </div>
-<h1 class='pt-5 mb-4 font-weight-bold text-center'><%= @user.fullname %></h1>
+<h2 class='pt-5 mb-4 font-weight-bold text-center'><%= @user.fullname %></h2>
 <div class='mx-auto' style='width: 64%;'>
   <!-- hr -->
   <div class='line mb-4'></div>
 
   <!-- left-buttons -->
-  <div class='d-flex'>
+  <div class='d-flex text-dark'>
     <%= link_to 'Timeline', '#', class:' px-3 border-3 blue-border py-3 font-weight-bold gray-hover' %>
     <%= link_to 'About', '#', class:' px-3 py-3 font-weight-bold gray-hover' %>
     <%= link_to "Friends (#{current_user.friends.count})", '#', class:' px-3 py-3 font-weight-bold gray-hover' %>
@@ -54,46 +72,88 @@
 
 </div>
 
-</div>
-<!-- upload profile picture form -->
-<div class='container-fluid position-absolute collapse' id='collapsable-profile-upload-form' style='top:80%; left: 16%;'>
-  <%= form_with url: upload_cover_photo_path, method: :put, locals: true do |f|  %>
-    <%= f.file_field :profile_picture, class:'form-control-file w-25' %>
-    <%= f.submit :upload, value: 'Upload', class:'form-control w-25 my-3 btn btn-primary' %>
-  <% end %>
-</div>
 
-<!-- upload cover photo form -->
-<div class='container-fluid position-absolute collapse' id='collapsable-cover-upload-form' style='top:80%; left: 71%;'>
-  <%= form_with url: upload_profile_picture_path, method: :put, locals: true do |f|  %>
-    <%= f.file_field :profile_picture, class:'form-control-file w-25' %>
-    <%= f.submit :upload, value: 'Upload', class:'form-control w-25 my-3 btn btn-primary' %>
-  <% end %>
-</div>
+
+
 <div class='wrapper' style='background-color: #f5f5f5;'>
+
   <div class='mx-auto container-fluid row' style='width: 65%;'>
-    <div class='col-4'>
+    <div class='col-5' style='margin-top: 8px;'>
 
       <!-- intro -->
-      <div class='bg-white p-2 my-2 border-radius-10' style='box-shadow: 1px 2px 3px 0px rgba(194,194,194,1);' id='intro'>
+      <div class='bg-white p-3 my-3 border-radius-10' style='min-height: 15vh; box-shadow: 1px 2px 3px 0px rgba(194,194,194,1);' id='intro'>
         <h5 class='font-weight-bold'>Intro</h5  >
         <!--- --- -->
       </div>
 
       <!-- photos -->
-      <div class='bg-white p-2 my-2 border-radius-10' style='box-shadow: 1px 2px 3px 0px rgba(194,194,194,1); id='photos'>
+      <div class='bg-white p-3 my-3 border-radius-10' style='min-height: 15vh;box-shadow: 1px 2px 3px 0px rgba(194,194,194,1); id='photos'>
         <h5 class='font-weight-bold'>Photos</h5 >
       </div>
 
-      <div class='bg-white p-2 my-2 border-radius-10' style='box-shadow: 1px 2px 3px 0px rgba(194,194,194,1); id='friends'>
+      <div class='bg-white p-3 my-3 border-radius-10' style='min-height: 15vh;box-shadow: 1px 2px 3px 0px rgba(194,194,194,1); id='friends'>
         <h5 class='font-weight-bold'>Friends</h5  >
       </div>
     </div>
 
 
 
-    <div class='col-7'>
+    <div class='col-7' style='min-height: 70vh;'>
+      <!-- Form for creating posts on the feed -->
+      <div class='px-3 bg-white pt-3 pb-1 mt-4 border-radius-10 w-100' style=': 1px 2px 8px 0px rgba(194,194,194,1);'>
 
-    </div>
-  </div>
-</div>
+        <div class='row mx-auto w-100'>
+
+          <!-- profile photo -->
+          <div class='col-1 pl-1'>
+            <% if @user.profile_picture.attachment %>
+              <%= image_tag @user.profile_picture, size: '45x45', class:'object-fit-cover rounded-circle d-inline' %> 
+            <% else %>
+              <%= image_tag 'no_profile_pic.jpg', size: '45x45', class: 'rounded-circle'%>
+            <% end %>
+          </div>      
+
+          <!-- text field -->
+          <div class='col-11 pr-1'>
+            <%= form_for Post.new do |f| %>
+              <%= f.text_field :body, placeholder: "What is on your mind, #{@user.last_name}?", class:'d-inline bg-light form-control border-radius-40 border-0'%>
+            <% end %>
+          </div>
+
+        </div>
+
+        <hr class='mb-1'>
+        
+        <div class='row w-100 mx-auto my-2 border-radius-10'>
+          <%= link_to '', class:'text-decoration-none col-4 w-100 gray-hover p-1 border-radius-10' do %>
+            <div class='d-flex justify-content-center align-items-center w-100 mx-auto'>
+              <i class="fas fa-video text-danger text-center" style='font-size: 26px;'>&nbsp;</i>
+              <span class='text-muted font-weight-bold' style='font-size: 14px;'>Live Video</span>
+            </div>
+          <% end %>
+
+          <%= link_to '', class:'text-decoration-none col-4 w-100 gray-hover p-1 border-radius-10' do %>
+            <div class='d-flex justify-content-center align-items-center'>
+              <i class="fas fa-images text-center" style='color: green; font-size: 26px;'>&nbsp;</i>
+              <span class='text-muted font-weight-bold' style='font-size: 14px;'>Photo/Video</span>
+            </div>
+          <% end %>
+
+          <%= link_to '', class:'text-decoration-none col-4 w-100 gray-hover p-1 border-radius-10' do %>
+            <div class='d-flex justify-content-center align-items-center'>
+              <i class="far fa-grin-alt text-center" style='color: orange; font-size: 26px;'>&nbsp;</i>
+              <span class='text-muted font-weight-bold' style='font-size: 14px;'>Feeling/Activity</span>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+
+
+    </div> <!-- col-7 ending = 'profile feed' -->
+
+    <!-- posts -->
+    
+
+  </div> <!-- 65% width container-->
+</div> <!-- wrapper -->

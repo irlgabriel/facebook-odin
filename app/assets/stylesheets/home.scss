@@ -43,3 +43,12 @@
 .change-cover-photo {
   background-color: rgb(170, 170, 170);
 }
+#cover-picture {
+  width: 851px;
+  height: 351px;
+  object-fit: cover;
+}
+
+.object-fit-cover{
+  object-fit: cover;
+}

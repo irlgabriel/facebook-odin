@@ -61,7 +61,7 @@
         <!-- post author's profile and name div -->
 
         <% if post.author.profile_picture.attachment %>
-          <%= image_tag(post.author.profile_picture, size:'40x40', class:'mr-2 float-left rounded-circle') %>
+          <%= image_tag(post.author.profile_picture, size:'40x40', class:'object-fit-cover mr-2 float-left rounded-circle') %>
         <% else %>
           <%= image_tag('no_profile_pic.jpg', size: '40x40', class:'mr-2 float-left rounded-circle')%>
         <% end %>
@@ -120,7 +120,7 @@
                 <% liked_by = User.find(like.user_id) %>
                 <%= link_to profile_path(liked_by.id), class:'text-muted' do %>
                   <% if liked_by.profile_picture.attachment %>
-                    <%= image_tag liked_by.profile_picture, size: '45x45', class:'mr-2float-left rounded-circle' %>
+                    <%= image_tag liked_by.profile_picture, size: '45x45', class:'object-fit-cover mr-2 float-left rounded-circle' %>
                   <% else %>
                     <%= image_tag 'no_profile_pic.jpg', size: '45x45', class:'mr-2 float-left rounded-circle' %>
                   <% end %>
@@ -172,7 +172,7 @@
         <div class='row w-100 align-items-center justify-content-between pt-2 mb-2'>
           <div class='col-1'>
             <% if current_user.profile_picture.attachment %>
-              <%= image_tag current_user.profile_picture, size: '36x36', class:'rounded-circle mr-2' %>
+              <%= image_tag current_user.profile_picture, size: '36x36', class:'object-fit-cover rounded-circle mr-2' %>
             <% else %>
               <%= image_tag 'no_profile_pic.jpg', size: '36x36', class:'rounded-circle mr-2' %>
             <% end %>
@@ -190,7 +190,7 @@
           <% post.comments.each do |comment| %>
           <div id='comment' class='my-2 position-relative'>
             <% if comment.author.profile_picture.attachment %>
-              <%= image_tag comment.author.profile_picture, size: '36x36', class:'rounded-circle float-left' %>
+              <%= image_tag comment.author.profile_picture, size: '36x36', class:'object-fit-cover rounded-circle float-left' %>
             <% else %>
               <%= image_tag 'no_profile_pic.jpg', size: '36x36', class:'rounded-circle float-left' %>
             <% end %>
@@ -269,8 +269,8 @@
     </script>
     -->
 
-  <!-- makes background transparent when viewing likes div
-  and makes it back to normal once you press anywhere outside that div -->
+    <!-- makes background transparent when viewing likes div
+    and makes it back to normal once you press anywhere outside that div -->
 
     
   <% end %>

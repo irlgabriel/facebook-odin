@@ -14,8 +14,9 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   #photo uploads
-  put 'users/upload_profile_picture', to: 'users/registrations#update_profile_picture', as: :upload_profile_picture
-  put 'users/upload_cover_photo', to: 'users/registrations#update_cover_photo', as: :upload_cover_photo
+  put '/upload_profile_picture', to: 'uploads#upload_profile_picture', as: :upload_profile_picture
+  put '/upload_cover_picture', to: 'uploads#upload_cover_picture', as: :upload_cover_picture
+
   resources :posts do
     resources :comments
   end

@@ -28,7 +28,7 @@ class User < ApplicationRecord
   
   #activestorage validations
   validates :profile_picture, content_type: [:png, :jpg, :jpeg], size: {less_than: 10.megabytes, message: 'Size cannot exceed 10 MBs'}
-  validates :cover_photo, content_type: [:png, :jpg, :jpeg], size: {less_than: 10.megabytes, message: 'Size cannot exceed 10 MBs'}
+  validates :cover_picture, content_type: [:png, :jpg, :jpeg], size: {less_than: 10.megabytes, message: 'Size cannot exceed 10 MBs'}
 
   def fullname
     self.first_name + ' ' + self.last_name

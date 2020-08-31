@@ -38,29 +38,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
   end
 
-  def upload_profile_picture
-    resource = current_user
-    resource.profile_picture.attach(params[:profile_picture]) if params[:profile_picture] 
-    if resource.profile_picture.attachment
-      flash[:notice] = "Profile picture updated successfully!"
-      redirect_to profile_path(resource)
-    else
-      flash[:notice] = "Could not update profile picture!"
-      redirect_to profile_path(resource)
-    end
-  end
-
-  def upload_cover_photo
-    resource = current_user
-    resource.profile_picture.attach(params[:cover_photo]) if params[:cover_photo] 
-    if resource.cover_photo.attachment
-      flash[:notice] = "Profile picture updated successfully!"
-      redirect_to profile_path(resource)
-    else
-      flash[:notice] = "Could not update profile picture!"
-      redirect_to profile_path(resource)
-    end
-  end
+  
 
 
   protected
