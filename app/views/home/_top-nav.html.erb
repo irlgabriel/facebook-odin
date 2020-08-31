@@ -83,8 +83,49 @@
 
     
     <div class='collapse position-absolute bg-white border-radius-10 p-3' id='top-nav-dropdown' style='top:56px;'>
-      <div class='gray-hover p-2'>
-        <%= link_to 'Log out', destroy_user_session_path, method: :delete, class:'text-dark' %>
+
+      <!-- profile div -->
+      <div style='width: 350px;' class='d-flex gray-hover p-2 align-items-center'>
+        <%= image_tag current_user.profile_picture, size: '80x80', class:'mr-3 rounded-circle' %>
+        <div>
+          <%= link_to profile_path(current_user.id) do %>
+            <h5 class='font-weight-bold text-dark'><%= current_user.fullname %></h5>
+            <h6 class='text-muted'>See your profile</h6>
+          <% end%>
+          
+        </div>
+        
+      </div>
+      <hr class='my-1'>
+
+      <!-- feedback div -->
+      <div class='d-flex align-items-center gray-hover p-2'>
+        <i style='font-size: 24px;' class="mr-2 fas fa-exclamation-triangle"></i> 
+        <div>
+          <p class='mb-0'>Give Feedback</p>
+          <p class='mb-0' style='font-size: 13px'>Help improve the new facebook</p>
+        </div>
+      </div>
+      <hr class='my-1'>
+
+      <!-- settings and privay div -->
+      <div class='d-flex align-items-center gray-hover px-2 py-3'>
+        <i style='font-size: 24px;' class="mr-2 fas fa-cog"></i>
+        <span>Settings & Privacy</span>
+      </div>
+
+      <!-- dark mode div -->
+      <div class='d-flex align-items-center gray-hover px-2 py-3'>
+        <i style='font-size: 24px;' class="mr-2 fas fa-moon"></i>
+        <span>Dark Mode</span>
+      </div>
+
+      <!-- logout div -->
+      <div class='gray-hover p-2 py-3'>
+        <%= link_to destroy_user_session_path, method: :delete, class:'text-dark' do %>
+        <i style='font-size: 20px' class="mr-2 fas fa-door-open"></i>
+        <span>Log out</span>
+        <% end %>
       </div>
 
     </div>
