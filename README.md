@@ -10,7 +10,7 @@
 - Authentication with Devise gem!
 - Users can create/edit/delete Posts!
 - Comments!
-- Photo profiles with amazon s3 storage!
+- Profile photo and cover photo with amazon s3 storage!
 - Responsive feed page!
 - You can edit posts/comments directly on the feed page!
 - You can now Like Posts and Comments!
@@ -20,7 +20,7 @@
 
 # To-do list:
 
-- Profile picture with posts and maybe a cover photo(???)
+- Profile picture with posts
 - Feature to post a picture with caption - soon
 
 
