@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   root to: 'home#index'
 
+  #photo uploads
+  get 'users/upload_profile_picture', to: 'users/registrations#update_profile_picture', as: :upload_profile_picture_path
 
   resources :posts do
     resources :comments

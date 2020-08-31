@@ -1,5 +1,5 @@
 <div style='background-image: linear-gradient(180deg, gray, white);'>
-  <div class='container-fluid py-3 mx-auto position-relative' id='cover-photo' style='width: 68%; background-color: #F5F5F5; height: 350px;'>
+  <div class='container-fluid py-3 mx-auto position-relative' id='cover-photo' style='width: 68%; background-color: #F5F5F5; height: 400px;'>
 
     <!-- cover photo 851x315-->
     <div id='cover-photo'>
@@ -20,8 +20,8 @@
     
     <!-- change profile pic btn -->
     <div class='position-absolute' style='top:85%;'>
-      <%= link_to 'Change your profile picture', '#', data: {toggle: 'collapse', target:'#collapsable-upload-form'}, class:'btn bg-light my-2 h4 d-block change-profile-picture' if @user == current_user if @user.profile_picture_attachment %>
-      <%= link_to 'Upload a profile picture', '#', data: {toggle: 'collapse', target:'#collapsable-upload-form'}, class:'my-2 h4 d-block change-profile-picture' if @user == current_user if !@user.profile_picture_attachment %>
+      <%= link_to 'Change your profile picture', '#', data: {toggle: 'collapse', target:'#collapsable-upload-form'}, class:'btn bg-light btn-secondary text-dark font-weight-bold my-2 h4 d-block change-profile-picture' if @user == current_user if @user.profile_picture_attachment %>
+      <%= link_to 'Upload a profile picture', '#', data: {toggle: 'collapse', target:'#collapsable-upload-form'}, class:'btn btn-secondary text-dark font-weight-bold my-2 h4 d-block change-profile-picture' if @user == current_user if !@user.profile_picture_attachment %>
     </div>
 
     <div class='position-absolute' style='top:85%;'>
