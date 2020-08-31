@@ -31,10 +31,7 @@
 .border-3 {
   border-width: 3px;
 }
-#cover-photo {
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-}
+
 
 .change-profile-picture {
   background-color: rgb(170, 170, 170);
@@ -43,12 +40,20 @@
 .change-cover-photo {
   background-color: rgb(170, 170, 170);
 }
+
+//image
 #cover-picture {
-  width: 851px;
+  width: 951px;
   height: 351px;
   object-fit: cover;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
-
+//image wrapper
+#cover-photo {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
 .object-fit-cover{
   object-fit: cover;
 }
