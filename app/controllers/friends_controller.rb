@@ -55,15 +55,20 @@ class FriendsController < ApplicationController
       #create a notification for @to user with a text
       Notification.new(from_id: @from.id, user_id: @to.id, text: "#{@from.fullname} sent you a friend request!", path:'FriendRequest').save
       flash[:notice] = "Friend Request Sent!"
-      redirect_to friends_find_path
+      redirect_back fallback_location: feed_path
     else
       flash[:alert] = "Could not send Friend Request!"
-      redirect_to friends_find_path
+      redirect_back fallback_location: feed_path
     end
   end
 
   def delete_friendship
-    
+    @fr = Friendship.where(friend_id: params[:friend_id], friend_id: current_user.id)
+    @fr2 = Friendship.where(user_id: params[:friend_id], user_id: current_user.id)
+    @fr2.destroy_all
+    @fr.destroy_all
+    flash[:alert] = 'Unfriended'
+    redirect_back fallback_location feed_path
   end
 
 end

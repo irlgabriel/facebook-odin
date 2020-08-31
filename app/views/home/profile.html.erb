@@ -37,39 +37,46 @@
 
       <!-- else show a button to send friend request -->
     <% else %>
-      <% if current_user.friends.include?(@user) %>
+      <% if !current_user.friends.include?(@user) && !current_user.to_fr_ids.include?(@user.id) %>
         <div class='position-absolute' style='top:73%; right: 20px;'>
-          <%= link_to 'Send Friend Request', send_request_path(@user.id), class:'px-3 btn btn-info' %>
+          <%= link_to 'Send Friend Request', send_request_path(@user.id), method: :post, class:'px-3 btn btn-info' %>
         </div>
-      <% else %>
+      <% elsif !current_user.to_fr_ids.include?(@user.id) %>
         <div class='position-absolute' style='top:73%; right: 20px;'>
-          <%= link_to delete_friend_path(@user.id), method: :post, id:'btn-friend-unfriend', class:'btn btn-success px-3 btn-disabled' do %>
+          <%= link_to delete_friend_path(@user.id), method: :post, id:'btn-friend-unfriend', data: {confirm: "Are you sure you want to unfriend #{@user.fullname}?"}, class:'btn btn-success px-3 btn-disabled' do %>
             <span id='friend-unfriend'>Friends <i class="fas fa-check"></i></span>
           <% end %>
         </div>
+      <% else %>
+        <div class='position-absolute' style='top:73%; right: 20px;'>
+          <p class='px-3 py-1 border-radius-20 font-weight-bold' style='background-color: rgba(72, 166, 17, 0.82);'>Friend Request Sent</p>
+        </div>
       <% end %>
+
     <% end %>
 
     <!-- friend -> unfriend on hover script -->
-    <script>
-      fr = document.querySelector('#friend-unfriend');
-      txt = fr.innerHTML
-      btn = document.querySelector('#btn-friend-unfriend');
+    <% if current_user.friends.include?(@user) %>
+      <script>
+        fr = document.querySelector('#friend-unfriend');
+        txt = fr.innerHTML
+        btn = document.querySelector('#btn-friend-unfriend');
 
 
-      fr.addEventListener('mouseover', function(){
-        fr.innerHTML = 'Unfriend';
+        fr.addEventListener('mouseover', function(){
+          fr.innerHTML = 'Unfriend';
 
-        btn.classList.remove('btn-success');
-        btn.classList.add('btn-danger');
-      });
-      fr.addEventListener('mouseout', function(){
-        fr.innerHTML = txt;
+          btn.classList.remove('btn-success');
+          btn.classList.add('btn-danger');
+        });
+        fr.addEventListener('mouseout', function(){
+          fr.innerHTML = txt;
 
-        btn.classList.remove('btn-danger');
-        btn.classList.add('btn-success');
-      })
-    </script>
+          btn.classList.remove('btn-danger');
+          btn.classList.add('btn-success');
+        })
+      </script>
+    <% end %>
 
     <!-- upload profile picture form -->
     <div class='container-fluid position-absolute collapse' id='collapsable-profile-upload-form' style='top:100%; left: 3%;'>
