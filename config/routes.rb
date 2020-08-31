@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   post 'friends/send/:to_id', to:'friends#send_fr', as: :send_request
   get 'friends/index', to: 'friends#index', as: :friends_index
   get 'friends/(:notification_id)', to: 'friends#requests', as: :friends
-
+  post 'friends/(:friend_id)', to: 'friends#delete_friendship', as: :delete_friend
   root to: 'home#index'
 
   #photo uploads

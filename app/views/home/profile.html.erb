@@ -21,21 +21,55 @@
       <% end %>
     </div>
 
-    <!-- change profile pic btn -->
+    <!-- if my profile => show options to change profile/cover pictures -->
     <% if @user == current_user %>
-      <div class='position-absolute' style='top:85%; left: 10px;'>
+      <!-- change profile pic btn -->
+      <div class='position-absolute' style='top:83%; left: 20px;'>
         <%= link_to 'Change your profile picture', '#', data: {toggle: 'collapse', target:'#collapsable-profile-upload-form'}, class:'btn btn-secondary my-2 h4 d-block change-profile-picture' if @user.profile_picture.attachment %>
         <%= link_to 'Upload a profile picture', '#', data: {toggle: 'collapse', target:'#collapsable-profile-upload-form'}, class:'btn btn-secondary my-2 h4 d-block change-profile-picture' if !@user.profile_picture.attachment %>
       </div>
-    <% end %>
 
-    <!-- change cover photo btn -->
-    <% if @user == current_user %>
-      <div class='position-absolute' style='top:85%; right: 10px;'>
+      <!-- change cover photo btn -->
+      <div class='position-absolute' style='top:83%; right: 20px;'>
         <%= link_to 'Change your cover photo', '#', data: {toggle: 'collapse', target:'#collapsable-cover-upload-form'}, class:'btn btn-secondary my-2 h4 d-block change-cover-photo' if @user == current_user if @user.cover_picture.attachment %>
         <%= link_to 'Upload a cover photo', '#', data: {toggle: 'collapse', target:'#collapsable-cover-upload-form'}, class:'btn btn-secondary my-2 h4 d-block change-cover-photo' if @user == current_user if !@user.cover_picture.attachment %>
       </div>
+
+      <!-- else show a button to send friend request -->
+    <% else %>
+      <% if current_user.friends.include?(@user) %>
+        <div class='position-absolute' style='top:73%; right: 20px;'>
+          <%= link_to 'Send Friend Request', send_request_path(@user.id), class:'px-3 btn btn-info' %>
+        </div>
+      <% else %>
+        <div class='position-absolute' style='top:73%; right: 20px;'>
+          <%= link_to delete_friend_path(@user.id), method: :post, id:'btn-friend-unfriend', class:'btn btn-success px-3 btn-disabled' do %>
+            <span id='friend-unfriend'>Friends <i class="fas fa-check"></i></span>
+          <% end %>
+        </div>
+      <% end %>
     <% end %>
+
+    <!-- friend -> unfriend on hover script -->
+    <script>
+      fr = document.querySelector('#friend-unfriend');
+      txt = fr.innerHTML
+      btn = document.querySelector('#btn-friend-unfriend');
+
+
+      fr.addEventListener('mouseover', function(){
+        fr.innerHTML = 'Unfriend';
+
+        btn.classList.remove('btn-success');
+        btn.classList.add('btn-danger');
+      });
+      fr.addEventListener('mouseout', function(){
+        fr.innerHTML = txt;
+
+        btn.classList.remove('btn-danger');
+        btn.classList.add('btn-success');
+      })
+    </script>
 
     <!-- upload profile picture form -->
     <div class='container-fluid position-absolute collapse' id='collapsable-profile-upload-form' style='top:100%; left: 3%;'>

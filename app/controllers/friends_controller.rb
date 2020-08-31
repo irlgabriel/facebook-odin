@@ -62,4 +62,8 @@ class FriendsController < ApplicationController
     end
   end
 
+  def delete_friendship
+    
+  end
+
 end
