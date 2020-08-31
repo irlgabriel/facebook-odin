@@ -37,14 +37,19 @@
 
 
   </div>
-<h1 class='pt-5 font-weight-bold text-center'><%= @user.fullname %></h1>
+<h1 class='pt-5 mb-4 font-weight-bold text-center'><%= @user.fullname %></h1>
 <div class='mx-auto' style='width: 64%;'>
   <!-- hr -->
-  <div class='line mb-2'></div>
+  <div class='line mb-4'></div>
 
-  <!-- buttons -->
-  <div class='d-flex align-content-center'>
-  
+  <!-- left-buttons -->
+  <div class='d-flex'>
+    <%= link_to 'Timeline', '#', class:' px-3 border-3 blue-border py-3 font-weight-bold gray-hover' %>
+    <%= link_to 'About', '#', class:' px-3 py-3 font-weight-bold gray-hover' %>
+    <%= link_to "Friends (#{current_user.friends.count})", '#', class:' px-3 py-3 font-weight-bold gray-hover' %>
+    <%= link_to 'Photos', '#', class:' px-3 py-3 font-weight-bold gray-hover' %>
+    <%= link_to 'Archive', '#', class:' px-3 py-3 font-weight-bold gray-hover' %>
+    <%= link_to 'More', '#', class:' px-3 py-3 font-weight-bold gray-hover' %>
   </div>
 
 </div>
