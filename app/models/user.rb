@@ -24,6 +24,7 @@ class User < ApplicationRecord
 
   #activestorage
   has_one_attached :profile_picture, dependent: :destroy
+  has_one_attached :cover_picture, dependent: :destroy
   
   #activestorage validations
   validates :profile_picture, content_type: [:png, :jpg, :jpeg], size: {less_than: 10.megabytes, message: 'Size cannot exceed 10 MBs'}
