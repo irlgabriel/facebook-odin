@@ -1,5 +1,6 @@
 class FriendsController < ApplicationController
-  
+
+
   def index
     @friends = current_user.friends
     
@@ -40,11 +41,17 @@ class FriendsController < ApplicationController
   end
 
   def decline
-    @fr = FriendRequest.where(to_id: current_user.id, from_id: params[:from_id])
-    @notif = Notification.where(user_id: current_user.id, from_id: params[:from_id])
+    @from = User.find(params[:from_id])
+    @fr = FriendRequest.where(to_id: current_user.id, from_id: @from.id)
+    @notif = Notification.where(user_id: current_user.id, from_id: @from.id)
     @notif.destroy_all
     @fr.destroy_all
-    redirect_to friends_find_path
+    
+    
+    current_user.received_friend_requests.where(from_id: params[:from_id], to_id: current_user.id).destroy_all
+    @from.sent_friend_requests.where(from_id: @from.id, to_id: current_user.id).destroy_all
+
+    redirect_back  fallback_location: feed_path
   end
 
   def send_fr
@@ -65,10 +72,13 @@ class FriendsController < ApplicationController
   def delete_friendship
     @fr = Friendship.where(friend_id: params[:friend_id], friend_id: current_user.id)
     @fr2 = Friendship.where(user_id: params[:friend_id], user_id: current_user.id)
+
     @fr2.destroy_all
     @fr.destroy_all
     flash[:alert] = 'Unfriended'
-    redirect_back fallback_location feed_path
+    redirect_back fallback_location: feed_path
   end
+
+
 
 end

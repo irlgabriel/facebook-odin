@@ -86,7 +86,11 @@
 
       <!-- profile div -->
       <div style='width: 350px;' class='d-flex gray-hover p-2 align-items-center'>
-        <%= image_tag current_user.profile_picture, size: '80x80', class:'mr-3 rounded-circle' %>
+        <% if current_user.profile_picture.attachment %>
+          <%= image_tag current_user.profile_picture, size: '80x80', class:'mr-3 rounded-circle' %>
+        <% else %>
+          <%= image_tag 'no_profile_pic.jpg', size: '80x80', class:'mr-3 rounded-circle' %>
+        <% end %>
         <div>
           <%= link_to profile_path(current_user.id) do %>
             <h5 class='font-weight-bold text-dark'><%= current_user.fullname %></h5>
