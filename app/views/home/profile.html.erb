@@ -226,7 +226,226 @@
 
 
 
-  
+    <% @posts.each do |post| %>
+    <div class='card my-4 border-radius-10' style='box-shadow: 1px 2px 8px 0px rgba(194,194,194,1);'>
+      <div class='px-4 pt-3'>
+
+        <!-- post author's profile and name div -->
+
+        <% if post.author.profile_picture.attachment %>
+          <%= image_tag(post.author.profile_picture, size:'40x40', class:'object-fit-cover mr-2 float-left rounded-circle') %>
+        <% else %>
+          <%= image_tag('no_profile_pic.jpg', size: '40x40', class:'mr-2 float-left rounded-circle')%>
+        <% end %>
+        <span class='ml-2 d-flex flex-column'>
+          <%= link_to profile_path(post.author), class:'text-decoration-none text-dark font-weight-bold' do %>
+            <span><%= post.author.fullname %></span>
+            <% if current_user.friends.include?(post.author) %>
+              <i class="fas fa-user-friends" style='color: #00ff00;'></i>
+            <% end %>
+          <% end %>
+          <span class='text-muted font-weight-bold' style='font-size: 12px;'><%= distance_of_time_in_words(post.created_at, Time.now) %></span>
+        </span>
+        
+
+        <!-- -->
+
+        <p id=<%= "post-body#{post.id}" %> class='card-text m-0 mt-1' style='font-size: 17px;'><%= post.body %></p>
+
+
+        <!-- post edit form collapsable 
+        This will take place of body with javascript listeners! -->
+            <div class='collapse' id=<%= "post-edit-form#{post.id}" %>>
+              <%= form_for post do |f| %>
+                <%= f.text_area :body, class:'form-control' %>
+                <%= f.submit :save, class:'form-control w-25 mx-auto my-2', id:"submit-edit#{post.body}" %>
+              <% end %>
+            </div>
+
+        <!-- buttons for the author of the post -->
+        <% if current_user == post.author %>
+          <div class='card-text card-author-buttons text-right'>
+            <%= link_to 'Delete', post, method: :delete, data: {confirm: 'Are you sure you want to delete this post?'}, class: 'btn btn-outline-white'%>
+            <%= link_to 'Edit', edit_post_path(post), data: {toggle: 'collapse', target: "#post-edit-form#{post.id}"}, class: 'btn btn-outline-white', id:'edit-post' %>
+
+            
+          </div>
+        <% end %>
+
+        <!-- number of likes and comments -->
+        <div class='d-flex justify-content-between'>
+          <div class='py-2'>
+
+            <!-- Links to 'who like your post' div -->
+            <%= link_to '', class:'text-decoration-none', data: {toggle: 'collapse', target:"#likes#{post.id}"}, id: 'likes-toggler' do %>
+              <i class="fas fa-thumbs-up" style='color: blue; font-size: 18px;'>&nbsp;</i>
+              <span class='text-muted font-weight-bold'><%= post.likes.count %></span>
+            <% end %>
+          </div>
+
+          <!-- who liked your post div -->
+          <div id=<%="likes#{post.id}"%> class='likes position-fixed collapse'>
+            <div id=<%="within-likes#{post.id}"%> class='within-likes position-absolute' style='overflow-y: scroll;'>
+              
+              <% post.likes.each do |like| %>
+                <div class='py-3 ml-3'>
+                <% liked_by = User.find(like.user_id) %>
+                <%= link_to profile_path(liked_by.id), class:'text-muted' do %>
+                  <% if liked_by.profile_picture.attachment %>
+                    <%= image_tag liked_by.profile_picture, size: '45x45', class:'object-fit-cover mr-2 float-left rounded-circle' %>
+                  <% else %>
+                    <%= image_tag 'no_profile_pic.jpg', size: '45x45', class:'mr-2 float-left rounded-circle' %>
+                  <% end %>
+                  <span style='font-size: 20px; font-weight: bold;'><%= liked_by.fullname %></span>
+                <% end %> <!-- anchor end -->
+                </div>
+              <% end %>
+            </div>
+          </div>
+          
+          
+          <%= link_to '#', data: {toggle: 'collapse', target: "#comments-collapsable#{post.id}"} do %>
+            <p class='card-text text-muted'><%= post.comments.count %> Comments</p>
+          <% end %>
+        </div>
+
+        <!-- buttons for like, comment and share -->
+        <div class='row border-top py-1 mx-auto' style='width: 99%;'> 
+
+          <!-- check if post liked by me to color the like button blue -->
+          <% unless post.liked_by.include?(current_user.id) %>
+            <%= link_to like_path(post_id: post.id, user_id: current_user.id), method: :post, class:'font-weight-bold p-1 border-rounded-10 gray-hover btn btn-outline-white col-4' do %>
+              <i class="far fa-thumbs-up">&nbsp;</i>
+              <span>Like</span>
+            <% end %>
+          <% else %>
+            <%= link_to like_path(post_id: post.id, user_id: current_user.id), method: :post, class:'font-weight-bold p-1 border-rounded-10 gray-hover btn btn-outline-white col-4' do %>
+              <i class="text-primary far fa-thumbs-up">&nbsp;</i>
+              <span class='text-primary'>Like</span>
+            <% end %>
+          <% end %>
+
+          <%= link_to  '#', class:'font-weight-bold px-1 pt-1 border-rounded-10 gray-hover btn btn-outline-white col-4',
+          data: {toggle: 'collapse', target: "#comments-collapsable#{post.id}"} do %>
+            <i class="far fa-comment-alt">&nbsp;</i><span class='font-weight-bold'>Comment</span>
+          <% end %>
+
+          <%= link_to '', class: 'px-1 pt-1 border-rounded-10 gray-hover btn btn-outline-white col-4' do %>
+            <i class="far fa-share-square">&nbsp;</i><span class='font-weight-bold'>Share</span>
+          <% end %>
+        </div>
+
+        
+        
+        <!-- collapsable commments div with form (facebook layout) -->
+        <div id=<%="comments-collapsable#{post.id}"%> class='border-top collapse'>
+
+        <!-- profile pic with comment form next to it-->
+        <div class='row w-100 align-items-center justify-content-between pt-2 mb-2'>
+          <div class='col-1'>
+            <% if current_user.profile_picture.attachment %>
+              <%= image_tag current_user.profile_picture, size: '36x36', class:'object-fit-cover rounded-circle mr-2' %>
+            <% else %>
+              <%= image_tag 'no_profile_pic.jpg', size: '36x36', class:'rounded-circle mr-2' %>
+            <% end %>
+          </div>
+          <div class='col-11'>
+            <%= form_for Comment.new, url: post_comments_path(post) do |f| %>
+              <%= f.text_field :body, autofocus: true, placeholder: 'Write a commment...',
+                class:'border-radius-20 form-control bg-light'%>
+              <%= f.submit :save, value: 'Save', class:'btn w-50 mx-auto btn-primary my-2 d-none' %>
+            <% end %>
+          </div>
+        </div>
+
+        <!-- comments list -->
+          <% post.comments.each do |comment| %>
+          <div id='comment' class='my-2 position-relative'>
+            <% if comment.author.profile_picture.attachment %>
+              <%= image_tag comment.author.profile_picture, size: '36x36', class:'object-fit-cover rounded-circle float-left' %>
+            <% else %>
+              <%= image_tag 'no_profile_pic.jpg', size: '36x36', class:'rounded-circle float-left' %>
+            <% end %>
+            <div class='p-2 my-1 ml-5 bg-light border-radius-20' style='font-size: 15px;'>
+              <p class='m-0'><%= link_to comment.author.fullname, profile_path(comment.author), class:'font-weight-bold text-muted'%></p>
+      
+              <p id='post-comment-editable' class='mb-0'><%= comment.body %></p>
+            </div>
+
+            <!-- Number of likes a comment has -->
+            <div class='position-absolute' style='bottom: 17px; right: 20px;'>
+              <i class="far fa-thumbs-up text-primary">&nbsp;<%= comment.likes.count %></i>
+            </div>
+
+
+            <!-- Like comment -->
+            <div>
+            <!-- Check if I already liked it -->
+
+            <%= link_to like_path(comment_id: comment.id, user_id: current_user.id), method: :post do %>
+              <% if comment.liked_by.include?(current_user.id) %>
+                <span style='margin-left: 55px; font-size: 13px; font-weight: bold; color: blue;'>Liked</span> 
+              <% else %>
+                <span style='margin-left: 55px; font-size: 13px; font-weight: bold; color: black;'>Like</span> 
+              <% end %>
+            <% end %>
+            </div>
+
+          </div>
+          <!-- comment buttons for comment author -->
+            <% if comment.author == current_user %>
+              <div class='text-right' id='comment-buttons' >
+                <%= link_to 'Edit', '#', data: { toggle: 'collapse', target: '#comment-edit-form'}, class: '' %>
+                <%= link_to 'Delete', post_comment_path(post, comment), method: :delete, data: { confirm: 'Are you sure you want to delete this comment?'}, class: '' %>
+              </div>
+
+              <!-- comment edit form -->
+              <div id='comment-edit-form' class='collapse w-90 mx-auto'>
+                <%= form_for comment, url: post_comment_path(post, comment), method: :put do |f| %>
+                  <%= f.text_field :body, class:'form-control' %>
+                  <%= f.submit :save, class:'form-control w-25 mx-auto my-2' %>
+                <% end %>
+              </div>
+            <% end %>
+
+          
+          <% end %>
+
+          
+
+        </div> <!-- end of collapsable comments div -->
+
+
+      </div>
+    </div>
+    <!-- Script for hiding current post's body when editing and replacing it 
+    with an edit form! -->
+
+
+    <!-- This script will always target the first element with id #post-body
+    It would have been useful if I could embbed ruby withing the <script> tag -->
+    <!-- 
+    <script>
+      postBody = document.querySelector('#post-body');
+      editPost = document.querySelector('#edit-post');
+      submitEdit = document.querySelector('#submit-edit');
+
+      editPost.addEventListener('click', function() {
+        postBody.style.display = 'none';
+      });
+
+      submitEdit.addEventListener('click', function(){
+        postBody.style.display = 'block';
+      });
+      
+    </script>
+    -->
+
+    <!-- makes background transparent when viewing likes div
+    and makes it back to normal once you press anywhere outside that div -->
+
+    
+  <% end %>
 
     </div> <!-- 500px ending = 'profile feed' -->
 
