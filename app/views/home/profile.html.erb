@@ -1,3 +1,4 @@
+
 <div style='background: linear-gradient(180deg, rgba(2,20,34,1) 0%, rgba(255,255,255,1) 25%);'>
   <div class='mx-auto position-relative' style='width:950px; background-color: #F5F5F5; height: 350px;'>
 
@@ -56,18 +57,34 @@
 
   </div>
 <h2 class='pt-5 mb-4 font-weight-bold text-center'><%= @user.fullname %></h2>
-<div class='mx-auto' style='width: 57%;'>
+<div class='mx-auto' style='width: 870px;'>
   <!-- hr -->
-  <div class='line mb-4'></div>
+  <div class='line mb-2'></div>
 
   <!-- left-buttons -->
-  <div class='d-flex text-dark'>
-    <%= link_to 'Timeline', '#', class:' px-3 border-3 blue-border py-3 font-weight-bold gray-hover' %>
-    <%= link_to 'About', '#', class:' px-3 py-3 font-weight-bold gray-hover' %>
-    <%= link_to "Friends (#{current_user.friends.count})", '#', class:' px-3 py-3 font-weight-bold gray-hover' %>
-    <%= link_to 'Photos', '#', class:' px-3 py-3 font-weight-bold gray-hover' %>
-    <%= link_to 'Archive', '#', class:' px-3 py-3 font-weight-bold gray-hover' %>
-    <%= link_to 'More', '#', class:' px-3 py-3 font-weight-bold gray-hover' %>
+  <div class='d-flex align-items-center'>
+    <%= link_to 'Timeline', '#', class:' text-dark px-3 border-3 blue-border py-3 font-weight-bold gray-hover' %>
+    <%= link_to 'About', '#', class:' text-dark px-3 py-3 font-weight-bold gray-hover' %>
+    <%= link_to "Friends (#{current_user.friends.count})", '#', class:' text-dark px-3 py-3 font-weight-bold gray-hover' %>
+    <%= link_to 'Photos', '#', class:'text-dark px-3 py-3 font-weight-bold gray-hover' %>
+    <%= link_to 'Archive', '#', class:' text-dark px-3 py-3 font-weight-bold gray-hover' %>
+
+    <%= link_to '#', class:'text-dark px-3 py-3 font-weight-bold gray-hover' do %>
+      <span>More &nbsp;</span><i class="fas fa-caret-down"></i>
+    <% end %>
+
+    <div class='ml-auto right-buttons'>
+      <%= link_to 'Edit Profile', edit_user_registration_path(@user), class:'btn btn-light' %>
+      <%= link_to '#', class:'btn btn-light' do %>
+        <i class="fas fa-eye"></i>
+      <% end %>
+      <%= link_to '#', class:'btn btn-light' do %>
+        <i class="fas fa-search"></i>
+      <% end %>
+      <%= link_to '#', class:'btn btn-light' do %>
+        <i class="fas fa-ellipsis-h" style='font-size: 12px; color: gray;'></i>
+      <% end %>
+    </div>
   </div>
 
 </div>
@@ -77,8 +94,10 @@
 
 <div class='wrapper' style='background-color: #f5f5f5;'>
 
-  <div class='mx-auto container-fluid row' style='width:59%;'>
-    <div class='col-5' style='margin-top: 8px;'>
+  <div class='mx-auto container-fluid d-flex' style='width:900px;'>
+
+    <!-- left part (360px) -->
+    <div class='mr-2' style='margin-top: 8px; width: 360px;'>
 
       <!-- intro -->
       <div class='bg-white p-3 my-3 border-radius-10' style='min-height: 15vh; box-shadow: 1px 2px 3px 0px rgba(194,194,194,1);' id='intro'>
@@ -87,18 +106,34 @@
       </div>
 
       <!-- photos -->
-      <div class='bg-white p-3 my-3 border-radius-10' style='min-height: 15vh;box-shadow: 1px 2px 3px 0px rgba(194,194,194,1); id='photos'>
+      <div class='bg-white p-3 my-3 border-radius-10' style='min-height: 15vh;box-shadow: 1px 2px 3px 0px rgba(194,194,194,1);' id='photos'>
         <h5 class='font-weight-bold'>Photos</h5 >
       </div>
 
-      <div class='bg-white p-3 my-3 border-radius-10' style='min-height: 15vh;box-shadow: 1px 2px 3px 0px rgba(194,194,194,1); id='friends'>
-        <h5 class='font-weight-bold'>Friends</h5  >
+      <div class='bg-white p-2 my-3 border-radius-10' style='min-height: 15vh;box-shadow: 1px 2px 3px 0px rgba(194,194,194,1);' id='friends'>
+        <h5 class='font-weight-bold ml-2'>Friends</h5>
+        <div class='friends-left d-flex justify-content-between flex-wrap'>
+          <% @user.friends.each do |friend| %>
+            <div class='border-radius-10 friend my-1' >
+              <%= link_to profile_path(friend) do %>
+                <!-- profile picture -->
+                <% if friend.profile_picture.attachment %>
+                  <%= image_tag friend.profile_picture, size:'108x108', class:'border-radius-10' %>
+                <% else %>
+                  <%= image_tag 'no_profile_pic.jpg', size:'108x108', class:'border-radius-10'%>
+                <% end %>
+
+                <!-- fullname -->
+                <p style='font-size: 14px;' class=' text-dark font-weight-bold'><%= friend.fullname %></p>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
 
 
-
-    <div class='col-7' style='min-height: 70vh;'>
+    <div class='ml-2' style='min-height: 70vh; width: 500px;'>
       <!-- Form for creating posts on the feed -->
       <div class='px-3 bg-white pt-3 pb-1 mt-4 border-radius-10 w-100' style=': 1px 2px 8px 0px rgba(194,194,194,1);'>
 
@@ -150,9 +185,11 @@
 
 
 
-    </div> <!-- col-7 ending = 'profile feed' -->
+  
 
-    <!-- posts -->
+    </div> <!-- 500px ending = 'profile feed' -->
+
+    
     
 
   </div> <!-- 65% width container-->

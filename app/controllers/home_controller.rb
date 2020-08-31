@@ -10,6 +10,8 @@ class HomeController < ApplicationController
 
   def profile
     @user = User.find(params[:id])
+    @posts = @user.posts.order('created_at DESC')
+    @friends = @user.friends
   end
 
 end
