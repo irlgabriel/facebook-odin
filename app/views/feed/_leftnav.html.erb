@@ -1,7 +1,7 @@
 <!-- invisible div to take place of absolutely positioned one -->
 <div id='left-nav' class='col-3'></div>
 
-  <div id='leftnav' class='col-3 mt-2 position-fixed' style="overflow-y:scroll; min-height: 90vh; max-height: 80%">
+  <div id='leftnav' class='col-3 mt-3 position-fixed' style="overflow-y:scroll; min-height: 90vh; max-height: 80%">
   <%= link_to profile_path(current_user), class:'text-decoration-none' do %>
     <div class='gray-hover p-2'>
       <% unless current_user.profile_picture.attachment %>
@@ -126,19 +126,20 @@
 
 
   <!-- footer -->
-  <div class='mt-auto' style='font-size: 13px;'>
-  <%= link_to '', class:'text-muted text-decoration-none' do %>
-    <span>Privacy</span>&middot;
-    <span>Terms</span>&middot;
-    <span>Advertising</span>&middot;
-    <span>Ad choices</span>&middot;
-    <span>Cookies</span>&middot;
-    <span>More</span>&middot;
-    <span>Facebook</span>&middot;
-    <span>&copy; 2020</span>
-  <% end %>
-  
+  <div style='height: 100px'></div> 
+  <div class='position-fixed' style='width: 22%; font-size: 13px; bottom:0;'>
+    <%= link_to '', class:'text-muted text-decoration-none' do %>
+      <span>Privacy</span>&middot;
+      <span>Terms</span>&middot;
+      <span>Advertising</span>&middot;
+      <span>Ad choices</span>&middot;
+      <span>Cookies</span>&middot;
+      <span>More</span>&middot;
+      <span>Facebook</span>&middot;
+      <span>&copy; 2020</span>
+    <% end %>
   </div>
+
 </div>
 
 
