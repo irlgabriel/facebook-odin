@@ -80,7 +80,7 @@
 
     <!-- upload profile picture form -->
     <div class='container-fluid position-absolute collapse' id='collapsable-profile-upload-form' style='top:100%; left: 3%;'>
-      <%= form_with url: upload_profile_picture_path, method: :put, locals: true do |f|  %>
+      <%= form_with url: upload_profile_picture_path, method: :put, local: true do |f|  %>
         <%= f.file_field :profile_picture, class:'form-control-file w-25' %>
         <%= f.submit :upload, value: 'Upload', class:'form-control w-25 my-3 btn btn-primary' %>
       <% end %>
@@ -88,7 +88,7 @@
 
     <!-- upload cover photo form -->
     <div class='container-fluid position-absolute collapse' id='collapsable-cover-upload-form' style='top:100%; left: 81%;'>
-      <%= form_with url: upload_cover_picture_path, method: :put, locals: true do |f|  %>
+      <%= form_with url: upload_cover_picture_path, method: :put, local: true do |f|  %>
         <%= f.file_field :cover_picture, class:'form-control-file w-25' %>
         <%= f.submit :upload, value: 'Upload', class:'form-control w-25 my-3 btn btn-primary' %>
       <% end %>

@@ -31,7 +31,7 @@ class User < ApplicationRecord
   validates :cover_picture, content_type: [:png, :jpg, :jpeg], size: {less_than: 10.megabytes, message: 'Size cannot exceed 10 MBs'}
 
   #user info validations
-  validates :first_name, :last_name, presence: true, length: {in: (6..20) }
+  validates :first_name, :last_name, presence: true, length: {in: (3..20) }
 
   def fullname
     self.first_name + ' ' + self.last_name
