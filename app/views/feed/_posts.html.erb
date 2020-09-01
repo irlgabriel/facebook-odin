@@ -94,7 +94,7 @@
         <% if current_user == post.author %>
           <div class='card-text card-author-buttons text-right'>
             <%= link_to 'Delete', post, method: :delete, data: {confirm: 'Are you sure you want to delete this post?'}, class: 'btn btn-outline-white'%>
-            <%= link_to 'Edit', '#', id: "edit-post-button#{post.id}", class: 'btn btn-outline-white' %>
+            <button id='<%="edit-post-button#{post.id}"%>', class='btn btn-outline-white'>Edit</button>
           </div>
         <% end %>
 
