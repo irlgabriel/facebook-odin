@@ -38,7 +38,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
   end
 
-  
+  def edit_info
+    @user = current_user
+  end
 
 
   protected

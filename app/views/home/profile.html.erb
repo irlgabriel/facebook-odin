@@ -115,7 +115,7 @@
     <% end %>
 
     <div class='ml-auto right-buttons'>
-      <%= link_to 'Edit Profile', edit_user_registration_path(@user), class:'btn btn-light' %>
+      <%= link_to 'Edit Profile', edit_info_path, class:'btn btn-light' if current_user == @user %>
       <%= link_to '#', class:'btn btn-light' do %>
         <i class="fas fa-eye"></i>
       <% end %>
@@ -148,7 +148,12 @@
 
       <!-- photos -->
       <div class='bg-white p-3 my-3 border-radius-10' style='min-height: 15vh;box-shadow: 1px 2px 3px 0px rgba(194,194,194,1);' id='photos'>
-        <h5 class='font-weight-bold'>Photos</h5 >
+        <h5 class='font-weight-bold'>Photos</h5>
+        <div class='d-flex justify-content-between flex-wrap'>
+        <%= link_to @user.profile_picture do %>
+          <%= image_tag @user.profile_picture, size: '108x108' if @user.profile_picture.attachment %>
+        <% end %>
+        </div>
       </div>
 
       <div class='bg-white p-2 my-3 border-radius-10' style='min-height: 15vh;box-shadow: 1px 2px 3px 0px rgba(194,194,194,1);' id='friends'>

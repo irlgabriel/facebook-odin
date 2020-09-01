@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+
   get 'home', to: 'home#index', as: :home
   get 'feed/(:notification_id)', to: 'feed#index', as: :feed 
   get 'profile/:id', to: 'home#profile', as: :profile
@@ -24,7 +26,10 @@ Rails.application.routes.draw do
   post 'like', to: 'likes#create'
   get 'likes', to: 'likes#index'
 
-
+  devise_scope :user do 
+    get 'edit/info', to: 'users/registrations#edit_info', as: :edit_info
+    put 'edit_info/:id', to: 'users/registrations#edit_info', as: :edit_info_put
+  end
 
   devise_for :users, controllers: {
     registrations: 'users/registrations',
