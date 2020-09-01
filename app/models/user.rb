@@ -30,6 +30,9 @@ class User < ApplicationRecord
   validates :profile_picture, content_type: [:png, :jpg, :jpeg], size: {less_than: 10.megabytes, message: 'Size cannot exceed 10 MBs'}
   validates :cover_picture, content_type: [:png, :jpg, :jpeg], size: {less_than: 10.megabytes, message: 'Size cannot exceed 10 MBs'}
 
+  #user info validations
+  validates :first_name, :last_name, presence: true, length: {in: (6..20) }
+
   def fullname
     self.first_name + ' ' + self.last_name
   end
@@ -39,6 +42,7 @@ class User < ApplicationRecord
     self.sent_friend_requests.map {|fr| fr.to_id }
   end
 
+  #get ids of users that sent me requests
   def from_fr_ids
     self.received_friend_requests.map {|fr| fr.from_id }
   end
