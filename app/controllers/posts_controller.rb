@@ -28,7 +28,7 @@ class PostsController < ApplicationController
     @post.update(post_params)
     if @post.save 
       flash[:notice] = "Post updated successfully"
-      redirect_to feed_path
+      redirect_back fallback_location: feed_path
     else
       render edit_post_path(@post)
     end
